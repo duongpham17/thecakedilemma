@@ -1,0 +1,17 @@
+.edit-container{
+
+    .done-edit-btn{
+        padding: 0.5rem 2rem;
+        background-color: var(--main-color);
+        border: 5px double white;
+        margin-bottom: 2rem;
+        &:hover{
+            color: white;
+            padding: 0.5rem 4rem;
+        }
+    }
+
+    .upload-content, .update-content{
+        margin: 0.5rem;
+    }
+}

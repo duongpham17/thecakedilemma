@@ -1,0 +1,73 @@
+.save-address-content{
+    form, .open-address, .quick-address{
+        padding: 0.5rem;
+    }
+    
+    .open-address{
+        h2, h3{
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        button{
+            font-size: 1rem;
+            h2:hover:after{
+                content: " faster checkout"
+            }
+        }
+        p{
+            font-size: 1.5rem;
+        }
+        .icon{
+            margin: -0.3rem;
+        }
+    }
+
+    .quick-address{
+        margin-top: -1rem;
+        display: inline-block;
+        button{
+            font-size: 1rem;
+            border: 2px solid var(--main-color);
+            margin-right: -0.5rem;
+            border-radius: 5px;
+            &:hover{
+                background-color: var(--main-color);
+                color: white;
+            }
+        }
+        .quick-btn{
+            padding: 0rem 0.5rem;
+        }
+        .bin-btn{
+            padding: 0rem 0.5rem;
+            .icon{
+                margin: -0.1rem 0;
+                transition: ease-in-out 0s ;
+            }
+        }
+    }
+
+    form{
+        input{
+            border-bottom: 2px solid var(--main-color);
+            padding: 0.2rem 0.5rem;
+            margin-bottom: 0.5rem;
+            width: 150px;
+            &:hover{
+                border-right: 5px solid var(--main-color);
+                width: 200px;
+            }
+        }
+        button{
+            border-radius: 5px;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            padding: 0.2rem 3rem;
+            border: 2px double var(--main-color);
+            &:hover{
+                background: var(--main-color);
+                color: white;
+            }
+        }
+    }
+}

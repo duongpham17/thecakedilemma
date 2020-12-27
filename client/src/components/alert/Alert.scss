@@ -1,0 +1,56 @@
+/* Global ALlert Styles */
+@mixin text-color($color){
+    color: $color;
+    text-align: center;
+}
+  
+.alert {
+@include text-color(#333);
+position: fixed;
+right: 0;
+left:0;
+margin: 0 auto;
+border-radius: 5px;
+
+font-size: 1rem;
+line-height: 2.5rem;
+min-width: 15rem;
+max-width: 30rem;
+height: 2.5rem;
+
+background: black;
+z-index: 999999;
+}
+
+:root {
+--primary-color: #17a2b8;
+--dark-color: #343a40;
+--light-color: #f4f4f4;
+--danger-color: #f15968;
+--success-color:  #4fd680;
+}
+
+.alert-primary {
+background: var(--primary-color);
+@include text-color(#fff);
+}
+
+.alert-dark {
+background: var(--dark-color);
+@include text-color(#fff);
+}
+
+.alert-danger {
+background: var(--danger-color);
+@include text-color(#fff);
+}
+
+.alert-success {
+background: var(--success-color);
+@include text-color(#fff);
+}
+
+.alert-light {
+background: var(--light-color);
+@include text-color(#333);
+}

@@ -1,0 +1,22 @@
+.activate-container{
+    button{
+        font-size: 16px;
+    }
+    @mixin icon-setting($color, $shadow, $hover){
+        color: $color;
+        box-shadow: 0 0 5px 1px $shadow;
+        border-radius: 50px;
+        transition: ease-in-out 0.5s;
+            &:hover{
+                box-shadow: 0 0 10px 1px $hover
+            }
+    }
+
+    .icon-active{
+        @include icon-setting(rgb(74, 253, 74), rgb(146, 252, 146), rgb(10, 253, 71) )
+    }
+    .icon-not-active{
+        @include icon-setting(rgb(255, 56, 56), rgb(255, 56, 56), rgb(255, 17, 0) )
+    }
+
+}

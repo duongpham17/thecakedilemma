@@ -1,0 +1,44 @@
+.add-variety-container{
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+
+    button{
+        font-size: 16px;
+        margin: 0.5rem 0;
+        padding: 0.3rem 0.5rem;
+        background-color: var(--main-color);
+        border-radius: 50px;
+        &:hover{
+            color: white;
+        }
+    }
+    .icon{
+        margin: -0.1rem;
+    }
+
+    form{
+        position: absolute;
+        background-color: white;
+        min-height: 160px;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        input{
+            font-size: 16px;
+            display: block;
+            margin: 0.2rem auto;
+            padding: 0.4rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 3px solid var(--main-color);
+        }
+        button{
+            margin: 0 auto;
+            background-color: var(--main-color);
+            &:hover{
+                color: white;
+            }
+        }
+    }
+}

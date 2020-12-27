@@ -1,0 +1,88 @@
+.upload-image-container{
+    margin: 3rem auto;
+    padding: 0.5rem;
+    border-radius: 10px;
+
+    .upload-content{
+        margin: 1rem 0;
+        
+        form{
+            margin: 0.5rem auto;
+
+            label{
+                font-size: 1.2rem;
+                cursor: pointer;
+                padding: 0.5rem 2rem;
+                border-radius: 5px;
+                border: 5px double var(--main-color);
+                &:hover{
+                    color: white;
+                    background: var(--main-color);
+                    border: 5px double white;
+                }
+            }
+            .uploading{
+                color: white;
+                background: var(--main-color);
+            }
+            .set-upload{ 
+                margin-top: 1rem;
+                li{
+                    margin: 0.5rem 1rem;
+                    display: block;
+                }
+                button{
+                    padding: 0.5rem 1rem;
+                    background: var(--main-color);
+                    &:hover{
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    .gallery-content{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        overflow: auto;
+        margin-bottom: 20rem;
+        
+        &:hover::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: white;
+        }
+        &:hover::-webkit-scrollbar {
+            height: 5px;
+            display: block;
+        }
+
+        .images{
+            padding: 0.2rem;
+            display: inline-flex;
+            li{
+                margin: 0.7rem;
+            }
+            button{
+                margin: 0 -1.5rem;
+                font-size: 25px;
+                opacity: 0.8;
+                color: white;
+                &:hover{
+                    opacity: 1;
+                    color: rgb(253, 54, 54);
+                }
+            }
+            img{
+                width: 200px;
+                height: 200px;
+                border-radius: 10px;
+                &:hover{
+                    filter: brightness(110%)
+                }
+            }
+        }
+    }
+
+}

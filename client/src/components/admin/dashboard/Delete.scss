@@ -1,0 +1,21 @@
+.delete-product{
+    .icon-delete{
+        font-size: 1rem;
+        &:hover{
+            color: rgb(250, 111, 111);
+        }
+    }
+
+    .ensure{
+        .icon{
+            font-size: 16px;
+            margin: -0.25rem;
+        }
+        button{
+            margin: 0rem 0.4rem;
+            &:hover{
+                color: white;
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.route-not-found{
+    position: absolute;
+    background: white;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 2rem;
+    padding: 5rem 0 ;
+
+    a:hover{
+        color: #3cc1ff;
+    }
+}

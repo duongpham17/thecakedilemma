@@ -1,0 +1,158 @@
+.checkout-basket-container{
+    text-align: center;
+    padding: 1.2rem;
+
+    .title{
+        font-size: 4rem;
+        margin-bottom: 3rem;
+    }
+    table{
+        margin: auto;
+        text-align: center;
+        min-width: 300px;
+        tr{
+            td{
+                padding: 0.3rem 0;
+                border-bottom: 2px solid var(--main-color);
+            }
+
+            .picture{
+                img{
+                    width: 120px;
+                    height: 120px;
+                }
+            }
+            .info{
+                width: 80%;
+                text-align: left;
+                p{
+                    margin: 0.5rem 0.5rem;
+                }
+                p:nth-child(1){
+                    margin-top: -1rem;
+                    font-size: 1.6rem;
+                }
+                p:nth-child(3){
+                    font-size: 1rem;
+                    span{
+                        margin-right:0.5rem;
+                    }
+                    button{
+                        border: 1px solid var(--main-color);
+                        padding: 0 0.3rem;
+                        border-radius: 5px;
+                        margin: 0 0.1rem;
+                        font-size: 0.9rem;
+                        &:hover{
+                            background: var(--main-color);
+                            color: white;
+                        }
+                    }
+                    .icon{
+                        margin: -0.1rem;
+                        transition: ease-in-out 0s;
+                    }
+                }
+            }
+            .total{
+                font-size: 1.5rem;
+                p:nth-child(1){
+                    margin: 4rem 0rem; 
+                }
+                .icon{
+                    position: absolute;
+                    font-size: 1.5rem;
+                    margin: -3.5rem 0rem;
+                    color: grey;
+                    opacity: 0.5;
+                    &:hover{
+                        color: var(--main-color);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    .checkout-total-content, .checkout-link-content{
+        margin:2rem auto;
+        text-align: center;
+        width: 57%;
+        min-width: 200px;
+        border: 2px solid var(--main-color);
+        padding: 1rem;
+        &:hover{
+            background: var(--main-color);
+            *{
+                color: white;
+            }
+        }
+    }
+
+
+    .checkout-total-content{
+        p{
+            font-size: 2rem;
+        }
+    }
+
+    .checkout-link-content{
+        a{
+            padding: 0 5rem;
+            font-size: 2rem;
+        }
+    }
+
+}
+
+@media (max-width: 550px){
+    .checkout-basket-container{
+        table{
+            min-width: 200px;
+            tr{
+                .picture{
+                    img{
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+                .info{
+                    p{
+                        margin: 0rem 0.5rem;
+                    }
+                    p:nth-child(1){
+                        margin-top: 0rem;
+                        margin-bottom: 0.8rem;
+                        font-size: 1.1rem;
+                    }
+                    p:nth-child(3){
+                        font-size: 0.8rem;
+                    }
+                }
+                .total{
+                    font-size: 1.1rem;
+                    .icon{
+                        font-size: 1.5rem;
+                        margin: -2rem -0.5rem;
+                    }
+                }
+            }
+        }
+    
+        .checkout-total-content, .checkout-link-content{
+            padding: 0.5rem;
+            &:hover{
+                background: var(--main-color);
+                *{
+                    color: white;
+                }
+            }
+            p, a{
+                font-size: 1.5;
+            }
+            a{
+                padding: 0;
+            }
+        }
+    }
+}

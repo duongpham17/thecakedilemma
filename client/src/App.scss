@@ -1,0 +1,113 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Assistant', 'Arial', 'sans-serif';
+    font-weight: 400;
+}
+
+:root{
+    --main-color: #ffdab9;
+    --main-background: #ffdab9;
+    --main-text: #555555;
+}
+
+body {
+    margin: 0px;
+    min-height: 100%;
+}
+.body{
+    min-height: 100vh;
+}
+footer{
+    margin-top: 5rem;
+    min-height: 7rem;
+    background-color: var(--main-background);
+    text-align: center;
+    padding-bottom: 1rem;
+
+    a, button, li{
+        color: var(--main-text);
+        margin: 0.3rem 0.3rem;
+        &:hover{
+            color: white;
+        }
+   }
+   li{
+       display: inline-block;
+   }
+}
+
+a, li, input, button, p, label, h1, h2, h3, div, img, textarea, form, label{
+    transition: ease-in-out 0.2s;
+}
+
+a, li, input, button, p, label{
+    text-decoration: none;
+    list-style-type: none;
+    outline: none;
+    border: none;
+    background: none;
+    color: var(--main-text);
+}
+h1, h2, h3 {
+    color: var(--main-text)
+}
+div{
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+img{
+    object-fit: cover;
+    border-radius: 10px;
+}
+textarea {
+    resize: none;
+    outline: none;
+    border: none;
+}
+button{
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+.main-btn{
+    font-size: 16px;
+    margin-top: 1rem;
+    border: 2px solid var(--main-color);
+    &:hover{
+        color: white;
+        background: var(--main-color);
+    }
+}
+
+.loading:before {
+    content: "";
+    position: absolute;
+    position:absolute;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 10rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--main-color);
+    border-top-color: white;
+    animation: spinner 1s linear infinite;
+}
+@keyframes spinner {
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+.hidden{
+    display: none;
+}
+
+.icon{
+    margin: -0.2rem;
+}

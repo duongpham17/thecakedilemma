@@ -1,0 +1,47 @@
+.create-product-container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 3rem 1rem;
+    background-color: white;
+    z-index: 1;
+    min-height: 80rem;
+
+    form{
+        margin: 0 auto;
+        min-width:240px;
+        max-width: 350px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: left;
+        border: 2px solid var(--main-color);
+
+        p{
+            margin: 0.6rem 0;
+        }
+
+        button, input, textarea{
+            border-radius: 10px;
+        }
+
+        input, textarea{
+            padding: 0.4rem 0.5rem;
+            border: 2px double var(--main-color);
+            width: 93%;
+        }
+        textarea{
+            min-height: 3rem;
+        }
+        button{
+            padding: 0.3rem 0.5rem;
+            margin-right: 0.5rem ;
+            width: 80px;
+        }
+        .type{
+            background: var(--main-color);
+            color: white;
+        }
+
+    }
+}

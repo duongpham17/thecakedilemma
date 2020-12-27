@@ -1,0 +1,41 @@
+.delete-account-container{
+    margin-top: 4rem;
+
+    h2{
+        margin: 2rem 0;
+    }
+
+    form{
+        margin: auto;
+        max-width: 400px;
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: left;
+        border: 2px solid var(--main-color);
+        &:hover{
+            box-shadow: 0 5px 12px -3px var(--main-color);
+        }
+
+        button, input{
+            font-size: 1rem;
+        }
+
+        input{
+            border-bottom: 2px solid var(--main-color);
+            padding: 0.2rem 0.2rem;
+        }
+        button{
+            margin-top: 1.5rem;
+            &:hover{
+                color: rgb(255, 71, 71);
+            }
+        }
+    }
+    .form-delete-ready{
+        box-shadow: 0 5px 10px -3px rgb(247, 135, 135);
+        border: 2px solid rgb(247, 135, 135);
+        &:hover{
+            box-shadow: 0 5px 12px -3px rgb(255, 71, 71);
+        }
+    }
+}

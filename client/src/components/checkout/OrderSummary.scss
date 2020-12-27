@@ -1,0 +1,80 @@
+.order-summary-container{
+    max-width: 600px;
+    background: white;
+    min-height: 200px;
+    border-radius: 10px;
+    text-align: left;
+    border: 3px solid var(--main-color);
+    padding: 1rem;
+    * {
+        margin: 0.5rem 0;
+    }
+    h2{
+        margin-top: -0.3rem;
+        font-weight: 600;
+    }
+    input, button{
+        font-size: 16px;
+        border-radius: 0;
+        border: 2px solid white;
+        border-bottom: 2px solid var(--main-color);
+        &:hover{
+            border: 2px solid var(--main-color);
+        }
+    }
+    button{
+        padding: 0 1rem;
+        border: 2px solid var(--main-color);
+        &:hover{
+            background: var(--main-color);
+            color: white;
+        }
+    }
+    .promo-no{
+        color: rgb(245, 120, 120);
+    }
+    .checkout-btn2{
+        border-radius: 5px;
+        padding: 0.2rem 1rem;
+        border: 2px solid var(--main-color);
+        &:hover{
+            background: var(--main-color);
+            color: white;
+        }
+    }
+}
+
+.order-message-container{
+    margin-top: 1rem;
+    max-width: 600px;
+    background: white;
+    min-height: 100px;
+    border-radius: 10px;
+    text-align: left;
+    border: 3px solid var(--main-color);
+    padding: 1rem;
+    h2{
+        font-weight: 600;
+    }
+    textarea{
+        width: 100%;
+        min-height: 100px;
+    }
+}
+
+@media (max-width: 550px){
+    .order-summary-container{
+        input, button{
+            display: block;
+        }
+        button{
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            border: 2px solid var(--main-color);
+            &:hover{
+                background: var(--main-color);
+                color: white;
+            }
+        }
+    }
+}

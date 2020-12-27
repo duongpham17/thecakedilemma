@@ -1,0 +1,100 @@
+.guest-checkout-container{
+    margin: 5rem auto;
+    text-align: center;
+
+    .guest-content{
+        border-radius: 5px;
+        text-align: left;
+        max-width: 320px;
+        padding: 1rem;
+        margin: 0 auto;
+        border: 2px solid var(--main-color);
+        text-align: center;
+        &:hover{
+            background: var(--main-color);
+            a:hover{
+                color: white;
+            }
+        }
+        a{
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 1rem 1.5rem;
+        }
+        .icon{
+            margin: -0.25rem;
+            transition: 0s;
+        }
+    }
+
+    .sign-up-content{
+        margin-top: 3rem;
+        
+        form{
+            border-radius: 5px;
+            text-align: left;
+            max-width: 320px;
+            padding: 1rem;
+            margin: 0 auto;
+            border: 2px solid var(--main-color);
+
+            .title{
+                margin-bottom: 2rem;
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            input{
+                border-bottom: 2px solid var(--main-color);
+                width: 150px;
+                margin-bottom: 1rem;
+                &:hover{
+                    width: 200px;
+                    border-right: 5px solid var(--main-color);
+                }        
+            }
+            .see:hover{
+                color: var(--main-color);
+                cursor: pointer;
+            }
+            button{
+                border: 2px solid var(--main-color);
+                padding: 0.4rem 2rem;
+                border-radius: 5px;
+                &:hover{
+                    background: var(--main-color);
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .sign-up-confirm-content{
+        form{
+            border-radius: 5px;
+            text-align: left;
+            max-width: 320px;
+            padding: 1rem;
+            margin: 0 auto;
+            border: 2px solid var(--main-color);
+            text-align: center;
+
+            input{
+                text-align: center;
+                margin: 1rem;
+                border-bottom: 2px solid var(--main-color);
+                font-size: 1.2rem;
+            }
+            button{
+                border: 2px solid var(--main-color);
+                padding: 0.4rem 2rem;
+                border-radius: 5px;
+                &:hover{
+                    background: var(--main-color);
+                    color: white;
+                }
+            }
+        }
+    }
+
+}

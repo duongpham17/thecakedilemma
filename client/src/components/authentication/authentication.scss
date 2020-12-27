@@ -1,0 +1,75 @@
+.authentication-container{
+    margin-top: 4rem;
+    padding: 0.5rem;
+
+    form{
+        text-align: center;
+        margin: 0 auto;
+        padding:1rem;
+        max-width:300px;
+        border-radius: 10px;
+        border: 2px solid var(--main-color);
+
+        h2{
+            margin-bottom: 1rem;
+        }
+        p{
+            margin-bottom: 0.3rem;
+            text-align: left;
+        }
+        button{
+            font-size: 1rem;
+            border-radius: 5px;
+            padding: 0.3rem 2rem;
+            border: 2px solid var(--main-color);
+            &:hover{
+                color: white;
+                background-color: var(--main-color);
+            }
+        }
+
+        input{
+            text-align: left;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            border-bottom: 2px solid var(--main-color);
+            width: 100%;
+        }
+
+        .correct{
+            border-bottom: 2px solid rgb(134, 241, 175)
+        }
+
+        .see:hover{
+            color: var(--main-color);
+            cursor: pointer;
+        }
+        
+        .link-to{
+            text-align: center;
+            margin-top: 2rem;
+            a{
+            padding: 0.2rem;
+            border-bottom: 2px solid white;
+            &:hover{
+                color:var(--main-color);
+                border-bottom: 2px solid var(--main-color);
+                }
+            }
+        }
+    }
+    
+    .confirm-email-content{
+        text-align: center;
+
+        input{
+            text-align: center;
+            margin: 2rem auto;
+            &:hover{
+                border-right: none;
+                width: 180px;
+            }
+        }
+    }
+}

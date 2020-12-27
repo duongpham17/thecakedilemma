@@ -1,0 +1,35 @@
+.sort-container{
+    text-align: center;
+    margin-top: 3rem;
+
+    button{
+        font-size: 18px;
+        margin: 0 0.5rem;
+        &:hover{
+            color: var(--main-color);
+        }
+    }
+    .icon{
+        margin: -0.2rem 0;
+        font-size: 1rem;
+    }
+    .i-sort{
+        color: var(--main-color);
+    }
+
+    .sort-btn, .sort-content{
+        display: inline-block;
+    }
+    .sort-content{
+        transition: ease-in-out 0.2s;
+        overflow: auto;
+    }
+
+}
+
+@media (max-width: 650px){
+    .sort-container{
+        text-align: center;
+        margin-top: 0rem;
+    }
+}

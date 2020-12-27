@@ -1,0 +1,129 @@
+.basket-nested-container{
+    position: relative;
+    z-index: 1000;
+    border: 5px double var(--main-color);
+    background: white;
+    padding: 0.2rem 0.3rem;
+
+    .basket-content{
+        background: white;
+        margin: 0.3rem 0;
+        display: grid;
+        grid-template-columns: 125px 45px;
+        grid-template-areas: 
+        "title total"
+        "option option"
+        "quantity trash"
+        ;
+
+        li{
+            font-size: 1rem;
+            margin: 0 -0.1rem;
+        }
+
+        .area-title{
+            grid-area: title;
+        }
+
+        .area-total{
+            grid-area: total;
+        }
+
+        .area-options{
+            grid-area: option;
+            font-size: 0.8rem;
+        }
+
+        .area-quantity{
+            grid-area: quantity;
+            border-bottom: 1px solid var(--main-color);
+            font-size: 0.8rem;
+            font-weight: 200;
+        }
+        .area-trash{
+            grid-area: trash;
+            border-radius: 0;
+            border-bottom: 1px solid var(--main-color);
+        }
+
+        img{
+            object-fit: cover;
+            width: 60px;
+            height: 60px;
+        }
+
+        button:hover{
+            color: var(--main-color)
+        }
+        .icon_{
+            margin: -0.1rem 0.5rem;
+            transition: ease-in-out 0s;
+        }
+    }
+
+    .total-content{
+        display: grid;
+        grid-template-columns: 125px 45px;
+        grid-template-areas:
+        "more moreTotal"
+        "total basketTotal"
+        "view view"
+        "checkout checkout"
+        ;
+
+        li{
+            font-size: 1rem;
+            margin: 0 -0.1rem;
+        }
+
+        .area-total, .area-basketTotal, .area-more, .area-more-total{
+            border-bottom: 1px solid var(--main-color);
+            padding: 0.4rem 0;
+        }
+
+        .area-more{
+            grid-area: more;
+        }
+
+        .area-more-total{
+            grid-area: moreTotal;
+        }
+
+        .area-total{
+            grid-area: total;
+        }
+
+        .area-basketTotal{
+            grid-area: basketTotal;
+        }
+        .area-view{
+            grid-area: view;
+            text-align: center;
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--main-color);
+            a:hover{
+                color: var(--main-color);
+            }
+        }.no-border{
+            border-bottom: none;
+        }
+
+        .area-checkout{
+            text-align: center;
+            padding: 0.5rem;
+            grid-area: checkout;
+            a:hover{
+                color: var(--main-color);
+            }
+        }
+    }
+}.no-border{
+    display: none;
+}
+
+@media (max-width: 650px){
+    .basket-container-2{
+        position: absolute;
+        margin: 0.9rem 1rem;
+    }
+}

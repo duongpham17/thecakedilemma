@@ -1,0 +1,65 @@
+.add-to-basket-container{
+    margin: 1rem 0;
+
+    .options-content{
+
+       .boxes button{
+            border-radius: 0;
+            font-size: 1.2rem;
+            padding: 0.1rem 0.5rem;
+            border: 1px solid var(--main-color);
+            &:hover{
+                background: var(--main-color);
+                color: white;
+            }
+
+            &:nth-child(2){
+                padding: 0.1rem 1rem;
+                cursor: default;
+                &:hover{
+                    background: none;
+                    color: #555555;
+                }
+            }
+        }
+
+        .price{
+            margin: 0.5rem 0;
+        }
+
+        li{
+            display: inline-block;
+            margin-right: 1rem;
+        }
+
+        .flavour-n-size{
+            margin: 1rem 0;
+            .option-title{
+                margin: 0.5rem 0;
+                font-size: 1.2rem;
+            }
+            .icon{
+                font-size: 0.6rem;
+                margin: 0 0.2rem;
+            }.selected{
+                color: var(--main-color);
+            }
+            button{
+                margin-right: 0.5rem;
+            }
+        }
+
+        .basket-btn{
+            margin: 1rem 0;
+            border-radius: 5px;
+            font-size: 1rem;
+            padding: 0.5rem 3.2rem;
+            border: 2px solid var(--main-color);
+
+            &:hover{
+                background: var(--main-color);
+                color: white;
+            }
+        }
+    }
+}
