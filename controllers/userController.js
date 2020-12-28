@@ -1,4 +1,5 @@
 const User = require('../models/userModel');
+const Review = require('../models/reviewModel');
 const {appError, catchAsync} = require('../util/CatchError');
 
 //load user data
@@ -77,3 +78,4 @@ exports.removeAddress = catchAsync(async(req, res, next) => {
         user
     })
 })
+

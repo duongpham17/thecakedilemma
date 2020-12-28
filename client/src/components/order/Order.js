@@ -80,9 +80,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                         </div> 
 
                         <div className="valuation">
-                        {user.role === "admin" ? 
-                            <p>Full name: <span>{el.first_name} {el.last_name}</span></p>
-                        : "" }
+                        <p>Full name: <span>{el.first_name} {el.last_name}</span></p>
                         <p>Email: <span>{el.email}</span></p>
                         <p>Address: <span>{el.address_1}, {el.address_2}, {el.city}, {el.postcode}</span></p>
                         </div>

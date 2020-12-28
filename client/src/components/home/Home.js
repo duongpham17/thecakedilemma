@@ -16,7 +16,7 @@ export const Home = ({getFeed, deleteFeed, home:{feed}, auth:{user}}) => {
 
     return (
         <div className="home-container">
-            <CreateFeed admin={!user.role ? "guest" : user.role  } />
+            <CreateFeed admin={!user ? "guest" : user.role } />
 
             Welcome to The Cake Dilemma store. Check here for the latest updates.
 
@@ -26,7 +26,7 @@ export const Home = ({getFeed, deleteFeed, home:{feed}, auth:{user}}) => {
                     {feed.map((el) => 
                     <div className="feed-content" key={el._id}>
                         <li>
-                            {user.role === "admin" ?  <button onClick={() => deleteFeed(el._id) }><MdDelete/></button> : ""} {date(el.createdAt)} <br/>
+                            {!user ? "" : user.role === "admin" ?  <button onClick={() => deleteFeed(el._id) }><MdDelete/></button> : ""} {date(el.createdAt)} <br/>
                             {el.description}
                         </li>
                     </div>

@@ -5,6 +5,16 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     },
+    ratingsAverage: {
+        type: Number,
+        default: 4,
+        max: [5, "Rating must be below 5"],
+        set: val => Math.round(val * 10 ) / 10
+    },
+    ratingsQuantity: {
+        type: Number,
+        default: 0
+    },
     type: {
         type: String,
     },

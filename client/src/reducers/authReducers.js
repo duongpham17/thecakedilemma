@@ -13,7 +13,7 @@ import {
 } from '../actions/types'
 
 const initialState = {
-    user: {},
+    user: null,
     loggedOn: false,
     loading: true,
     sent: false,
