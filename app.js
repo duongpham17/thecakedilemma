@@ -19,7 +19,6 @@ const {errorMessage} = require('./util/CatchError');
 const app = express()
 
 app.use(cors({
-    //this has to be frontend localhost
     origin: process.env.NODE_ENV === "production" ? process.env.WEBSITE_URL :  process.env.FRONTEND_PORT,
     credentials: true,
 }));
@@ -47,7 +46,6 @@ app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 
 if(process.env.NODE_ENV === 'production'){
-    //set static folder
     app.use(express.static('client/build'));
 
     app.get('*', (req, res) => {
