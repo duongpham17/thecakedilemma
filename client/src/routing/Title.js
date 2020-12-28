@@ -7,7 +7,7 @@ const Title = () => {
     useEffect(() => {
         const title = location.pathname.slice(1, 1000)
         const replaceStringWithLineBreak = (str) => str.replace(/\//g, "-")
-        document.title = `Cake Dilemma | ${location.pathname.length <= 1 ? "Home" : replaceStringWithLineBreak(title)}`
+        document.title = `The Cake Dilemma | ${location.pathname.length <= 1 ? "Home" : replaceStringWithLineBreak(title)}`
     }, [location])
 
     return <></>

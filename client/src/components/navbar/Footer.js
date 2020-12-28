@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <footer>
             <button onClick={() => arrowUp()}><ImArrowUp size="1.5rem"/></button><br/>
-            <li>&copy; 2021, Cake Dilemma</li>
+            <li>&copy; 2021, The Cake Dilemma</li>
             <br/>
             <li><a target="_blank" rel="noreferrer" href="https://www.instagram.com/thecakedilemma/">Follow us on Instagram</a></li>
             <br/>

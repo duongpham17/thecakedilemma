@@ -48,6 +48,7 @@
             margin-top: 1rem;
             form{
                 input{
+                    border-radius: 0;
                     font-size: 1rem;
                     border-bottom: 2px solid var(--main-color);
                     padding: 0.2rem 0.5rem;
@@ -78,6 +79,7 @@
         form{
             margin-top: 1rem;
             input{
+                border-radius: 0;
                 font-size: 1rem;
                 border-bottom: 2px solid var(--main-color);
                 padding: 0.2rem 0.5rem;
@@ -93,22 +95,6 @@
                 &:hover{
                     background: var(--main-color);
                     color: white;
-                }
-            }
-        }
-    }
-
-}
-
-@media (max-width: 730px){
-    .address-container{
-        .shipping-container{
-            form{
-                input{
-                    &:hover{
-                        border-right: 0px solid var(--main-color);
-                        width: 190px;
-                    }
                 }
             }
         }

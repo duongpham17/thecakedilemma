@@ -77,6 +77,14 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                         <p>Postage <span className="postage">£{Number(el.postage).toFixed(2)}</span></p>
                         <p>Discount <span className="discount">{el.discount ? "-" : ""}£{el.discount_value.toFixed(2)}</span> </p>
                         <p>Grand Total <span className="final-total">£{el.discount ? el.total_with_discount.toFixed(2) : el.total.toFixed(2)}</span></p>
+                        </div> 
+
+                        <div className="valuation">
+                        {user.role === "admin" ? 
+                            <p>Full name: <span>{el.first_name} {el.last_name}</span></p>
+                        : "" }
+                        <p>Email: <span>{el.email}</span></p>
+                        <p>Address: <span>{el.address_1}, {el.address_2}, {el.city}, {el.postcode}</span></p>
                         </div>
                         
                         {!el.message ? "" : 
