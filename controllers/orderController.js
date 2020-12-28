@@ -6,7 +6,7 @@ const Feature = require('../util/Feature');
 const {v4 : uuidv4} = require("uuid");
 const dotenv = require('dotenv');
 dotenv.config({ path: "./config.env" });
-const stripe = require("stripe")(process.env.STRIPE_KEY);
+const stripe = require("stripe")(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV);
 
 //checkout
 exports.checkout = catchAsync(async(req, res, next) => {
