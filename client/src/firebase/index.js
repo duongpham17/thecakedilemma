@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import "firebase/storage"
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_APIKEY,
+  apiKey: "AIzaSyCL4ynjYazbPOI1vrSKwg133Kasv5Rg-V0",
   authDomain: "cakedilemma.firebaseapp.com",
   projectId: "cakedilemma",
   storageBucket: "cakedilemma.appspot.com",
@@ -15,4 +15,4 @@ firebase.initializeApp(firebaseConfig)
 
 const storage = firebase.storage();
 
-export {storage, firebase as default };
+export {storage, firebase as default};
