@@ -5,11 +5,11 @@
     padding: 2rem 1rem;
     background-color: white;
     z-index: 1;
-    min-height: 80rem;
+    min-height: 50rem;
 
     .find-bar{
         button, input{
-            border-radius: 5px;
+            border-radius: 10px;
             border: 2px solid var(--main-color);
             text-align: center;
             padding: 0.3rem 2rem;
@@ -27,7 +27,6 @@
             margin-top: 1rem;
         }
     }
-
 
     .order-content{
         max-width: 600px;

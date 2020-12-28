@@ -15,7 +15,7 @@ const EditPage = props => {
     return (
         <div className="edit-container">
             <button className="done-edit-btn" onClick={() => done()}>Done</button>
-            {!data ? <div className="loading">Loading...</div> :
+            {!data ? <div className="loading"/> :
             <Fragment>
                 <div className="update-content"> 
                     <UpdateProduct data={data} />
@@ -25,6 +25,7 @@ const EditPage = props => {
                 </div>
             </Fragment>
             }
+            <button className="done-edit-btn" onClick={() => done()}>Done</button>
         </div>
     )
 }

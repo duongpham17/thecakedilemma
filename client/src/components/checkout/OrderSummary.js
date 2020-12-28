@@ -14,7 +14,7 @@ const OrderSummary = props => {
 
     const applyDiscount = (e) => {
         e.preventDefault()
-        if(code === (process.env.NODE_ENV === "production" ? process.env.DISCOUNT_CODE : "dev") ){
+        if(code === (process.env.NODE_ENV === "production" ? process.env.REACT_APP_DISCOUNT_CODE : "dev") ){
             setCheck("correct")
             setOrderData({...orderData, total_with_discount: Number((orderData.total_before_postage * 0.8) + orderData.postage).toFixed(2), discount_value: Number(orderData.total_before_postage * 0.2).toFixed(2), discount: true })
         } else {

@@ -1,6 +1,7 @@
 .guest-checkout-container{
     margin: 5rem auto;
     text-align: center;
+    padding: 1rem;
 
     .guest-content{
         border-radius: 5px;
@@ -46,12 +47,8 @@
 
             input{
                 border-bottom: 2px solid var(--main-color);
-                width: 150px;
-                margin-bottom: 1rem;
-                &:hover{
-                    width: 200px;
-                    border-right: 5px solid var(--main-color);
-                }        
+                width: 95%;
+                margin-bottom: 1rem;    
             }
             .see:hover{
                 color: var(--main-color);

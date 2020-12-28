@@ -3,13 +3,13 @@
     z-index: 1000;
     border: 5px double var(--main-color);
     background: white;
-    padding: 0.2rem 0.3rem;
+    padding: 0.1rem 0.3rem;
 
     .basket-content{
         background: white;
         margin: 0.3rem 0;
         display: grid;
-        grid-template-columns: 125px 45px;
+        grid-template-columns: 125px 35px;
         grid-template-areas: 
         "title total"
         "option option"
@@ -18,7 +18,7 @@
 
         li{
             font-size: 1rem;
-            margin: 0 -0.1rem;
+            margin: 0;
         }
 
         .area-title{
@@ -63,7 +63,7 @@
 
     .total-content{
         display: grid;
-        grid-template-columns: 125px 45px;
+        grid-template-columns: 125px 35px;
         grid-template-areas:
         "more moreTotal"
         "total basketTotal"
@@ -73,7 +73,7 @@
 
         li{
             font-size: 1rem;
-            margin: 0 -0.1rem;
+            margin: 0;
         }
 
         .area-total, .area-basketTotal, .area-more, .area-more-total{

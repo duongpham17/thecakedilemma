@@ -9,9 +9,9 @@
             button{
                 font-size: 18px;
                 padding: 0.2rem 1rem;
+                border: 2px solid  white;
                 &:hover{
-                    color: white;
-                    background-color:  var(--main-background);
+                    border: 2px solid  var(--main-background);
                 }
             }
             .open{

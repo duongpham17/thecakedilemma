@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import OrderSummary from './OrderSummary';
 import Address from './Address';
+import {Redirect} from 'react-router-dom';
 
 const Checkout = ({user:{user}, order:{basket, total}}) => {
     
@@ -22,22 +23,26 @@ const Checkout = ({user:{user}, order:{basket, total}}) => {
         postcode: "",
     
         method: "",
-        postage: total >= 50 ? 0 : process.env.NODE_ENV === "production" ? parseFloat(process.env.REACT_APP_DELIVERY_COST) :  5,
+        postage: total >= 50 ? 0 : 4,
         order: !basket ? "" : basket,
         date: new Date().toISOString().slice(0,10),
 
-        saved_postage: process.env.NODE_ENV === "production" ? parseFloat(process.env.REACT_APP_DELIVERY_COST) :  5,
-        saved_total_with_postage: total >= 50 ? total : total + (process.env.NODE_ENV === "production" ? parseFloat(process.env.REACT_APP_DELIVERY_COST) :  5),
+        saved_postage: 4,
+        saved_total_with_postage: total >= 50 ? total : total + 4,
 
             
         total_before_postage: total,
-        total: total >= 50 ? total : total + (process.env.NODE_ENV === "production" ? parseFloat(process.env.REACT_APP_DELIVERY_COST) :  5),
+        total: total >= 50 ? total : total + 4,
         total_with_discount: 0,
         discount_value: 0,
         discount: false,
 
         message: "",
     })
+
+    if(!basket){
+        return <Redirect to="/basket" />
+    }
 
     return (
         <div className="checkout-container">

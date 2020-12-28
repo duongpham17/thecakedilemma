@@ -75,12 +75,11 @@ const AddToBasket = props => {
             setAddBasket({...addBasket, quantity: amount - 1, total: ( amount - 1 ) * addBasket.price})
         }
     }
-    console.log(addBasket)
 
     return (
         <div className="add-to-basket-container">
             <div className="options-content">
-                {product.quantity <= 0 ? <li><h2>Out of Stock. Restock Every Wednesday</h2></li> : 
+                {product.quantity <= 0 ? <li><h2>Out of Stock</h2></li> : 
                 <Fragment>
                 <li className="price"><h2>{!addBasket.price ? product.price  : `£${Number(addBasket.price).toFixed(2)}`}</h2></li><br/>
                 <li><h2>Quantity</h2></li> 
