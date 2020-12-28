@@ -37,7 +37,7 @@ exports.getProduct = catchAsync(async(req, res, next) => {
     const product = await Product.findOne({title: req.params.title})
 
     if(!product){
-        return next (new appError("Product does not exist", 4000))
+        return next (new appError("Product does not exist", 400))
     }
 
     res.status(200).json({
