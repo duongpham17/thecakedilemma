@@ -43,7 +43,7 @@ export const Basket = ({order:{basket, total}, auth:{loggedOn}, updateQuantity, 
                 {basket.map((el) => 
                 <tr key={el.unique}>
                     <td className="picture">
-                        <img src={el.url} alt="checkout"/>
+                        <Link to={`/product/${el.title}`}> <img src={el.url} alt="checkout"/></Link>
                     </td>
                     <td className="info">
                         <p>{el.title}</p>
@@ -56,7 +56,7 @@ export const Basket = ({order:{basket, total}, auth:{loggedOn}, updateQuantity, 
                     </td>
                     <td className="total">
                         <button onClick={(e) => removeFromBasket(e, el.id, el.quantity, el.unique) }><MdClose className="icon" /></button>
-                        <p>£{Number(el.price * el.quantity).toFixed(2)}</p>
+                        <p>£{el.total.toFixed(2)}</p>
                     </td>
                 </tr>
                 )}
