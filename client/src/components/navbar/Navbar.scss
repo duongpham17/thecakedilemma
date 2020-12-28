@@ -75,7 +75,7 @@
         .guest-basket-dp-container{
             .guest-basket-dp-content{
                 @include dropdown-content();
-                margin: 0.6rem -7.7rem;
+                margin: 0.6rem -7rem;
             }
             &:hover .guest-basket-dp-content{
                 @include dropdown-hover()
