@@ -1,5 +1,5 @@
 import './Products.scss';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getProducts } from '../../actions/productActions';
@@ -21,11 +21,13 @@ export const Product = ({product:{products, loading}, getProducts, location}) =>
             <Sort setSort={setSort} sort={sort} />
             
             {!products ? 
-            <div className="loading"/>
+            <Fragment>
+                {loading ? <div className="loading"/> : "" }
+            </Fragment>
             : 
             <div className="template-container">
-            {products.map((el, index) => 
-                <div key={index} className="card">
+            {products.map((el) => 
+                <div key={el._id} className="card">
                     <button><Link to={`/product/${el.title}`}><img src={el.image.length === 0 ? "" : el.image[0].url} alt=""/></Link></button>
                     {el.quantity <= 1 ? <p className="out-of-stock">Out of Stock</p> : "" }
                     <h2>{el.title}</h2>
