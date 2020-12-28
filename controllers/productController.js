@@ -22,7 +22,11 @@ exports.getProducts = catchAsync(async(req, res, next) => {
     //only find active products
     const prod = new Feature(Product.find({active: true}), req.query).sort().pagination().filter()
 
-    const product = await prod.query.select(["title", "image", "price", "quantity"])
+    const product = await prod.query.select(["title", "image", "sortPrice", "quantity"])
+
+    if(!product){
+        return next(new appError("Could not find any product"))
+    }
 
     res.status(200).json({
         status: "success",
@@ -32,7 +36,7 @@ exports.getProducts = catchAsync(async(req, res, next) => {
 })
 
 //get choosen product
-exports.getProduct = catchAsync(async(req, res, next) => {
+exports.getOneProduct= catchAsync(async(req, res, next) => {
     //only find active products
     const product = await Product.findOne({title: req.params.title})
 

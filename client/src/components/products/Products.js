@@ -8,13 +8,11 @@ import Sort from './Sort';
 export const Product = ({product:{products, loading}, getProducts, location}) => {
 
     //get the type via pathname in the url. Product associated with pathname === type E.g postal, cake ...
-    const type = location.pathname.slice(10, 1000);
-    const limit = 100;
     const [sort, setSort] = useState(!localStorage.getItem('sort') ? "-createdAt" : localStorage.getItem('sort'))
 
     useEffect(() => {
-        getProducts(sort, limit, type)
-    }, [getProducts, sort, limit, type])
+        getProducts(sort, 100, location.pathname.slice(10, 1000))
+    }, [getProducts, sort, location])
 
     return (
         <div className="products-container">

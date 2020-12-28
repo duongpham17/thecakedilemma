@@ -16,8 +16,9 @@ const Create = ({createProduct, auth:{user} }) => {
         flavour: "",
         optPrice: "",
         ingredient: "",
+        sortPrice: 1,
     })
-    const {title, price, quantity, description, type, ingredient, size, flavour, optPrice} = formData
+    const {title, price, quantity, description, type, ingredient, size, flavour, optPrice, sortPrice} = formData
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -47,6 +48,9 @@ const Create = ({createProduct, auth:{user} }) => {
 
                 <p>Display Price</p>
                 <input type="text" placeholder="....." name="price" value={price} onChange={e => onChange(e)} required   />
+
+                <p>Sort Price</p>
+                <input type="text" placeholder="....." name="sortPrice" value={sortPrice} onChange={e => onChange(e)}  />
 
                 <p>Quantity</p>
                 <input type="number" placeholder="....." name="quantity" value={quantity} onChange={e => onChange(e)} required />

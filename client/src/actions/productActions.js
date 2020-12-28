@@ -40,7 +40,7 @@ export const getProduct = (title) => async dispatch => {
         type: CLEAR_ONE_PRODUCT
     })
     try{
-        const res = await Api.get(`/products/${title}`);
+        const res = await Api.get(`/products/one/${title}`);
         dispatch({
             type: ONE_PRODUCT,
             payload: res.data.product

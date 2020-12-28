@@ -21,10 +21,11 @@ const UpdateProduct = props => {
         collect: data.collect,
         deliveryMessage: data.deliveryMessage,
         allergen: data.allergen,
-        optPrice: data.optPrice
+        optPrice: data.optPrice,
+        sortPrice: data.sortPrice
     })
 
-    const {title, description, price, quantity, minimum, type, ingredient, delivery, collect, deliveryMessage, allergen, size, flavour, optPrice} = formData
+    const {title, description, price, quantity, minimum, type, ingredient, delivery, collect, deliveryMessage, allergen, size, flavour, optPrice, sortPrice} = formData
 
     const onSubmit = e => {
         e.preventDefault()
@@ -56,6 +57,9 @@ const UpdateProduct = props => {
 
                 <p>Display Price</p>
                 <input type="text" name="price" defaultValue={price} onChange={e => onChange(e)} required    />
+
+                <p>Sort Price</p>
+                <input type="text" name="sortPrice" defaultValue={sortPrice} onChange={e => onChange(e)}  />
 
                 <p>Quantity</p>
                 <input type="number"   name="quantity" defaultValue={quantity} onChange={e => onChange(e)} required />

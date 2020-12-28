@@ -23,6 +23,9 @@ const productSchema = new mongoose.Schema({
     price:{
         type: String,
     },
+    sortPrice:{
+        type: Number
+    },
     quantity:{
         type: Number,
         default: 0
