@@ -32,6 +32,7 @@ import Footer from './components/navbar/Footer';
 /* About Website */
 import About from './components/about/About';
 import Privacy from './components/about/Privacy';
+import Faqs from './components/about/Faqs';
 
 /* Account */
 import Account from './components/account/Account';
@@ -75,6 +76,7 @@ const App = () => {
           <Switch>
             <Route exact path='/about'    component={About}                  />
             <Route exact path='/privacy'  component={Privacy}                />
+            <Route exact path='/faqs' component={Faqs} />
 
             <Route exact path='/signup'   component={Signup}                 />
             <Route exact path='/login'    component={Login}                  />

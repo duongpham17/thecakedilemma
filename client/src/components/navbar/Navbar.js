@@ -69,7 +69,7 @@ const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}}) => {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/products/cake">Cakes</Link></li>
                 <li><Link to="/products/postal">Postal</Link></li>
-                <li><Link to="/faq">FAQs</Link></li>
+                <li><Link to="/faqs">FAQs</Link></li>
             </div>
 
         </nav>

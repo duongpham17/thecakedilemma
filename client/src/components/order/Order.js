@@ -11,7 +11,7 @@ import {resetBuyStatus, getOrders, getAdminOrders, completeOrder} from '../../ac
 
 import Pagination from './Pagination';
 
-const Order = ({order:{status, order, loading, length}, auth:{user}, completeOrder, resetBuyStatus, getOrders, getAdminOrders}) => {
+const Order = ({order:{status, order, length}, auth:{user}, completeOrder, resetBuyStatus, getOrders, getAdminOrders}) => {
     const [open, setOpen] = useState("")
 
     useEffect(() => {
@@ -22,8 +22,8 @@ const Order = ({order:{status, order, loading, length}, auth:{user}, completeOrd
 
     const limit = 100
     const [page, setPage] = useState(1)
-    const array = !order ? "" : order.map(el => el.discount ? el.total_with_discount : el.total )
-    const Total = !array ? "" : array.reduce((a, c) => a + c)
+    const array = !order || order.length === 0 ? "" : order.map(el => el.discount ? el.total_with_discount : el.total )
+    const Total = !array || order.length === 0 ? "" : array.reduce((a, c) => a + c)
 
     useEffect(() => {
         if(user.role === "admin") {
@@ -35,9 +35,8 @@ const Order = ({order:{status, order, loading, length}, auth:{user}, completeOrd
 
     return (
         <div className="order-container">
-            {loading ? <div className="loading">loading...</div> : ""}
 
-            {!order && loading ? "" :
+            {!order ? "Empty" :
             <Fragment>
                 <div className="header-content">
                     <li></li>
@@ -92,7 +91,7 @@ const Order = ({order:{status, order, loading, length}, auth:{user}, completeOrd
 
                 {user.role === "admin" ?
                 <div className="total-content">
-                    <p>Total: £{Total.toFixed(2)}</p>
+                    <p>Total: £{Number(Total).toFixed(2)}</p>
                 </div>
                 : "" }
 

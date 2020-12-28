@@ -63,18 +63,19 @@ const AddToBasket = props => {
     const dec_inc = (addsub) => {
         if(amount === 0) {
             setAmount(1)
+            return setAddBasket({...addBasket, quantity: 1, total: 1 * addBasket.price})
         }
+        
         if(addsub === "add") {
             setAmount(amount + 1)
-            setAddBasket({...addBasket, quantity: amount + 1 })
+            setAddBasket({...addBasket, quantity: amount + 1, total: ( amount + 1 ) * addBasket.price})
         }
         if(addsub === "sub") {
             setAmount(amount - 1)            
-            setAddBasket({...addBasket, quantity: amount - 1 })
+            setAddBasket({...addBasket, quantity: amount - 1, total: ( amount - 1 ) * addBasket.price})
         }
     }
-
-    console.log(optPrice)
+    console.log(addBasket)
 
     return (
         <div className="add-to-basket-container">
