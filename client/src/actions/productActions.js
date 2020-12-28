@@ -29,6 +29,7 @@ export const getProducts = (sort, limit, type) => async dispatch => {
             payload: res.data.product
         })
     } catch(err) {
+        console.log(err.response)
         dispatch(setAlert("something went wrong. Please refresh", "danger"))
     }
 }
