@@ -39,7 +39,7 @@ export default function(state = initialState, action){
         case CREATE_PRODUCT:
             return{
                 ...state,
-                products: [...state.products, payload],
+                products: [payload, ...state.products],
                 loading: false
             }
         case ACTIVATE_PRODUCT:
@@ -94,7 +94,7 @@ export default function(state = initialState, action){
         case CREATE_VARIETY:
             return{
                 ...state,
-                variety: [...state.variety, payload],
+                variety: [payload, ...state.variety],
                 loading: false
             }
         case EDIT_VARIETY:

@@ -1,0 +1,30 @@
+.create-feed-container{
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+
+    form{
+        border-radius: 10px;
+        margin: auto;
+        max-width: 600px;
+        padding: 0.5rem;
+        border: 3px solid var(--main-color);
+
+        textarea{
+            padding: 0.5rem;
+            width: 95%;
+            font-size: 1rem;
+            min-height: 6rem;
+        }
+        button{
+            font-size: 1rem;
+            margin-top: 1rem;
+            border: 3px solid var(--main-color);
+            padding: 0.5rem 3rem;
+            &:hover{
+                background: var(--main-color);
+                color: white;
+            }
+        }
+    }
+}

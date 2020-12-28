@@ -47,3 +47,8 @@ export const CHECKOUT_STATUS = 'CHECKOUT_STATUS';
 export const ORDERS = 'ORDERS';
 export const RESET_STATUS = 'RESET_STATUS';
 export const COMPLETE = 'COMPLETE';
+
+/* Home */
+export const GET_FEED = 'GET_FEED';
+export const CREATE_FEED= 'CREATE_FEED';
+export const DELETE_FEED= 'DELETE_FEED';

@@ -5,6 +5,7 @@ import userReducers from './userReducers';
 import adminReducers from './adminReducers';
 import productReducers from './productReducers';
 import orderReducers from './orderReducers';
+import homeReducers from './homeReducers';
 
 export default combineReducers({
     alertReducers,
@@ -12,5 +13,6 @@ export default combineReducers({
     userReducers,
     adminReducers,
     productReducers,
-    orderReducers
+    orderReducers,
+    homeReducers,
 });
