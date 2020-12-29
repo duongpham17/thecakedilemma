@@ -1,0 +1,41 @@
+footer{
+    margin-top: 5rem;
+    min-height: 7rem;
+    background-color: var(--main-background);
+    text-align: center;
+    padding-bottom: 1rem;
+
+    .top-content{
+        button{
+            font-size: 1.5rem;
+            &:hover{
+                color: white;
+            }
+        }
+    }
+
+    .contact-content{
+        margin: 1rem 0;
+        .icon{
+            margin: -0.1rem 0;
+            font-size: 1.2rem;
+            &:hover{
+                color: white;
+            }
+        }
+        a{
+            margin: 0.3rem;
+        }
+    }
+
+    .link-content{
+        p{
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+        a:hover{
+            color: white;
+        }
+    }
+    
+}

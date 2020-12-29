@@ -18,24 +18,6 @@ body {
 .body{
     min-height: 100vh;
 }
-footer{
-    margin-top: 5rem;
-    min-height: 7rem;
-    background-color: var(--main-background);
-    text-align: center;
-    padding-bottom: 1rem;
-
-    a, button, li{
-        color: var(--main-text);
-        margin: 0.3rem 0.3rem;
-        &:hover{
-            color: white;
-        }
-   }
-   li{
-       display: inline-block;
-   }
-}
 
 a, li, input, button, p, label, h1, h2, h3, div, img, textarea, form, label{
     transition: ease-in-out 0.2s;

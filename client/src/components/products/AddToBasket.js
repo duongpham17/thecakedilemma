@@ -76,6 +76,8 @@ const AddToBasket = props => {
         }
     }
 
+    console.log(addBasket)
+
     return (
         <div className="add-to-basket-container">
             <div className="options-content">
@@ -129,9 +131,11 @@ const AddToBasket = props => {
                 {size.length <= 0 && flavour.length <= 0 ? 
                 <div className="flavour-n-size">
                     <button className="basket-btn" 
-                    onPointerDown={() => setAddBasket({...addBasket, total: addBasket.price * amount, quantity: amount, unique: product._id+product.title.slice(0, 4) })} 
-                    onMouseEnter={() => setAddBasket({...addBasket, total: addBasket.price * amount, quantity: amount, unique: product._id+product.title.slice(0, 4) })} 
-                    onClick={(e) => addToBasket(e) }>Add to basket</button>
+                    onPointerDown={() => setAddBasket({...addBasket, price: optPrice[0], total: optPrice[0] * amount, quantity: amount, unique: product._id+product.title.slice(0, 4) })} 
+                    onMouseEnter={() => setAddBasket({...addBasket, price: optPrice[0], total: optPrice[0] * amount, quantity: amount, unique: product._id+product.title.slice(0, 4) })} 
+                    onClick={(e) => addToBasket(e) }>
+                    Add to basket
+                    </button>
                 </div>
                 : "" }
 

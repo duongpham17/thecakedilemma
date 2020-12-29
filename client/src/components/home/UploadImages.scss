@@ -1,8 +1,4 @@
-.upload-image-container{
-    margin: 3rem auto;
-    padding: 0.5rem;
-    border-radius: 10px;
-
+.home-upload-image-container{
     .upload-content{
         margin-bottom: 1rem;
         form{
@@ -32,45 +28,50 @@
     }
 
     .gallery-content{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        overflow: auto;
-        
-        &:hover::-webkit-scrollbar-thumb {
-            border-radius: 4px;
-            background-color: white;
-        }
-        &:hover::-webkit-scrollbar {
-            height: 5px;
-            display: block;
-        }
-
         .images{
-            padding: 0.2rem;
-            display: inline-flex;
-            li{
-                margin: 0.7rem;
+            display: inline;
+            img{
+                width:25%;
+                height:280px;
+                border-radius: 0;
+                margin: -0.2rem 0;
             }
             button{
+                position: absolute;
                 margin: 0 -1.5rem;
-                font-size: 25px;
-                opacity: 0.8;
-                color: grey;
+                font-size: 1.2rem;
+                color: rgb(190, 186, 186);
                 &:hover{
-                    opacity: 1;
-                    color: rgb(253, 54, 54);
-                }
-            }
-            img{
-                width: 200px;
-                height: 200px;
-                border-radius: 10px;
-                &:hover{
-                    filter: brightness(110%)
+                    color: red;
                 }
             }
         }
     }
 
+}
+
+@media (max-width: 700px){
+    .home-upload-image-container{
+        .gallery-content{
+            .images{
+                img{
+                    width:25%;
+                    height:150px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 420px){
+    .home-upload-image-container{
+        .gallery-content{
+            .images{
+                img{
+                    width:25%;
+                    height:100px;
+                }
+            }
+        }
+    }
 }

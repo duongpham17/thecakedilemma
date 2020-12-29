@@ -28,3 +28,28 @@
         }
     }
 }
+
+.feed-title{
+    margin-top: 4rem;
+    font-size: 1.4rem;
+}
+
+.feed-container{
+    margin: 2rem 0 ;
+    .feed-content{
+        border-bottom: 2px solid var(--main-color);
+        max-width: 500px;
+        margin: 0 auto;
+        &:hover{
+            border-bottom: 2px solid var(--main-color);
+            max-width:100%;
+            font-size: 1.2rem;
+        }
+        li{
+            margin: 1rem 0;
+        }
+        button:hover{
+            color: rgb(255, 130, 130);
+        }
+    }
+}

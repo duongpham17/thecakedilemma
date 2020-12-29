@@ -26,8 +26,8 @@ import ForgotPassword from './components/authentication/ForgotPassword';
 import ResetPassword from './components/authentication/ResetPassword';
 
 /* Layout */
-import Navbar from './components/navbar/Navbar';
-import Footer from './components/navbar/Footer';
+import Navbar from './components/navigation/Navbar';
+import Footer from './components/navigation/Footer';
 
 /* About Website */
 import About from './components/about/About';
@@ -76,7 +76,7 @@ const App = () => {
           <Switch>
             <Route exact path='/about'    component={About}                  />
             <Route exact path='/privacy'  component={Privacy}                />
-            <Route exact path='/faqs' component={Faqs} />
+            <Route exact path='/faqs'     component={Faqs}                   />
 
             <Route exact path='/signup'   component={Signup}                 />
             <Route exact path='/login'    component={Login}                  />

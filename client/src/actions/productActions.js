@@ -5,7 +5,8 @@ import {
     CLEAR_ONE_PRODUCT,
     REVIEW,
     CREATE_REVIEW,
-    DELETE_REVIEW
+    DELETE_REVIEW,
+    PRODUCT_RATING,
 } from './types';
 import Api from '../routing/Api';
 import {setAlert} from './alertActions';
@@ -121,3 +122,23 @@ export const deleteReview = (id) => async dispatch => {
     }
 }
 
+//update product best
+export const bestSeller = (id, best) => async dispatch => {
+    try{
+        const config = {
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        }
+        const res = await Api.patch(`/products/best/${id}/${best}`, {}, config);
+        dispatch({
+            type: PRODUCT_RATING,
+            payload: res.data.review,
+            id,
+            best,
+        })
+    } catch(err) {
+        console.log(err.response)
+        dispatch(setAlert("something went wrong. Please refresh", "danger"))
+    }
+}

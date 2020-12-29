@@ -1,39 +1,33 @@
 import './Home.scss';
-import React, {useEffect, Fragment} from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
-import { getFeed, deleteFeed } from '../../actions/homeActions';
-import CreateFeed from './CreateFeed';
-import {date} from '../../functions/functions';
-import {MdDelete} from 'react-icons/md';
+import { getFeed, deleteFeed, getImages, getBestProducts } from '../../actions/homeActions';
 
-export const Home = ({getFeed, deleteFeed, home:{feed}, auth:{user}}) => {
+import CreateFeed from './CreateFeed';
+import UploadImages from './UploadImages';
+import BestProducts from './BestProducts';
+
+export const Home = ({getFeed, getImages, getBestProducts, home:{feed, gallery, best}, auth:{user}}) => {
 
     useEffect(() => {
         if(!feed){
             getFeed()
         }
-    }, [getFeed, feed])
+        if(!gallery){
+            getImages()
+        }
+        if(!best){
+            getBestProducts()
+        }
+    }, [getFeed, feed, getImages, gallery, best, getBestProducts])
 
     return (
         <div className="home-container">
-            <CreateFeed admin={!user ? "guest" : user.role } />
+            <UploadImages admin={!user ? "guest" : user.role } gallery={gallery} />
 
-            Welcome to The Cake Dilemma store. Check here for the latest updates.
+            <CreateFeed admin={!user ? "guest" : user.role } feed={feed} />
 
-            <div className="feed-container">
-                {!feed ? <div className="loading" /> :
-                <Fragment>
-                    {feed.map((el) => 
-                    <div className="feed-content" key={el._id}>
-                        <li>
-                            {!user ? "" : user.role === "admin" ?  <button onClick={() => deleteFeed(el._id) }><MdDelete/></button> : ""} {date(el.createdAt)} <br/>
-                            {el.description}
-                        </li>
-                    </div>
-                    )}
-                </Fragment>
-                }
-            </div>
+            <BestProducts best={best} />
         </div>
     )
 }
@@ -43,6 +37,6 @@ const mapStateToProps = state => ({
     auth: state.authReducers
 })
 
-export default connect(mapStateToProps, {getFeed, deleteFeed})(Home)
+export default connect(mapStateToProps, {getFeed, deleteFeed, getImages, getBestProducts })(Home)
 
 

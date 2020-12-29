@@ -40,8 +40,9 @@ export const PRODUCTS = 'PRODUCTS';
 export const ONE_PRODUCT = 'ONE_PRODUCT';
 export const CLEAR_ONE_PRODUCT = 'CLEAR_ONE_PRODUCT';
 export const REVIEW = 'REVIEW';
-export const DELETE_REVIEW = "DELETE_REVIEW"
-export const CREATE_REVIEW = "CREATE_REVIEW"
+export const DELETE_REVIEW = "DELETE_REVIEW";
+export const CREATE_REVIEW = "CREATE_REVIEW";
+export const PRODUCT_RATING = "PRODUCT_RATING";
 
 /* Order */
 export const LOAD_BASKET = 'LOAD_BASKET';
@@ -53,5 +54,11 @@ export const COMPLETE = 'COMPLETE';
 
 /* Home */
 export const GET_FEED = 'GET_FEED';
-export const CREATE_FEED= 'CREATE_FEED';
-export const DELETE_FEED= 'DELETE_FEED';
+export const CREATE_FEED = 'CREATE_FEED';
+export const DELETE_FEED = 'DELETE_FEED';
+
+export const BEST_PRODUCTS = 'BEST_PRODUCTS';
+
+export const GET_IMAGE = 'GET_IMAGE';
+export const CREATE_IMAGE = 'CREATE_IMAGE';
+export const DELETE_IMAGE = 'DELETE_IMAGE';

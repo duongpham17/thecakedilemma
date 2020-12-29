@@ -1,0 +1,48 @@
+.best-products-container{
+    margin: 1rem 0.5rem;
+
+    .best-seller-title{
+        margin: 1rem;
+        p{
+            font-size: 2rem;
+            border-bottom: 3px solid var(--main-color);
+            width: 200px;
+            margin: auto;
+        }
+    }
+
+
+    .best-products-content{
+        .card{
+            display: inline-block;
+            margin: 0rem 1rem;
+            width: 200px;
+            background-color: white;
+            border: 4px solid #fff5ec;
+            border-radius: 10px;
+            padding: 0.1rem;
+
+            &:hover{
+                background-color:  #fff5ec;
+            }
+
+            img{
+                object-fit: cover;
+                width: 200px;
+                height: auto;
+                height: 250px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+}
+
+@media (max-width: 650px){
+    .best-products-container{
+        .best-products-content{
+            display: flex;
+            overflow: auto;
+        }
+    }
+}

@@ -10,5 +10,17 @@ const homeSchema = new mongoose.Schema({
     }
 })
 
+const imageSchema = new mongoose.Schema({
+    url: {
+        type: String
+    },
+    createdAt:{
+        type: Date,
+        default: Date.now()
+    }
+})
+
 const Home = mongoose.model('Home', homeSchema)
-module.exports = Home
+const Image = mongoose.model('Image', imageSchema)
+
+module.exports = {Home, Image}

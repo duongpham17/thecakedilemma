@@ -23,7 +23,7 @@ exports.getProducts = catchAsync(async(req, res, next) => {
     //only find active products
     const prod = new Feature(Product.find({active: true}), req.query).sort().pagination().filter()
 
-    const product = await prod.query.select(["title", "image", "sortPrice", "quantity", "price"])
+    const product = await prod.query.select(["title", "image", "sortPrice", "quantity", "price", "best"])
 
     if(!product){
         return next(new appError("Could not find any product"))
@@ -125,5 +125,25 @@ exports.deleteReview = catchAsync(async(req, res, next) => {
 
     res.status(200).json({
         status: "success",
+    })
+})
+
+//assign products for best eslling
+exports.bestProduct = catchAsync(async(req, res, next) => {
+    let product;
+
+    if(req.params.best === "best"){
+        product = await Product.findByIdAndUpdate(req.params.id, {best: "best"})
+    } else {
+        product = await Product.findByIdAndUpdate(req.params.id, {best: "none"})
+    }
+
+    if(!product){
+        return next(new appError("Could not delete product"))
+    }
+
+    res.status(200).json({
+        status: "success",
+        product
     })
 })

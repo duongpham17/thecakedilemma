@@ -67,10 +67,14 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    best: {
+        type: String,
+        default: "none"
+    },
     createdAt: {
         type: Date,
         default: Date.now()
-    }
+    },
 },
     {
         toJSON: {virtuals: true},

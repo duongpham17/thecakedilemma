@@ -6,7 +6,8 @@ import {
     CLEAR_ONE_PRODUCT,
     REVIEW,
     DELETE_REVIEW,
-    CREATE_REVIEW
+    CREATE_REVIEW,
+    PRODUCT_RATING
 } from '../actions/types'
 
 const initialState = {
@@ -47,6 +48,11 @@ export default function(state = initialState, action){
                 ...state,
                 product: null,
                 loading: false
+            }
+        case PRODUCT_RATING:
+            return{
+                ...state,
+                products: state.products.map(el => el._id === action.id ? {...el, best: action.best} : el),
             }
         
         case REVIEW:
