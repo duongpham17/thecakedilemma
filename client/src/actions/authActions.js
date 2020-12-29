@@ -41,6 +41,7 @@ export const signup = (formData) => async dispatch => {
             payload: res.data.user
         })
     } catch(err) {
+        console.log(err.response)
         dispatch(setAlert(`${err.response.data.message}`, 'danger'))
     }
 }
