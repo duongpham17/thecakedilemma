@@ -1,5 +1,5 @@
 .best-products-container{
-    margin: 1rem 0.5rem;
+    margin: 4rem 0.5rem;
 
     .best-seller-title{
         margin: 1rem;
@@ -7,7 +7,6 @@
             font-size: 1.5rem;
         }
     }
-
 
     .best-products-content{
         .card{
@@ -36,6 +35,7 @@
 
 @media (max-width: 650px){
     .best-products-container{
+        margin: 0rem 0.5rem;
         .best-products-content{
             display: flex;
             overflow: auto;

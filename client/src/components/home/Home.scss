@@ -1,4 +1,12 @@
 .home-container{
-    margin: 3rem auto;
+    margin: 5rem auto;
     text-align: center;
+}
+
+@media (max-width: 550px){
+    .home-container{
+        margin: 0rem auto;
+        text-align: center;
+    }
+    
 }
