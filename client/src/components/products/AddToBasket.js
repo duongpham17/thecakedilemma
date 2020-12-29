@@ -76,8 +76,6 @@ const AddToBasket = props => {
         }
     }
 
-    console.log(addBasket)
-
     return (
         <div className="add-to-basket-container">
             <div className="options-content">

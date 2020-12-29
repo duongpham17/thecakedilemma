@@ -30,8 +30,7 @@
 }
 
 .feed-title{
-    margin-top: 4rem;
-    font-size: 1.4rem;
+    margin-top: 1rem;
 }
 
 .feed-container{
@@ -52,4 +51,13 @@
             color: rgb(255, 130, 130);
         }
     }
+}
+
+@media (max-width: 550px){
+        .feed-title{
+            margin-top: 1rem;
+            h2{
+                font-size: 1rem;
+            }
+        }
 }

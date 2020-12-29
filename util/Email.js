@@ -3,7 +3,15 @@ const nodemailer = require('nodemailer');
 const dotenv = require('dotenv')
 dotenv.config({ path: "./config.env" });
 
-const websiteLink = process.env.NODE_ENV === "development" ? process.env.FRONTEND_PORT : process.env.WEBSITE_URL 
+const websiteLink = process.env.NODE_ENV === "production" ? process.env.WEBSITE_URL : process.env.FRONTEND_PORT
+
+const EmailNoReply = () => nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_NOREPLY,
+        pass: process.env.EMAIL_PASSWORD,
+    }
+})
 
 const Email = () => nodemailer.createTransport({
     service: "gmail",
@@ -14,10 +22,10 @@ const Email = () => nodemailer.createTransport({
 })
 
 exports.emailConfirmation = async options => {
-    const transporter = Email()
+    const transporter = EmailNoReply()
 
     const mailOptions = {
-        from: 'Cake Dilemma <thecakedilemma@gmail.com>',
+        from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
         to: options.email,
         subject: "Email Confirmation Code",
         html:`
@@ -64,10 +72,10 @@ exports.emailConfirmation = async options => {
 }
 
 exports.sendForgotPasswordEmail = async options => {
-    const transporter = Email()
+    const transporter = EmailNoReply()
 
     const mailOptions = {
-        from: 'Cake Dilemma <thecakedilemma@gmail.com>',
+        from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
         to: options.email,
         subject: "Reset Password Link",
         html: `

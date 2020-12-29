@@ -9,7 +9,7 @@
         
         .card{
             text-align: center;
-            margin: 2rem 3rem;
+            margin: 2rem 1rem;
             min-width: 250px;
             width: 300px;
             background-color: white;
@@ -51,6 +51,19 @@
                 background: white;
                 opacity: 0.8;
                 padding: 0.5rem 0.9rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 550px){
+    .products-container{
+        .template-container{
+            .card{
+                margin: 1rem 1rem;
+                img{
+                    height: 250px;
+                }
             }
         }
     }

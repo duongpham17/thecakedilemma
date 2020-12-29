@@ -4,10 +4,7 @@
     .best-seller-title{
         margin: 1rem;
         p{
-            font-size: 2rem;
-            border-bottom: 3px solid var(--main-color);
-            width: 200px;
-            margin: auto;
+            font-size: 1.5rem;
         }
     }
 
@@ -29,8 +26,7 @@
             img{
                 object-fit: cover;
                 width: 200px;
-                height: auto;
-                height: 250px;
+                height: 200px;
                 border-bottom-right-radius: 0;
                 border-bottom-left-radius: 0;
             }
