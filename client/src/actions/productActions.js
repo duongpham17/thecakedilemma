@@ -3,6 +3,9 @@ import {
     VARIETY_BOX,
     ONE_PRODUCT,
     CLEAR_ONE_PRODUCT,
+    REVIEW,
+    CREATE_REVIEW,
+    DELETE_REVIEW
 } from './types';
 import Api from '../routing/Api';
 import {setAlert} from './alertActions';
@@ -68,3 +71,53 @@ export const updateQuantity = (id, quantity, sign) => async dispatch => {
         dispatch(setAlert("something went wrong. Please refresh", "danger"))
     }
 }
+
+//update product quanatity
+export const getReviews = (id, user, page, limit) => async dispatch => {
+    try{
+        const res = await Api.get(`/products/reviews/${id}/${user}?page=${page}&limit=${limit}`);
+        dispatch({
+            type: REVIEW,
+            payload: res.data.review,
+            res
+        })
+    } catch(err) {
+        console.log(err.response)
+        dispatch(setAlert("something went wrong. Please refresh", "danger"))
+    }
+}
+
+
+//update product quanatity
+export const createReview = (data) => async dispatch => {
+    try{
+        const config = {
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        }
+        const res = await Api.post(`/products/reviews`, data, config);
+        dispatch({
+            type: CREATE_REVIEW,
+            payload: res.data.review
+        })
+        dispatch(setAlert("Thank you for the review.", "success"))
+    } catch(err) {
+        dispatch(setAlert("something went wrong. Please refresh", "danger"))
+    }
+}
+
+//update product quanatity
+export const deleteReview = (id) => async dispatch => {
+    try{
+        const res = await Api.delete(`/products/reviews/${id}`);
+        dispatch({
+            type: DELETE_REVIEW,
+            payload: res.data.review,
+            id
+        })
+    } catch(err) {
+        dispatch(setAlert("something went wrong. Please refresh", "danger"))
+    }
+}
+

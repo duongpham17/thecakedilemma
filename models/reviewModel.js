@@ -12,7 +12,10 @@ const reviewSchema = new mongoose.Schema({
         ref: 'Product',
         required: ['Review must be for a product']
     },
-    review: {
+    name: {
+        type: String
+    },
+    description: {
         type: String,
         trim: true,
         required: [true, 'Review can not be empty']
@@ -33,14 +36,11 @@ const reviewSchema = new mongoose.Schema({
     }
 )
 
-//calculating ratingsAverage and ratingsQuantity using a STATIC method
 reviewSchema.statics.calcAverageRatings = async function(productId){
     const stats = await this.aggregate([
-        //first stage, select all reviews belonging to the current product
         {
             $match: {product: productId}
         },
-        //second stage, calculate the statistics. NOTE: Always put _id first, _id means what documents have in common that we want to group by.
         {
             $group: {
                 _id: '$product',
@@ -63,7 +63,7 @@ reviewSchema.statics.calcAverageRatings = async function(productId){
     }
 }
 
-reviewSchema.index({product: 1, user: 1}, {unique: true});
+//reviewSchema.index({product: 1, user: 1}, {unique: true});
 
 reviewSchema.post('save', function(){
     this.constructor.calcAverageRatings(this.product);

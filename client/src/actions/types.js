@@ -39,6 +39,9 @@ export const VARIETY_BOX = 'VARIETY_BOX';
 export const PRODUCTS = 'PRODUCTS';
 export const ONE_PRODUCT = 'ONE_PRODUCT';
 export const CLEAR_ONE_PRODUCT = 'CLEAR_ONE_PRODUCT';
+export const REVIEW = 'REVIEW';
+export const DELETE_REVIEW = "DELETE_REVIEW"
+export const CREATE_REVIEW = "CREATE_REVIEW"
 
 /* Order */
 export const LOAD_BASKET = 'LOAD_BASKET';

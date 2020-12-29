@@ -14,7 +14,6 @@ export const getFeed = () => async dispatch => {
             type: GET_FEED,
             payload: res.data.home
         })
-        console.log(res.data)
     } catch(err) {
         dispatch(setAlert("something went wrong. Please refresh", "danger"))
     }

@@ -5,8 +5,9 @@ import { getProduct } from '../../actions/productActions';
 
 import AddToBasket from './AddToBasket';
 import Image from './Image';
+import Review from './Review';
 
-const Product = ({product:{product}, getProduct, location}) => {
+const Product = ({product:{product, review, reviewed, reviewLength}, getProduct, location}) => {
     const title = location.pathname.slice(9, 1000)
 
     useEffect(() => {
@@ -39,6 +40,10 @@ const Product = ({product:{product}, getProduct, location}) => {
                         {product.deliveryMessage}
                     </div>
                 </div>
+
+                <div className="review-content">
+                    <Review product={product} review={review} reviewed={reviewed} reviewLength={reviewLength}/>
+                </div>
             </div>
             }
             
@@ -47,7 +52,7 @@ const Product = ({product:{product}, getProduct, location}) => {
 }
 
 const mapStateToProps = (state) => ({
-    product: state.productReducers
+    product: state.productReducers,
 })
 
 export default connect(mapStateToProps, {getProduct})(Product)

@@ -14,7 +14,6 @@ const productRoutes = require('./routes/productRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const homeRoutes = require('./routes/homeRoutes');
-const reviewRoutes = require('./routes/reviewRoutes');
 const authRoutes = require('./controllers/authController');
 const {errorMessage} = require('./util/CatchError');
 
@@ -46,7 +45,6 @@ app.use(authRoutes.blackList('role'));
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
-app.use('/reviews', reviewRoutes);
 app.use('/home', homeRoutes);
 
 if(process.env.NODE_ENV === 'production'){

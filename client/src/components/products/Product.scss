@@ -10,11 +10,12 @@
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
         "left right"
+        "review review"
         ;
 
         .image-content{
             grid-area: left;
-            margin: 1rem;
+            margin: 0.5rem;
         }
 
         .information-content{
@@ -35,20 +36,26 @@
             }
         }
 
+        .review-content{
+            grid-area: review;
+            margin: 3rem 1rem;
+        }
+
     }
 }
 
 @media (max-width: 780px){
     .product-container{
-        padding: 0.5rem;
+        padding: 0;
     
         .product-content{
             min-width: 200px;
-            padding: 0.5rem;
+            padding: 0;
             grid-template-columns: 1fr;
             grid-template-areas: 
             "left"
             "right"
+            "review"
             ;
     
             .image-content{
@@ -58,30 +65,10 @@
             .information-content{
                 grid-area: right;
             }
-        }
-    }
-    
-}
 
-@media (max-width: 550px){
-
-    .product-container{
-        padding: 0.5rem;
-    
-        .product-content{
-            margin-top: 1rem;
-            grid-template-columns: 1fr;
-            grid-template-areas: 
-            "left"
-            "right"
-            ;
-
-            .information-content{
-                grid-area: right;
-                padding: 0;
-
+            .review-content{
+                grid-area: review;
             }
         }
     }
-
 }

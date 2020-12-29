@@ -7,7 +7,7 @@ const productSchema = new mongoose.Schema({
     },
     ratingsAverage: {
         type: Number,
-        default: 4,
+        default: 5,
         max: [5, "Rating must be below 5"],
         set: val => Math.round(val * 10 ) / 10
     },
@@ -71,7 +71,19 @@ const productSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     }
-})
+},
+    {
+        toJSON: {virtuals: true},
+        toObject: {virtuals: true}
+    }
+)
 
 const Product = mongoose.model('Product', productSchema)
 module.exports = Product
+
+//keeping a reference to all the child documents on the parent document
+productSchema.virtual('reviews', {
+    ref: 'Review',
+    foreignField: 'product',
+    localField: '_id',
+})
