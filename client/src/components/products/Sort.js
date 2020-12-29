@@ -11,8 +11,8 @@ const Sort = props => {
     const [open, setOpen] = useState(false)
 
     const filter_query = [
-        {id: 1, query: "-price",       description: " Price",       icon: "high"},
-        {id: 2, query: "price" ,       description: " Price",       icon: "low"},
+        {id: 1, query: "-sortPrice",   description: " Price",       icon: "high"},
+        {id: 2, query: "sortPrice" ,   description: " Price",       icon: "low"},
         {id: 3, query: "-quantity",    description: " Quantity",    icon: "high"},
         {id: 4, query: "quantity",     description: " Quantity",    icon: "low"},
         {id: 5, query: "-createdAt",   description: " Newest",      icon: "time"},

@@ -36,12 +36,11 @@
 .feed-container{
     margin: 2rem 0 ;
     .feed-content{
-        border-bottom: 2px solid var(--main-color);
-        max-width: 500px;
+        border-bottom: 1px solid var(--main-color);
+        max-width: 600px;
         margin: 0 auto;
         &:hover{
-            border-bottom: 2px solid var(--main-color);
-            max-width:100%;
+            max-width:90%;
             font-size: 1.2rem;
         }
         li{
