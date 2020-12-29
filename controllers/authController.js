@@ -53,7 +53,7 @@ exports.signup = catchAsync(async(req, res, next) => {
     }
 
     try{
-        await  emailConfirmation({
+        await emailConfirmation({
             email: req.body.email,
             code: req.body.code,
         });

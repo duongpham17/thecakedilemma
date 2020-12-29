@@ -83,7 +83,7 @@ exports.getReviews = catchAsync(async(req, res, next) => {
 
     let reviewed;
     if(req.params.user !== "guest"){
-        reviewed = await Review.find({user: req.params.user})
+        reviewed = await Review.find({user: req.params.user, product: req.params.id})
         reviewed = reviewed.length >= 1
     }
 
