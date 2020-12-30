@@ -39,6 +39,7 @@ export const checkout = (token, orderData) => async dispatch => {
             status: res.data.status
         })
     } catch(err) {
+        console.log(err.response)
         dispatch(setAlert("Something went wrong. Please try again.", "danger"))
     }
 }

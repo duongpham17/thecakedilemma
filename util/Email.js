@@ -137,13 +137,14 @@ exports.sendOrderEmail = async options => {
                 html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
                 table{ max-width: 600px; text-align: center; margin: 2rem auto;}
                 .logo{ width: 30%; height:auto }
-                .order-item p { text-align: left; width: 100px}
+                .order-item p { text-align: left; width: 100%}
                 footer{padding: 1rem; background: #ffdab9; margin-top: 5rem}
-                .product {text-align: left; width: 60%}
+                .product {text-align: left; width: 100%;}
                 .product td {border-bottom: 1px solid #ffdab9; padding: 0.5rem 0}
                 .grand-total{text-align: right}
                 .grand-total p {padding-right: 1rem}
-                .order-information p {text-align: left}
+                .order-information p {text-align: left;}
+                .order-information {width: 100%}
                 .message {padding-bottom: 3rem; padding-top: 2rem}
             </style>
         </head>

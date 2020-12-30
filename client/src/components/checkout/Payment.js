@@ -32,10 +32,10 @@ export const Payment = (props) => {
     if(status === "success" && !loggedOn){
         return <Redirect to="/order/guest" />
     }
-    
+
     return (
         <StripeCheckout stripeKey={process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY} token={handleToken} name="The Cake Dilemma" 
-        amount={orderData.discount ? orderData.total_with_discount * 100 : orderData.total * 100}  currency="GBP">
+        amount={orderData.discount ? Math.round(orderData.total_with_discount * 100) : Math.round(orderData.total * 100)}  currency="GBP">
         <button className="checkout-btn2">Checkout</button>
         </StripeCheckout>
     )

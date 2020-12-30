@@ -16,7 +16,7 @@ const OrderSummary = props => {
         e.preventDefault()
         if(code === (process.env.NODE_ENV === "production" ? process.env.REACT_APP_DISCOUNT_CODE : "dev") ){
             setCheck("correct")
-            setOrderData({...orderData, total_with_discount: Number((orderData.total_before_postage * 0.8) + orderData.postage).toFixed(2), discount_value: Number(orderData.total_before_postage * 0.2).toFixed(2), discount: true })
+            setOrderData({...orderData, total_with_discount: ((orderData.total_before_postage * 0.8) + orderData.postage).toFixed(2), discount_value: (orderData.total_before_postage * 0.2).toFixed(2), discount: true })
         } else {
             setCheck("incorrect")
         }
@@ -28,10 +28,10 @@ const OrderSummary = props => {
             <h2>Order Summary</h2>
             {!orderData.order ? "" : orderData.order.map((el) => 
                 <p key={el.unique}>- {el.title} &nbsp; {el.size} {el.flavour} 
-                <br/> &nbsp;&nbsp; Qty {el.quantity} &nbsp;&nbsp; £{el.price} &nbsp;&nbsp; £{Number(el.price * el.quantity).toFixed(2)}</p>
+                <br/> &nbsp;&nbsp; Qty {el.quantity} &nbsp;&nbsp; £{el.price} &nbsp;&nbsp; £{(el.price * el.quantity).toFixed(2)}</p>
             )}
-            <p>Item Total: £{Number(orderData.total_before_postage).toFixed(2)}</p>
-            <p>Delivery cost: £{Number(orderData.postage).toFixed(2)}</p>
+            <p>Item Total: £{orderData.total_before_postage.toFixed(2)}</p>
+            <p>Delivery cost: £{orderData.postage.toFixed(2)}</p>
 
             {readyToPay ? 
             <Fragment>
