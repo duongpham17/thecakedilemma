@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {createFeed, deleteFeed} from '../../actions/homeActions';
 import { date } from '../../functions/functions';
 import { MdDelete } from 'react-icons/md';
+import {FiUpload} from 'react-icons/fi';
 
 export const Home = (props) => {
     const createFeed = props.createFeed;
@@ -31,8 +32,8 @@ export const Home = (props) => {
             {admin === "admin" ? 
             <div className="create-feed-container">
                 <form onSubmit={(e) => onSubmit(e) }>
-                    <textarea type="text" name="description" placeholder="hello" value={description} onChange={(e) => onChange(e) } />
-                    <button>Create Feed</button>
+                    <textarea type="text" name="description" placeholder="hello" value={description} onChange={(e) => onChange(e) } /><br/>
+                    <button><FiUpload/></button>
                 </form>
             </div>
             : "" }
