@@ -9,12 +9,17 @@ import {
     GET_IMAGE,
     CREATE_IMAGE,
     DELETE_IMAGE,
+
+    GET_FAQ,
+    CREATE_FAQ, 
+    DELETE_FAQ
 } from '../actions/types'
 
 const initialState = {
     feed: null,
     gallery: null,
     best: null,
+    question: null,
 }
 
 export default function(state = initialState, action){
@@ -58,6 +63,23 @@ export default function(state = initialState, action){
                 ...state, 
                 gallery: state.gallery.filter(i => i._id !== action.id),
             }
+
+        case GET_FAQ:
+            return {
+                ...state,
+                question: payload,
+            }
+        case CREATE_FAQ:
+            return{
+                ...state, 
+                question: [payload, ...state.question],
+            }
+        case DELETE_FAQ:
+            return{
+                ...state, 
+                question: state.question.filter(i => i._id !== action.id),
+            }
+        
 
             default:
                 return state;

@@ -8,6 +8,10 @@ import {
     GET_IMAGE,
     CREATE_IMAGE,
     DELETE_IMAGE,
+
+    GET_FAQ,
+    CREATE_FAQ,
+    DELETE_FAQ
 } from './types';
 import Api from '../routing/Api';
 import {setAlert} from './alertActions';
@@ -88,7 +92,7 @@ export const uploadImage = (url) => async dispatch => {
     }
 }
 
-//delete image from firebase database
+//delete gallery
 export const deleteImage = (id) => async dispatch => {
     try{
     const res = await Api.delete(`/home/images/${id}`);
@@ -102,6 +106,7 @@ export const deleteImage = (id) => async dispatch => {
     }
 }
 
+//get best products
 export const getBestProducts = () => async dispatch => {
     try{
         const res = await Api.get('/home/best');
@@ -111,5 +116,50 @@ export const getBestProducts = () => async dispatch => {
         })
     } catch(err){
         dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
+}
+
+//get FAQs
+export const getQuestions = () => async dispatch => {
+    try{
+        const res = await Api.get('/home/questions');
+        dispatch({
+            type: GET_FAQ,
+            payload: res.data.question
+        })
+    } catch(err){
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
+}
+
+//Create FAQs
+export const createQuestion = (data) => async dispatch => {
+    try{
+        const config = { 
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        }
+        const res = await Api.post('/home/questions', data, config);
+        dispatch({
+            type: CREATE_FAQ,
+            payload: res.data.question,
+        })
+    } catch(err){
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
+}
+
+//delete FAQs
+export const deleteQuestion = (id) => async dispatch => {
+    try{
+    const res = await Api.delete(`/home/questions/${id}`);
+    dispatch({
+        type: DELETE_FAQ,
+        payload: res.data.question,
+        id
+    })
+    }catch(err){
+        dispatch(setAlert("Image already deleted", "primary"))
     }
 }

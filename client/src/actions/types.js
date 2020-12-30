@@ -56,9 +56,10 @@ export const COMPLETE = 'COMPLETE';
 export const GET_FEED = 'GET_FEED';
 export const CREATE_FEED = 'CREATE_FEED';
 export const DELETE_FEED = 'DELETE_FEED';
-
 export const BEST_PRODUCTS = 'BEST_PRODUCTS';
-
 export const GET_IMAGE = 'GET_IMAGE';
 export const CREATE_IMAGE = 'CREATE_IMAGE';
 export const DELETE_IMAGE = 'DELETE_IMAGE';
+export const GET_FAQ = 'GET_FAQ';
+export const CREATE_FAQ = 'CREATE_FAQ';
+export const DELETE_FAQ = 'DELETE_FAQ';

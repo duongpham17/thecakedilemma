@@ -20,7 +20,18 @@ const imageSchema = new mongoose.Schema({
     }
 })
 
+const questionSchema = new mongoose.Schema({
+    title: {
+        type : String,
+    },
+    description: {
+        type: String,
+    }
+
+})
+
 const Home = mongoose.model('Home', homeSchema)
 const Image = mongoose.model('Image', imageSchema)
+const Question = mongoose.model('Question', questionSchema)
 
-module.exports = {Home, Image}
+module.exports = {Home, Image, Question}

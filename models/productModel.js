@@ -58,7 +58,7 @@ const productSchema = new mongoose.Schema({
     }],
     allergen:{
         type: String,
-        default: "Glutten, Egg, Nut, Peanut, Soy, Sesame, Dairy"
+        default: "Gluten, Egg, Nut, Peanut, Soy, Sesame, Dairy"
     },
     ingredient:{
         type: String,

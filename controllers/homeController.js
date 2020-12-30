@@ -1,4 +1,4 @@
-const {Home, Image} = require('../models/homeModel');
+const {Home, Image, Question} = require('../models/homeModel');
 const Product = require('../models/productModel');
 const {appError, catchAsync} = require('../util/CatchError');
 
@@ -97,5 +97,48 @@ exports.getBestProducts = catchAsync(async(req, res, next) => {
     res.status(200).json({
         status: "success",
         product
+    })
+})
+
+/* Frequently asked questions */
+
+//get questions
+exports.getQuestions = catchAsync(async(req, res, next) => {
+    const question = await Question.find()
+
+    if(!question){
+        return next (new appError("No question found", 400))
+    }
+    
+    res.status(200).json({
+        status: "success",
+        question
+    })
+})
+
+//create questions
+exports.createQuestion = catchAsync(async(req, res, next) => {
+    const question = await Question.create(req.body)
+
+    if(!question){
+        return next (new appError("No question found", 400))
+    }
+
+    res.status(200).json({
+        status: "success",
+        question
+    })
+})
+
+//delete questions
+exports.deleteQuestion = catchAsync(async( req, res, next) => {
+    const question = await Question.findByIdAndDelete(req.params.id)
+
+    if(!question){
+        return next (new appError("No question with that ID", 400))
+    }
+
+    res.status(200).json({
+        status: "success"
     })
 })

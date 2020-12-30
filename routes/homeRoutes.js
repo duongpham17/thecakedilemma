@@ -14,4 +14,8 @@ router.get('/images', homeController.getImages);
 router.post('/images', authController.protect, homeController.uploadImage)
 router.delete('/images/:id', authController.protect, homeController.deleteImage);
 
+router.get('/questions', homeController.getQuestions)
+router.post('/questions', homeController.createQuestion)
+router.delete('/questions/:id', homeController.deleteQuestion)
+
 module.exports = router
