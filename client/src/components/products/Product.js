@@ -16,7 +16,7 @@ const Product = ({product:{product, review, reviewed, reviewLength}, getProduct,
 
     return (
         <div className="product-container">
-            {!product ? "" : 
+            {!product ? <div className="loading" /> : 
 
             <div className="product-content">
 
