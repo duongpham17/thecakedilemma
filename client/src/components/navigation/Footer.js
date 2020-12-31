@@ -15,7 +15,7 @@ const Footer = () => {
         <footer>
         <div className="top-content">
             <button onClick={() => arrowUp()}><IoIosArrowUp/></button>
-            <p>&copy; 2021, The Cake Dilemma</p>
+            <p>&copy; 2021, thecakedilemma.com/</p>
         </div>
 
         <div className="contact-content">
@@ -37,18 +37,3 @@ const Footer = () => {
 }
 
 export default Footer
-
-
-/*
-            <div className="top-content">
-            <button onClick={() => arrowUp()}><IoIosArrowUp/></button><br/>
-            </div>
-            <li>&copy; 2021, The Cake Dilemma</li>
-            <br/>
-            <li><a target="_blank" rel="noreferrer" href="https://www.instagram.com/thecakedilemma/">Follow us on Instagram</a></li>
-            <br/>
-            <li onClick={() => arrowUp()}><Link to="/about">About</Link></li>
-            <li onClick={() => arrowUp()}><Link to="/privacy">Privacy & Cookies</Link></li>
-            <li><a href="mailto:thecakedilemma@gmail.com">Contact</a></li>
-
-*/
