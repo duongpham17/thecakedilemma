@@ -48,7 +48,7 @@ export const Dashboard = ({admin:{products, edit, loading}, getProductToEdit, ge
             {products.map((el, index) => 
             <div key={el._id} className="card">
                 <div className="navbar-content">
-                    <Activate id={el._id} boolean={el.active} best={el.best}  />
+                    <Activate id={el._id} boolean={el.active} />
                     <button onClick={(e) => editProduct(e, el._id)}><AiFillEdit className="icon"/></button>
                     <p>{date(el.createdAt)}</p>
                     <Delete id={el._id} image={el.image} />

@@ -8,7 +8,7 @@ router.use(authController.protect)
 router.get('/products', adminController.getProducts)
 router.post('/products', adminController.createProduct);
 router.delete('/products/:id', adminController.deleteProduct);
-router.patch('/products/:id/:boolean/:best', adminController.activateProduct);
+router.patch('/products/:id/:boolean', adminController.activateProduct);
 
 router.get('/find/:type/:id', adminController.findOrder);
 router.get('/find/stats', adminController.findStats);
