@@ -5,6 +5,7 @@ const {appError, catchAsync} = require('../util/CatchError');
 const Feature = require('../util/Feature');
 const {v4 : uuidv4} = require("uuid");
 const dotenv = require('dotenv');
+const Product = require('../models/productModel');
 dotenv.config({ path: "./config.env" });
 const stripe = require("stripe")(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV);
 
@@ -42,16 +43,27 @@ exports.checkout = catchAsync(async(req, res, next) => {
 exports.createOrder = catchAsync(async(req, res, next) => {
     const order = await Order.create(req.body)
 
+    //increase loyalty points
     if(req.body.user !== "guest"){
         const user = await User.findById(req.body.user)
         user.loyalty_point += 1
         await user.save()
     }
 
+    //set stats for amount sold and total
+    let productIDs = [];
+    order.order.map(el => productIDs.push({id: el.id, total: el.total}))
+    
+    let i;
+    for(i = 0; i < productIDs.length; i++){
+        await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: 1, total: productIDs[i].total} })
+    }
+
     if(!order){
         return next(new appError("Could not create an order.", 400))
     }
 
+    /*
     try{
         await sendOrderEmail({
             email: order.email,
@@ -69,6 +81,11 @@ exports.createOrder = catchAsync(async(req, res, next) => {
     } catch (err){
         return next(new appError("There was an error sending the email", 500))
     }
+    */
+
+    res.status(200).json({
+        status: "Success",
+    })
 })
 
 //get receipt for user

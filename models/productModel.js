@@ -71,6 +71,14 @@ const productSchema = new mongoose.Schema({
         type: String,
         default: "none"
     },
+    sold: {
+        type: Number,
+        default: 0,
+    },
+    total: {
+        type: Number,
+        default: 0
+    },
     createdAt: {
         type: Date,
         default: Date.now()

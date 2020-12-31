@@ -25,13 +25,13 @@
         max-height: 250px;
         overflow: auto;
         .images{
-            @include image(50px, 50px, 110%)
+            @include image(50px, 50px, 105%)
         }
     }
 
     .gallery-main-image{
         grid-area: large;
-        @include image(340px, 250px, 110%)
+        @include image(340px, 250px, 105%)
     }
 }
 

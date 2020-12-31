@@ -7,16 +7,16 @@
             display: inline-block;
             margin: 0.1rem 0.4rem;
             button{
+                border-radius: 0;
                 font-size: 18px;
                 padding: 0.2rem 1rem;
-                border: 2px solid  white;
+                border-bottom: 2px solid  white;
                 &:hover{
-                    border: 2px solid  var(--main-background);
+                    border-bottom: 2px solid  var(--main-background);
                 }
             }
             .open{
-                color: white;
-                background-color:  var(--main-background);
+                border-bottom: 2px solid  var(--main-background);
             }
         }
     }

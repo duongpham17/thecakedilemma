@@ -68,7 +68,6 @@ button{
 .loading:before {
     content: "";
     position: absolute;
-    position:absolute;
     left:0;
     right:0;
     margin-left:auto;
@@ -76,6 +75,16 @@ button{
     margin-top: 10rem;
     width: 60px;
     height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--main-color);
+    border-top-color: white;
+    animation: spinner 1s linear infinite;
+}
+.loading_2:before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     border: 3px solid var(--main-color);
     border-top-color: white;

@@ -59,11 +59,13 @@ export const Dashboard = ({admin:{products, edit, loading}, getProductToEdit, ge
                 </div>
 
                 <div className="information-content">
+                    <p>Sold: {el.sold}</p>
+                    <p>Total: £{el.total}</p>
+                    <br/><br/>
                     <p>Type: {el.type}</p>
                     <br/><br/>
                     <p>{el.price}</p>
                     <p>Stock: {el.quantity}</p>
-                    <p>Min-order: {el.minimum}</p>
                     <br/><br/>
                     <p>{el.title}</p>
                 </div>
