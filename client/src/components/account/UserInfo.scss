@@ -28,6 +28,16 @@
             width: 200px;
         }
 
+        button{
+            margin-top: 1rem;
+            border: 2px solid var(--main-color);
+            padding: 0.3rem 2rem;
+            &:hover{
+                color: white;
+                background: var(--main-color);
+            }
+        }
+
         .see-password{
             cursor: pointer;
         }

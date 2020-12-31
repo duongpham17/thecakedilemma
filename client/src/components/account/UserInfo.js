@@ -49,7 +49,7 @@ const UserInfo = ({user:{user}, updateUserInfo}) => {
                 <input type={see ? "text" : "password"} name="password" value={password || ""} onChange={e => onChange(e)} minLength="8" />
 
                 <br/>
-                {!passwordCurrent ? "" : passwordCurrent.length >= 8 ? <button className="main-btn">save</button> : ""}
+                {!passwordCurrent ? "" : passwordCurrent.length >= 8 ? <button>save</button> : ""}
             </form>
         </div>
     )
