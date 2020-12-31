@@ -20,7 +20,6 @@
     "express": "^4.17.1",
     "express-mongo-sanitize": "^2.0.1",
     "express-rate-limit": "^5.2.3",
-    "force-ssl-heroku": "^1.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.4",
     "nodemailer": "^6.4.16",

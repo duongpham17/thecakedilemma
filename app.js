@@ -6,7 +6,6 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
-const forceSsl = require('force-ssl-heroku');
 
 dotenv.config({ path: "./config.env" });
 
@@ -19,7 +18,6 @@ const authRoutes = require('./controllers/authController');
 const {errorMessage} = require('./util/CatchError');
 
 const app = express()
-app.use(forceSsl);
 
 app.use(cors({
     origin: process.env.NODE_ENV === "production" ? process.env.WEBSITE_URL :  process.env.FRONTEND_PORT,
