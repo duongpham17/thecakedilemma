@@ -19,10 +19,10 @@ import {setAlert} from './alertActions';
 //get feed
 export const getFeed = () => async dispatch => {
     try{
-        const res = await Api.get(`/home`);
+        const res = await Api.get(`/home/feeds`);
         dispatch({
             type: GET_FEED,
-            payload: res.data.home
+            payload: res.data.feed
         })
     } catch(err) {
         dispatch(setAlert("Something went wrong. Please refresh", "danger"))
@@ -37,10 +37,10 @@ export const createFeed = (data) => async dispatch => {
                 "Content-Type" : "application/json"
             }
         }
-        const res = await Api.post(`/home`, data, config);
+        const res = await Api.post(`/home/feeds`, data, config);
         dispatch({
             type: CREATE_FEED,
-            payload: res.data.home
+            payload: res.data.feed
         })
     } catch(err) {
         dispatch(setAlert("Something went wrong. Please refresh", "danger"))
@@ -50,7 +50,7 @@ export const createFeed = (data) => async dispatch => {
 //delete feed
 export const deleteFeed = (id) => async dispatch => {
     try{
-        await Api.delete(`/home/${id}`);
+        await Api.delete(`/home/feeds/${id}`);
         dispatch({
             type: DELETE_FEED,
             id

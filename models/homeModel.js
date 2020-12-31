@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const homeSchema = new mongoose.Schema({
+const feedSchema = new mongoose.Schema({
     description: {
         type: String
     },
@@ -30,8 +30,8 @@ const questionSchema = new mongoose.Schema({
 
 })
 
-const Home = mongoose.model('Home', homeSchema)
+const Feed = mongoose.model('Feed', feedSchema)
 const Image = mongoose.model('Image', imageSchema)
 const Question = mongoose.model('Question', questionSchema)
 
-module.exports = {Home, Image, Question}
+module.exports = {Feed, Image, Question}

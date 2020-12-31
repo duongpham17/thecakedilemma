@@ -4,9 +4,9 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-router.get('/', homeController.getFeed);
-router.post('/', authController.protect, homeController.createFeed);
-router.delete('/:id', authController.protect, homeController.deleteFeed);
+router.get('/feeds', homeController.getFeed);
+router.post('/feeds', authController.protect, homeController.createFeed);
+router.delete('/feeds/:id', authController.protect, homeController.deleteFeed);
 
 router.get('/best', homeController.getBestProducts);
 

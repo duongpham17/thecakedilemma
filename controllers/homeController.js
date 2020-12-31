@@ -1,40 +1,40 @@
-const {Home, Image, Question} = require('../models/homeModel');
+const {Feed, Image, Question} = require('../models/homeModel');
 const Product = require('../models/productModel');
 const {appError, catchAsync} = require('../util/CatchError');
 
 //create feed
 exports.createFeed = catchAsync(async(req, res, next) => {
-    const home = await Home.create(req.body)
+    const feed = await Feed.create(req.body)
 
-    if(!home){
+    if(!feed){
         return next (new appError("Could not create feed", 400))
     }
 
     res.status(200).json({
         status: "success",
-        home
+        feed
     })
 })
 
 //get feed
 exports.getFeed = catchAsync(async(req, res, next) => {
-    const home = await Home.find().sort({createdAt: -1})
+    const feed = await Feed.find().sort({createdAt: -1})
 
-    if(!home){
+    if(!feed){
         return next (new appError("No feed was found", 400))
     }
     
     res.status(200).json({
         status: "success",
-        home
+        feed
     })
 })
 
 //delete feed
-exports.deleteFeed = catchAsync(async( req, res, next) => {
-    const home = await Home.findByIdAndDelete(req.params.id)
+exports.deleteFeed = catchAsync(async(req, res, next) => {
+    const feed = await Feed.findByIdAndDelete(req.params.id)
 
-    if(!home){
+    if(!feed){
         return next (new appError("No product with that ID", 400))
     }
 

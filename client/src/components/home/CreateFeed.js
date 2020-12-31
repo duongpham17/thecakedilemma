@@ -9,6 +9,7 @@ import {FiUpload} from 'react-icons/fi';
 
 export const Home = (props) => {
     const createFeed = props.createFeed;
+    const deleteFeed = props.deleteFeed;
     const admin = props.admin;
     const feed = props.feed
 
