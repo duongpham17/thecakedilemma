@@ -26,7 +26,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
     const Total = !array || order.length === 0 ? "" : array.reduce((a, c) => a + c)
 
     useEffect(() => {
-        if(user.role === "admin") {
+        if(!user ? "" : user.role === "admin") {
             getAdminOrders(page, limit)
         } else {
             getOrders(page, limit)

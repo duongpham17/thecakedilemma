@@ -3,7 +3,10 @@ const {appError, catchAsync} = require('../util/CatchError');
 const {sendForgotPasswordEmail, emailConfirmation}= require('../util/Email');
 const {promisify} = require('util');
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto')
+const crypto = require('crypto');
+
+const dotenv = require('dotenv');
+dotenv.config({ path: "./config.env" });
 
 const signToken = id => {
     return jwt.sign({id}, process.env.JWT_SECRET, 
