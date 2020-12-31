@@ -52,14 +52,14 @@ export const createProduct = (formData) => async dispatch => {
 }
 
 //activate product when ready for users to see
-export const activateProduct = (id, boolean) => async dispatch => {
+export const activateProduct = (id, boolean, best) => async dispatch => {
     try{
         const config = {
             headers: {
                 "Content-Type" : "application/json"
             }
         }
-        const res = await Api.patch(`/admins/products/${id}/${boolean}`, config);
+        const res = await Api.patch(`/admins/products/${id}/${boolean}/${best}`, config);
         dispatch({
             type: ACTIVATE_PRODUCT,
             payload: res.data.product,

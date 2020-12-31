@@ -36,7 +36,7 @@ exports.createProduct = catchAsync(async(req, res, next) => {
 
 //activate or deactivate product to show to users
 exports.activateProduct = catchAsync(async(req, res, next) => {
-    const product = await Product.findByIdAndUpdate(req.params.id, {active: req.params.boolean}, {new: true})
+    const product = await Product.findByIdAndUpdate(req.params.id, {active: req.params.boolean, best: req.params.best}, {new: true})
 
     if(!product){
         return next (new appError("Could change active of product", 400))

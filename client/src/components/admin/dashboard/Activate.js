@@ -8,10 +8,11 @@ export const Activate = props => {
     const id = props.id;
     const activateProduct = props.activateProduct;
     const boolean = props.boolean;
+    const best = props.best;
 
     return (
         <div className="activate-container">
-            <button onClick={() => activateProduct(id, boolean ? false : true) }><BsCircleFill className={boolean ? "icon-active" : "icon-not-active"}/></button>
+            <button onClick={() => activateProduct(id, boolean ? false : true, best === "none" ? "best" : "none" ) }><BsCircleFill className={boolean ? "icon-active" : "icon-not-active"}/></button>
         </div>
     )
 }
