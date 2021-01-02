@@ -73,3 +73,16 @@ export const removeAddress = (id) => async dispatch => {
     }
 }
 
+//add address for quicker checkout
+export const contactMe = (formData) => async dispatch => {
+    try{
+        const config = { 
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        };
+        await Api.post(`/users/contact`, formData, config);
+    } catch(err) {
+        dispatch(setAlert("Something went wrong. Please try again.", "danger"))
+    }
+}

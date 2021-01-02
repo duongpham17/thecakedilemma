@@ -10,8 +10,9 @@ router.post('/login/:choice', authController.login);
 router.get('/logout', authController.logout);
 router.post('/forgotpassword', authController.forgotPassword);
 router.patch('/resetpassword/:token', authController.resetPassword);
+router.post('/contact', userController.contactMe);
 
-router.use(authController.protect)
+router.use(authController.protect);
 router.get('/', authController.loggedIn);
 router.get('/data', userController.loadUserData);
 router.patch('/account', userController.updateUserInfo);

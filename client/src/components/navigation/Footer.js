@@ -15,12 +15,12 @@ const Footer = () => {
         <footer>
         <div className="top-content">
             <button onClick={() => arrowUp()}><IoIosArrowUp/></button>
-            <p>&copy; 2021, thecakedilemma.com/</p>
+            <p>&copy; 2021, thecakedilemma.com</p>
         </div>
 
         <div className="contact-content">
             <p>Get in touch 
-                <a href="mailto:thecakedilemma@gmail.com"><FiMail className="icon"/></a>
+                <Link to="/contact"><FiMail className="icon"/></Link>
                 <a href="#/"><AiOutlineWhatsApp className="icon"/></a>
                 <a target="_blank" rel="noreferrer" href="https://www.instagram.com/thecakedilemma/"><AiOutlineInstagram className="icon"/></a>
                 <a target="_blank" rel="noreferrer" href="https://www.instagram.com/thecakedilemma/"><AiOutlineFacebook className="icon"/></a>

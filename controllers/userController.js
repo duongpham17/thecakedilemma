@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
-const Review = require('../models/reviewModel');
 const {appError, catchAsync} = require('../util/CatchError');
+const {contactEmail} = require('../util/Email');
 
 //load user data
 exports.loadUserData = catchAsync(async(req, res, next) => {
@@ -79,3 +79,18 @@ exports.removeAddress = catchAsync(async(req, res, next) => {
     })
 })
 
+exports.contactMe = catchAsync(async(req, res, next) => {
+    try{
+        await contactEmail({
+            email: req.body.email,
+            message: req.body.message
+        })
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Email Sent'
+        })
+    }catch(err){
+        console.log("Failed", err)
+    }
+})

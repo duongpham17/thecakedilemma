@@ -16,7 +16,7 @@ const EmailNoReply = () => nodemailer.createTransport({
 const Email = () => nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: process.env.EMAIL_,
+        user: process.env.EMAIL,
         pass: process.env.EMAIL_PASSWORD,
     }
 })
@@ -220,13 +220,12 @@ exports.sendOrderEmail = async options => {
     await transporter.sendMail(mailOptions)
 }
 
-
 exports.sendOrderAlertEmail = async options => {
     const transporter = Email()
 
     const mailOptions = {
         from: 'Cake Dilemma <thecakedilemma@gmail.com>',
-        to: process.env.EMAIL_,
+        to: process.env.EMAIL,
         subject: "New Order",
         html: `
     <html>
@@ -266,6 +265,42 @@ exports.sendOrderAlertEmail = async options => {
         </footer>
         </body>
     </html>
+    `
+    }
+    await transporter.sendMail(mailOptions)
+}
+
+exports.contactEmail = async options => {
+    const transporter = Email()
+
+    const mailOptions = {
+        from: 'Cake Dilemma <thecakedilemma@gmail.com>',
+        to: process.env.EMAIL,
+        subject: "Message",
+        replyTo: options.email,
+        html: `
+        <html>
+            <head>
+            <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
+            <style>
+                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
+                table{ max-width: 600px; text-align: center; margin: 2rem auto}
+                .logo{ width: 40%; height:auto }
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem}
+            </style>
+            </head>
+            <body> 
+                <table>
+                <tr>
+                    <td>
+                        <h3>Message:</h3>
+                        <p>${options.message} </p>
+                    </td>
+                </tr>
+                </table>
+            <footer> <p>The Cake Dilemma est. 2020. Follow our socials - Instagram: <a href="https://www.instagram.com/thecakedilemma/">@thecakedilemma</a> </p> </footer>
+            </body>
+        </html>
     `
     }
     await transporter.sendMail(mailOptions)
