@@ -1,13 +1,16 @@
 const Order = require('../models/orderModel');
 const User = require('../models/userModel');
-const {sendOrderEmail, sendOrderAlertEmail}= require('../util/Email');
+const Product = require('../models/productModel');
+
+const {sendOrderEmail, sendOrderAlertEmail, EmailOrderIsReady }= require('../util/Email');
 const {appError, catchAsync} = require('../util/CatchError');
 const Feature = require('../util/Feature');
+
 const {v4 : uuidv4} = require("uuid");
-const dotenv = require('dotenv');
-const Product = require('../models/productModel');
-dotenv.config({ path: "./config.env" });
 const stripe = require("stripe")(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV);
+
+const dotenv = require('dotenv');
+dotenv.config({ path: "./config.env" });
 
 //checkout
 exports.checkout = catchAsync(async(req, res, next) => {
@@ -63,7 +66,6 @@ exports.createOrder = catchAsync(async(req, res, next) => {
         return next(new appError("Could not create an order.", 400))
     }
 
-    /*
     try{
         await sendOrderEmail({
             email: order.email,
@@ -81,7 +83,6 @@ exports.createOrder = catchAsync(async(req, res, next) => {
     } catch (err){
         return next(new appError("There was an error sending the email", 500))
     }
-    */
 
     res.status(200).json({
         status: "Success",
@@ -128,8 +129,33 @@ exports.completeOrder = catchAsync(async(req, res, next) => {
         return next (new appError("Could not find any receipt", 400))
     };
 
-    res.status(200).json({
-        status: "success",
-        order
-    })
+    if(req.params.type === "delivery"){
+        try{
+            await EmailOrderIsReady({
+                email: order.email,
+                title: "Order has been shipped.",
+                message: "Your order has been posted via Royal Mail 1st Class. This service aims to deliver your parcel within 1-2 days. Please ensure someone is available to accept the parcel as it is not letterbox friendly.",
+            })
+            res.status(200).json({
+                status: "success",
+                order
+            })
+        } catch(err){
+            return next(new appError("There was an error sending the email", 500))
+        }
+    } else {
+        try{
+            await EmailOrderIsReady({
+                email: order.email,
+                title: "Order is ready to collect",
+                message: "Please contact us to confirm your collection time to ensure contactless and safe collection.",
+            })
+            res.status(200).json({
+                status: "success",
+                order
+            })
+        } catch(err){
+            return next(new appError("There was an error sending the email", 500))
+        }
+    }
 })

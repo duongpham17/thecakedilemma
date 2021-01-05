@@ -97,7 +97,7 @@ exports.sendForgotPasswordEmail = async options => {
         <table>
             <tr>
                 <th>
-                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo.jpeg?alt=media&token=d14d06fa-88d3-422f-99c8-46c260502f19" />
+                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" />
                     </a>
                 </th>
             </tr>
@@ -243,7 +243,7 @@ exports.sendOrderAlertEmail = async options => {
         <table>
             <tr>
                 <th>
-                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo.jpeg?alt=media&token=d14d06fa-88d3-422f-99c8-46c260502f19" /></a>
+                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" /></a>
                 </th>
             </tr>
             <tr>
@@ -270,6 +270,57 @@ exports.sendOrderAlertEmail = async options => {
     await transporter.sendMail(mailOptions)
 }
 
+
+exports.EmailOrderIsReady = async options => {
+    const transporter = EmailNoReply()
+
+    const mailOptions = {
+        from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
+        to: options.email,
+        subject: "Order is ready",
+        html:`
+    <html>
+        <head>
+            <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
+            <style>
+                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
+                table{ max-width: 600px; text-align: center; margin: 2rem auto;}
+                .logo{ width: 40%; height:auto }
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem}
+                h3{margin-bottom: 5rem, font-size: 30px}
+                .message{font-size: 18px}
+            </style>
+        </head>
+        
+        <body> 
+        <table>
+            <tr>
+                <th>
+                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" /></a>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <h3>${options.title}</h3>
+                    <p class="message">${options.message}</p>
+                </td>
+            </tr>
+        </table>
+    
+        <footer>
+            <p>The Cake Dilemma est. 2020. Please do not respond to this email. Contact us via email at 
+            <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a> with any enquiries or follow our socials - Instagram: 
+            <a href="https://www.instagram.com/thecakedilemma/">@thecakedilemma</a>
+            </p>
+        </footer>
+        </body>
+    </html>
+    `
+    }
+    await transporter.sendMail(mailOptions)
+}
+
+
 exports.contactEmail = async options => {
     const transporter = Email()
 
@@ -291,6 +342,11 @@ exports.contactEmail = async options => {
             </head>
             <body> 
                 <table>
+                <tr>
+                    <th>
+                        <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" /></a>
+                    </th>
+                </tr>
                 <tr>
                     <td>
                         <h3>Message:</h3>

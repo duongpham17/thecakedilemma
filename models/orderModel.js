@@ -19,13 +19,18 @@ const orderSchema = new mongoose.Schema({
     total: Number,
     total_with_discount: Number,
 
-    discount:{ type: Boolean, default: false},
+    discount:{ 
+        type: Boolean, 
+        default: false
+    },
     discount_value: Number,
 
     message: String,
 
-    status: { type: String, default: "Processing" },
-
+    status: { 
+        type: String, 
+        default: "Processing" 
+    },
     date: String,
     createdAt: {
         type: Date,

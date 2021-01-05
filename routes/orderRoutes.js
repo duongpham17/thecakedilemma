@@ -8,6 +8,6 @@ router.post('/checkout', orderController.checkout);
 router.post('/', orderController.createOrder);
 router.get('/', authController.protect, orderController.getOrders);
 router.get('/admin', authController.protect, orderController.getAdminOrders);
-router.patch('/complete/:id', authController.protect, orderController.completeOrder);
+router.patch('/complete/:id/:type', authController.protect, orderController.completeOrder);
 
 module.exports = router

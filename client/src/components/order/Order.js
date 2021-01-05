@@ -56,7 +56,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                         <li>{date(el.createdAt)}</li>
                         <li>£{el.discount ? el.total_with_discount.toFixed(2) : el.total.toFixed(2)}</li>
                         {user.role === "admin" ?
-                        <li><button onClick={() => completeOrder(el._id)}><GoPrimitiveDot className={`icon ${el.status === "Processing" ? "processing-icon" : "completed-icon" }`}/>{el.status}</button></li>
+                        <li><button onClick={() => el.status === "Completed" ? "" : completeOrder(el._id, el.method)}><GoPrimitiveDot className={`icon ${el.status === "Processing" ? "processing-icon" : "completed-icon" }`}/>{el.status}</button></li>
                         : 
                         <li><GoPrimitiveDot className={`icon ${el.status === "Processing" ? "processing-icon" : "completed-icon" }`}/> {el.status}</li>
                         }
@@ -68,18 +68,19 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                             <div key={e.id+i} className="content">
                                 <li className="title">- {e.title}</li>
                                 <li className="quantity">Qty: {e.quantity}</li>
-                                <li className="price">Price: £{Number(e.price).toFixed(2)}</li><br/>
+                                <li className="price">Price: £{e.price.toFixed(2)}</li><br/>
                                 <li>&nbsp;&nbsp;&nbsp;{e.size} {e.flavour}</li>
                             </div>
                         )}
                         <div className="valuation">
                         <p>Total <span className="total">£{el.total_before_postage.toFixed(2)}</span></p>
                         <p>Postage <span className="postage">£{Number(el.postage).toFixed(2)}</span></p>
-                        <p>Discount <span className="discount">{el.discount ? "-" : ""}£{el.discount_value.toFixed(2)}</span> </p>
+                        <p>Discount <span className="discount">{el.discount ? `-${el.discount_value}` : "£0.00"}</span> </p>
                         <p>Grand Total <span className="final-total">£{el.discount ? el.total_with_discount.toFixed(2) : el.total.toFixed(2)}</span></p>
                         </div> 
 
                         <div className="valuation">
+                        <p>Method: <span>{el.method}</span></p>
                         <p>Full name: <span>{el.first_name} {el.last_name}</span></p>
                         <p>Email: <span>{el.email}</span></p>
                         <p>Address: <span>{el.address_1}, {el.address_2}, {el.city}, {el.postcode}</span></p>

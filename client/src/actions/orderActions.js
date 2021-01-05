@@ -88,9 +88,9 @@ export const getOrders = (page, limit) => async dispatch => {
 }
 
 //get orders
-export const completeOrder = (id) => async dispatch => {
+export const completeOrder = (id, type) => async dispatch => {
     try{
-    const res = await Api.patch(`/orders/complete/${id}`);
+    const res = await Api.patch(`/orders/complete/${id}/${type}`);
         dispatch({
             type: COMPLETE,
             payload: res.data.order,
@@ -98,6 +98,7 @@ export const completeOrder = (id) => async dispatch => {
         })
         dispatch(setAlert("Order Completed", "success"))
     } catch(err){
+        console.log(err.response)
         dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
     }
 }
