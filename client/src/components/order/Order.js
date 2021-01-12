@@ -68,14 +68,14 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                             <div key={e.id+i} className="content">
                                 <li className="title">- {e.title}</li>
                                 <li className="quantity">Qty: {e.quantity}</li>
-                                <li className="price">Price: £{e.price.toFixed(2)}</li><br/>
+                                <li className="price">Price: £{Number(e.price).toFixed(2)}</li><br/>
                                 <li>&nbsp;&nbsp;&nbsp;{e.size} {e.flavour}</li>
                             </div>
                         )}
                         <div className="valuation">
                         <p>Total <span className="total">£{el.total_before_postage.toFixed(2)}</span></p>
                         <p>Postage <span className="postage">£{Number(el.postage).toFixed(2)}</span></p>
-                        <p>Discount <span className="discount">{el.discount ? `-${el.discount_value}` : "£0.00"}</span> </p>
+                        <p>Discount <span className="discount">{el.discount ? `£${el.discount_value.toFixed(2)}` : "£0.00"}</span> </p>
                         <p>Grand Total <span className="final-total">£{el.discount ? el.total_with_discount.toFixed(2) : el.total.toFixed(2)}</span></p>
                         </div> 
 
