@@ -46,8 +46,6 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                     <li>Status</li>
                 </div>
 
-                &nbsp;&nbsp;
-
                 {order.map((el, index) => 
                 <Fragment key={el._id}>
                     <div className="detail-content">

@@ -5,6 +5,7 @@
     button{
         font-size: 18px;
         margin: 0 0.5rem;
+        border-radius: 0;
         &:hover{
             color: var(--main-color);
         }
