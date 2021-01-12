@@ -63,7 +63,7 @@ const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => 
                 <button>Create</button>
 
                 <div className="link-to">
-                    <Link to="/login">Already got account? Login</Link>
+                    <Link to="/login">Already have an account? Login</Link>
                 </div>
             </form>
             : 
