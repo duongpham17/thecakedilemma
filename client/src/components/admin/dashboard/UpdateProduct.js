@@ -71,8 +71,8 @@ const UpdateProduct = props => {
                 <textarea type="text"  name="description" defaultValue={description} onChange={e => onChange(e)} required />
 
                 <p>Delivery & Collect</p>
-                <button type="button" className={delivery === "yes" ? "type" : ""} onClick={() => setFormData({...formData, delivery: delivery === "yes" ? "no" : "yes"})}>Delivery</button>
-                <button type="button" className={collect === "yes" ? "type" : ""} onClick={() => setFormData({...formData, collect: collect === "yes" ? "no" : "yes"})}>Collect</button>
+                <button type="button" className={delivery === true ? "type" : ""} onClick={() => setFormData({...formData, delivery: delivery === false ? true : false})}>Delivery</button>
+                <button type="button" className={collect === true ? "type" : ""} onClick={() => setFormData({...formData, collect: collect === false ? true : false})}>Collect</button>
 
                 <p>Delivery Message</p>
                 <textarea type="text"  name="deliveryMessage" defaultValue={deliveryMessage} onChange={e => onChange(e)} required />

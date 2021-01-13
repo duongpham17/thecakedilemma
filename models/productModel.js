@@ -49,6 +49,14 @@ const productSchema = new mongoose.Schema({
         trim: true,
         default: "",
     },
+    delivery:{
+        type: Boolean,
+        default: false
+    },
+    collect:{
+        type: Boolean,
+        default: false
+    },
     deliveryMessage: {
         type: String,
         default: "delivery message empty"
