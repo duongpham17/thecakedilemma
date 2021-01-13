@@ -40,7 +40,7 @@ const Product = ({product:{product, review, reviewed, reviewLength}, getProduct,
                         <h2>Allergens</h2> 
                         <p>{product.allergen}</p>
                         <h2>{product.method === 0 ? "Collection Only" : "Delivery + Collection"}</h2> 
-                        {ReactHtmlParser(replace(product.deliveryMessage))}
+                        <p>{ReactHtmlParser(replace(product.deliveryMessage))}</p>
                     </div>
                 </div>
 
