@@ -30,7 +30,7 @@ const OrderSummary = props => {
                 <p key={el.unique}>- {el.title} &nbsp; {el.size} {el.flavour} 
                 <br/> &nbsp;&nbsp; Qty {el.quantity} &nbsp;&nbsp; £{el.price} &nbsp;&nbsp; £{(el.price * el.quantity).toFixed(2)}</p>
             )}
-            <p>Item Total: £{orderData.total_before_postage.toFixed(2)}</p>
+            <p className="item-total">Item Total: £{orderData.total_before_postage.toFixed(2)}</p>
             <p>Delivery cost: £{orderData.postage.toFixed(2)}</p>
 
             {readyToPay ? 

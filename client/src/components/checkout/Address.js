@@ -8,6 +8,7 @@ const Address = (props) => {
     const setOrderData = props.setOrderData;
     const orderData = props.orderData;
     const setCheck = props.setCheck;
+    const mth = props.mth;
 
     const [addressDone, setAddressDone] = useState(false)
     const [method, setMethod] = useState("")
@@ -45,7 +46,9 @@ const Address = (props) => {
 
             <div className="delivery-method-container">
                 <h2>Delivery Method</h2>
+                {mth === 1 ? 
                 <button className={method === "delivery" ? "method" : ""} onClick={(e) =>  orderMethod(e, "delivery") }>Delivery</button>
+                : "" }
                 <button className={method === "collect" ? "method" : ""}  onClick={(e) =>  orderMethod(e, "collect") }>Collect</button>
             </div>
 
@@ -102,7 +105,7 @@ const Address = (props) => {
                     }
                 </div>
             </Fragment>
-            : "" }
+            :  "" }
 
         </div>
     )

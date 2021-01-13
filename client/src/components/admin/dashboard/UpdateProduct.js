@@ -33,9 +33,6 @@ const UpdateProduct = props => {
 
     const onChange = e => setFormData({...formData, [e.target.name] : e.target.value})
 
-
-    console.log(formData)
-
     return (
         <div className="update-container">
             <h2>Product Information</h2>

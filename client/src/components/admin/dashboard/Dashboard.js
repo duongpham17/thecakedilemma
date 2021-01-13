@@ -25,6 +25,7 @@ export const Dashboard = ({admin:{products, edit, loading}, getProductToEdit, ge
         e.preventDefault()
         setOpenEditPage(true)
         getProductToEdit(id)
+        window.scroll({top: 0, behavior: "smooth"})
         } else {
             setOpenEditPage(true)
         }

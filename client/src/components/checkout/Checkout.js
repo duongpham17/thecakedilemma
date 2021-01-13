@@ -5,7 +5,7 @@ import OrderSummary from './OrderSummary';
 import Address from './Address';
 import {Redirect} from 'react-router-dom';
 
-const Checkout = ({user:{user}, order:{basket, total}}) => {
+const Checkout = ({user:{user}, order:{basket, total, mth}}) => {
     
     const [readyToPay, setReadyToPay] = useState(false);
     const [code, setCode] = useState("")
@@ -50,7 +50,7 @@ const Checkout = ({user:{user}, order:{basket, total}}) => {
 
             <div className="checkout-content">
                 <div className="area-address">
-                    <Address setReadyToPay={setReadyToPay} readyToPay={readyToPay} setOrderData={setOrderData} orderData={orderData} setCheck={setCheck} />
+                    <Address setReadyToPay={setReadyToPay} readyToPay={readyToPay} setOrderData={setOrderData} orderData={orderData} setCheck={setCheck} mth={mth}/>
                 </div>
                 <div className="area-ordersummary">
                     <OrderSummary setOrderData={setOrderData} orderData={orderData} readyToPay={readyToPay} setCheck={setCheck} check={check} setCode={setCode} code={code} />

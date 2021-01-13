@@ -4,8 +4,8 @@ import React from 'react'
 const About = () => {
     return (
         <div className="about-container">
+           <h1>About Me</h1>
            <p className="about">
-            <h1>About Me</h1>
            <br/><br/>
             Hi! I’m Emma, just a girl who loves to bake. I’ve been baking since 9 years old when my mum got me a kids baking set for Christmas. 
            I didn’t even have an electric whisk so my older brother had to do all the heavy whisking, yes, he even hand-whisked meringues! 
