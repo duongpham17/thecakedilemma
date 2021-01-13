@@ -9,6 +9,7 @@
     
     @mixin image($width, $height, $brightness){
         img{
+            object-fit:cover;
             width: $width;
             height: $height;
             border: none !important;

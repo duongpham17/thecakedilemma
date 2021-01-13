@@ -27,6 +27,7 @@ const AddToBasket = props => {
         price: "",
         size: "",
         flavour: "",
+        method: product.method,
     })
 
     const SaveDataToLocalStorage = (data) => {

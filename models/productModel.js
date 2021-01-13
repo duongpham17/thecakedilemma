@@ -49,13 +49,9 @@ const productSchema = new mongoose.Schema({
         trim: true,
         default: "",
     },
-    delivery:{
-        type: Boolean,
-        default: false
-    },
-    collect:{
-        type: Boolean,
-        default: false
+    method:{
+        type: Number,
+        default: 1
     },
     deliveryMessage: {
         type: String,

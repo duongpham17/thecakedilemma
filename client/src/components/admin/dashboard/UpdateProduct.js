@@ -17,15 +17,14 @@ const UpdateProduct = props => {
         quantity: data.quantity,
         minimum: data.minimum,
         ingredient: data.ingredient,
-        delivery: data.delivery,
-        collect: data.collect,
+        method: data.method,
         deliveryMessage: data.deliveryMessage,
         allergen: data.allergen,
         optPrice: data.optPrice,
         sortPrice: data.sortPrice
     })
 
-    const {title, description, price, quantity, minimum, type, ingredient, delivery, collect, deliveryMessage, allergen, size, flavour, optPrice, sortPrice} = formData
+    const {title, description, price, quantity, minimum, type, ingredient, method, deliveryMessage, allergen, size, flavour, optPrice, sortPrice} = formData
 
     const onSubmit = e => {
         e.preventDefault()
@@ -33,6 +32,9 @@ const UpdateProduct = props => {
     }
 
     const onChange = e => setFormData({...formData, [e.target.name] : e.target.value})
+
+
+    console.log(formData)
 
     return (
         <div className="update-container">
@@ -71,8 +73,7 @@ const UpdateProduct = props => {
                 <textarea type="text"  name="description" defaultValue={description} onChange={e => onChange(e)} required />
 
                 <p>Delivery & Collect</p>
-                <button type="button" className={delivery === true ? "type" : ""} onClick={() => setFormData({...formData, delivery: delivery === false ? true : false})}>Delivery</button>
-                <button type="button" className={collect === true ? "type" : ""} onClick={() => setFormData({...formData, collect: collect === false ? true : false})}>Collect</button>
+                <button type="button" className="type" onClick={() => setFormData({...formData, method: method === 0 ? 1 : 0 })}>{method === 0 ? "Collect Only" : "Both"}</button>
 
                 <p>Delivery Message</p>
                 <textarea type="text"  name="deliveryMessage" defaultValue={deliveryMessage} onChange={e => onChange(e)} required />

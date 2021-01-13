@@ -36,7 +36,7 @@ const Product = ({product:{product, review, reviewed, reviewLength}, getProduct,
                         <p>{product.ingredient}</p>
                         <h2>Allergens</h2> 
                         <p>{product.allergen}</p>
-                        <h2>Delivery + Collection</h2> 
+                        <h2>{product.method === 0 ? "Collection Only" : "Delivery + Collection"}</h2> 
                         {product.deliveryMessage}
                     </div>
                 </div>

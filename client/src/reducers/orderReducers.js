@@ -10,6 +10,7 @@ import {
 
 const initialState = {
     basket: null,
+    method: 0,
     total: 0,
 
     status: null,
@@ -26,6 +27,7 @@ export default function(state = initialState, action){
                 ...state,
                 basket: payload,
                 total: payload.length === 0 ? 0 : payload.map((el) => el.total).reduce((a, c) => a + c),
+                method: payload.length === 0 ? 0 : payload.map((el) => el.method).reduce((a, c) => a * c)
             }
         case DELETE_BASKET:
             return{

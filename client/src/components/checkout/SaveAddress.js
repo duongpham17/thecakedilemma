@@ -21,7 +21,7 @@ export const SaveAddress = (props) => {
         address_1: "",
         address_2: "",
         city: "",
-        postcode: ""
+        postcode: "",
     })
     const {first_name, last_name, address_1, address_2, city, postcode, email} = addAddressData
 
