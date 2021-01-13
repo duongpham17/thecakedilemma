@@ -123,7 +123,7 @@ exports.sendForgotPasswordEmail = async options => {
 }
 
 exports.sendOrderEmail = async options => {
-    const transporter = Email()
+    const transporter = EmailNoReply()
 
     const mailOptions = {
         from: 'Cake Dilemma <thecakedilemma@gmail.com>',
