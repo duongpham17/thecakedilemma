@@ -66,7 +66,7 @@ const UpdateProduct = props => {
                 <p>Minimum Order</p>
                 <input type="number"   name="minimum" defaultValue={minimum} onChange={e => onChange(e)} required />
 
-                <p>Description</p>
+                <p>Description *use / to break *</p>
                 <textarea type="text"  name="description" defaultValue={description} onChange={e => onChange(e)} required />
 
                 <p>Delivery & Collect</p>

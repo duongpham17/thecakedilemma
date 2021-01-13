@@ -2,6 +2,7 @@ import './Product.scss';
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import { getProduct } from '../../actions/productActions';
+import ReactHtmlParser from 'react-html-parser';
 
 import AddToBasket from './AddToBasket';
 import Image from './Image';
@@ -9,6 +10,8 @@ import Review from './Review';
 
 const Product = ({product:{product, review, reviewed, reviewLength}, getProduct, location}) => {
     const title = location.pathname.slice(9, 1000)
+
+    const replace = (str) => str.replace(/\//g, "<br/>")
 
     useEffect(() => {
         getProduct(title)
@@ -31,13 +34,13 @@ const Product = ({product:{product, review, reviewed, reviewLength}, getProduct,
                     </div>
                     <div className="info">
                         <h2>Description</h2> 
-                        <p>{product.description}</p>    
+                        <p>{ReactHtmlParser(replace(product.description))}</p>    
                         <h2>Ingredients</h2> 
                         <p>{product.ingredient}</p>
                         <h2>Allergens</h2> 
                         <p>{product.allergen}</p>
                         <h2>{product.method === 0 ? "Collection Only" : "Delivery + Collection"}</h2> 
-                        {product.deliveryMessage}
+                        {ReactHtmlParser(replace(product.deliveryMessage))}
                     </div>
                 </div>
 
