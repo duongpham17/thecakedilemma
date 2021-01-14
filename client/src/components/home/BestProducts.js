@@ -13,7 +13,7 @@ const BestProducts = props => {
                 <p>Best Sellers</p>
             </div>
             <div className="best-products-content">
-                {best.map((el, index) =>
+                {best.map((el) =>
                 <div key={el._id} className="card">
                     <button><Link to={`/product/${el.title}`}><img src={el.image.length === 0 ? "" : el.image[0].url} alt=""/></Link></button>
                     {el.quantity <= 1 ? <p className="out-of-stock">Out of Stock</p> : "" }

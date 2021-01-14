@@ -20,7 +20,7 @@ const Footer = () => {
 
         <div className="contact-content">
             <p>Get in touch 
-                <Link to="/contact"><FiMail className="icon"/></Link>
+                <Link to="/contact" onClick={() => arrowUp()}><FiMail className="icon"/></Link>
                 <a href="#/"><AiOutlineWhatsApp className="icon"/></a>
                 <a target="_blank" rel="noreferrer" href="https://www.instagram.com/thecakedilemma/"><AiOutlineInstagram className="icon"/></a>
                 <a target="_blank" rel="noreferrer" href="https://www.instagram.com/thecakedilemma/"><AiOutlineFacebook className="icon"/></a>

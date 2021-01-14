@@ -3,6 +3,7 @@
     margin-bottom: 2rem;
     padding: 1rem;
 
+
     form{
         border-radius: 10px;
         margin: auto;
@@ -27,10 +28,12 @@
 
 .feed-title{
     margin-top: 4rem;
+    padding: 0.5rem;
 }
 
 .feed-container{
     margin: 2rem 0 ;
+    padding: 0.5rem;
     .feed-content{
         border-bottom: 1px solid var(--main-color);
         max-width: 600px;

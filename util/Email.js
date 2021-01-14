@@ -7,7 +7,6 @@ const websiteLink = process.env.NODE_ENV === "production" ? process.env.WEBSITE_
 
 const EmailNoReply = () => nodemailer.createTransport({
     service: "gmail",
-    secure: true,
     auth: {
         user: process.env.EMAIL_NOREPLY,
         pass: process.env.EMAIL_PASSWORD,
@@ -16,7 +15,6 @@ const EmailNoReply = () => nodemailer.createTransport({
 
 const Email = () => nodemailer.createTransport({
     service: "gmail",
-    secure: true,
     auth: {
         user: process.env.EMAIL,
         pass: process.env.EMAIL_PASSWORD,
