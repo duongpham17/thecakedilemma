@@ -43,7 +43,7 @@ export const checkout = (token, orderData) => async dispatch => {
 }
 
 //create receipt
-export const createOrder = (data) => async dispatch => {
+export const createOrder = async (data) => {
     try{
         const config = {
             headers:{
@@ -52,7 +52,7 @@ export const createOrder = (data) => async dispatch => {
         }
         await Api.post(`/orders`, data, config);
     } catch(err) {
-        dispatch(setAlert("Something went wrong. Please try again.", "danger"))
+        console.log(err.response)
     }
 }
 
