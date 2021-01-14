@@ -43,7 +43,7 @@ export const checkout = (token, orderData) => async dispatch => {
 }
 
 //create receipt
-export const createOrder = async (data) => {
+export const createOrder = (data) => async dispatch => {
     try{
         const config = {
             headers:{
