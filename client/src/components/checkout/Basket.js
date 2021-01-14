@@ -69,9 +69,9 @@ export const Basket = ({order:{basket, total}, auth:{loggedOn}, updateQuantity, 
 
             <div className="checkout-link-content">
                 {loggedOn ? 
-                <p>{total <= 100 ? <Link to='/checkout'>Checkout</Link> : "Minimum order £10"}</p>
+                <p>{total >= 10 ? <Link to='/checkout'>Checkout</Link> : "Minimum order £10"}</p>
                 :                 
-                <p>{total <= 10 ? <Link to='/basket/guest'>Checkout</Link> : "Minimum order £10"}</p>
+                <p>{total >= 10 ? <Link to='/basket/guest'>Checkout</Link> : "Minimum order £10"}</p>
                 }
             </div>
 

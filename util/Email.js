@@ -122,6 +122,7 @@ exports.sendForgotPasswordEmail = async options => {
     await transporter.sendMail(mailOptions)
 }
 
+
 exports.sendOrderEmail = async options => {
     const transporter = EmailNoReply()
 

@@ -83,6 +83,7 @@ export const contactMe = (formData) => async dispatch => {
         };
         await Api.post(`/users/contact`, formData, config);
     } catch(err) {
+        console.log(err.response)
         dispatch(setAlert("Something went wrong. Please try again.", "danger"))
     }
 }
