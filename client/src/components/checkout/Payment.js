@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+import './Payment.scss';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
@@ -11,7 +12,9 @@ export const Payment = (props) => {
     const checkout = props.checkout;
     const createOrder = props.createOrder;
     const deleteBasket = props.deleteBasket;
-    const loggedOn = props.auth.loggedOn
+    const loggedOn = props.auth.loggedOn;
+
+    const [loading, setLoading] = useState(false)
 
     const handleToken = (token) => {
         checkout(token, orderData)
@@ -34,10 +37,13 @@ export const Payment = (props) => {
     }
 
     return (
+        <div className="payment-container">
         <StripeCheckout stripeKey={process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY} token={handleToken} name="The Cake Dilemma" 
         amount={orderData.discount ? Math.round(orderData.total_with_discount * 100) : Math.round(orderData.total * 100)}  currency="GBP">
-        <button className="checkout-btn2">Checkout</button>
+        <li><button className="checkout-btn2" onClick={() => setLoading(true)}>Checkout </button></li> 
+        {loading ? <li><p className="loading_2" /></li> : "" }
         </StripeCheckout>
+        </div>
     )
 }
 

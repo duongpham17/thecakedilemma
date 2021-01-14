@@ -287,7 +287,7 @@ exports.EmailOrderIsReady = async options => {
                 table{ max-width: 600px; text-align: center; margin: 2rem auto;}
                 .logo{ width: 40%; height:auto }
                 footer{padding: 1rem; background: #ffdab9; margin-top: 20rem}
-                h3{margin-bottom: 5rem, font-size: 30px}
+                h3{margin-bottom: 5rem}
                 .message{font-size: 18px}
             </style>
         </head>
@@ -301,7 +301,7 @@ exports.EmailOrderIsReady = async options => {
             </tr>
             <tr>
                 <td>
-                    <h3>${options.title}</h3>
+                    <h1>${options.title}</h1>
                     <p class="message">${options.message}</p>
                 </td>
             </tr>

@@ -21,8 +21,6 @@ exports.checkout = catchAsync(async(req, res, next) => {
     const customer = await stripe.customers.create({
         email: token.email,
         source: token.id
-    }, {
-        idempotencyKey: idempotency_Key 
     })
 
     const charge = await stripe.charges.create(
@@ -32,6 +30,9 @@ exports.checkout = catchAsync(async(req, res, next) => {
             customer: customer.id,
             receipt_email: token.email,
             description: orderData.user,
+        },
+        {
+            idempotencyKey: idempotency_Key 
         }
     );
 
@@ -83,10 +84,6 @@ exports.createOrder = catchAsync(async(req, res, next) => {
     } catch (err){
         return next(new appError("There was an error sending the email", 500))
     }
-
-    res.status(200).json({
-        status: "Success",
-    })
 })
 
 //get receipt for user
