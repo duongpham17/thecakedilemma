@@ -51,7 +51,6 @@ export const createOrder = (data) => async dispatch => {
             }
         }
         await Api.post(`/orders`, data, config);
-        dispatch(setAlert("Order Successful. Thank you.", "success"))
     } catch(err) {
         dispatch(setAlert("Something went wrong. Please try again.", "danger"))
     }

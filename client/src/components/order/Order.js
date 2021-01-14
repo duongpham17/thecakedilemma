@@ -35,6 +35,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
 
     return (
         <div className="order-container">
+            {status === "message" ?  <h2>Thank you for your order. Please check your email for order conformation.</h2> : ""}
 
             {!order ? "Empty" :
             <Fragment>
@@ -81,7 +82,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                         <p>Method: <span>{el.method}</span></p>
                         <p>Full name: <span>{el.first_name} {el.last_name}</span></p>
                         <p>Email: <span>{el.email}</span></p>
-                        <p>Address: <span>{el.address_1}, {el.address_2}, {el.city}, {el.postcode}</span></p>
+                        {el.method === "Collect" ? "" : <p>Address: <span>{el.address_1}, {el.address_2}, {el.city}, {el.postcode}</span></p> }
                         </div>
                         
                         {!el.message ? "" : 

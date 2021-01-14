@@ -43,7 +43,7 @@ export default function(state = initialState, action){
         case RESET_STATUS:
             return{
                 ...state,
-                status: null,
+                status: "message",
             }
         case ORDERS:
             return{
