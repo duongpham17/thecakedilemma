@@ -9,6 +9,7 @@ import {GoPrimitiveDot} from 'react-icons/go';
 
 import {resetBuyStatus, getOrders, getAdminOrders, completeOrder} from '../../actions/orderActions';
 
+import Complete from './Complete';
 import Pagination from './Pagination';
 
 const Order = ({order:{status, order, length}, auth:{user}, completeOrder, resetBuyStatus, getOrders, getAdminOrders}) => {
@@ -55,7 +56,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                         <li>{date(el.createdAt)}</li>
                         <li>£{el.discount ? el.total_with_discount.toFixed(2) : el.total.toFixed(2)}</li>
                         {user.role === "admin" ?
-                        <li><button onClick={() => el.status === "Completed" ? "" : completeOrder(el._id, el.method)}><GoPrimitiveDot className={`icon ${el.status === "Processing" ? "processing-icon" : "completed-icon" }`}/>{el.status}</button></li>
+                            <Complete completeOrder={completeOrder} el={el} />
                         : 
                         <li><GoPrimitiveDot className={`icon ${el.status === "Processing" ? "processing-icon" : "completed-icon" }`}/> {el.status}</li>
                         }

@@ -61,7 +61,7 @@ export const Dashboard = ({admin:{products, edit, loading}, getProductToEdit, ge
 
                 <div className="information-content">
                     <p>Sold: {el.sold}</p>
-                    <p>Total: £{el.total}</p>
+                    <p>Total: £{el.total.toFixed(2)}</p>
                     <br/><br/>
                     <p>Type: {el.type}</p>
                     <br/><br/>
