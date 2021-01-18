@@ -29,7 +29,6 @@ const Checkout = ({user:{user}, order:{basket, total, mth}}) => {
 
         saved_postage: 4,
         saved_total_with_postage: total >= 50 ? total : total + 4,
-
             
         total_before_postage: total,
         total: total >= 50 ? total : total + 4,

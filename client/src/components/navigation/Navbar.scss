@@ -75,7 +75,7 @@
         .guest-basket-dp-container{
             .guest-basket-dp-content{
                 @include dropdown-content();
-                margin: 0.6rem -7rem;
+                margin: 0.6rem -7.85rem;
             }
             &:hover .guest-basket-dp-content{
                 @include dropdown-hover()
@@ -101,6 +101,7 @@
             }
         }
     }
+
 }
 
 @media (max-width: 650px){
@@ -125,7 +126,7 @@
         .basket-dp-container{
             .basket-dp-content{
                 @include dropdown-content();
-                margin: 0.4rem -5.3rem
+                margin: 0.4rem -6.05rem
             }
             &:hover .basket-dp-content{
                 @include dropdown-hover()
@@ -135,7 +136,7 @@
         .guest-basket-dp-container{
             .guest-basket-dp-content{
                 @include dropdown-content();
-                margin: 0.4rem -7.3rem;
+                margin: 0.4rem -8.05rem;
             }
             &:hover .guest-basket-dp-content{
                 @include dropdown-hover()

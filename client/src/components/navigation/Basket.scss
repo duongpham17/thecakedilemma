@@ -3,13 +3,13 @@
     z-index: 1000;
     border: 5px double var(--main-color);
     background: white;
-    padding: 0.1rem 0.3rem;
+    padding: 0.2rem 0.4rem;
 
     .basket-content{
         background: white;
         margin: 0.3rem 0;
         display: grid;
-        grid-template-columns: 125px 35px;
+        grid-template-columns: 125px 45px;
         grid-template-areas: 
         "title total"
         "option option"
@@ -62,7 +62,7 @@
 
     .total-content{
         display: grid;
-        grid-template-columns: 125px 35px;
+        grid-template-columns: 125px 45px;
         grid-template-areas:
         "more moreTotal"
         "total basketTotal"
@@ -90,6 +90,7 @@
 
         .area-total{
             grid-area: total;
+
         }
 
         .area-basketTotal{

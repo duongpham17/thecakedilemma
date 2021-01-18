@@ -41,7 +41,7 @@ const Basket = props => {
                 {basket.length > 5 ? 
                 <Fragment>
                     <li className="area-more">{basket.length - 5} More item</li>
-                    <li className="area-more-total">£{slice}</li>
+                    <li className="area-more-total">£{slice.toFixed(2)}</li>
                 </Fragment>
                 : ""}
                 <li className="area-total">Total</li> <li className="area-basketTotal">£{Number(total).toFixed(2)}</li>

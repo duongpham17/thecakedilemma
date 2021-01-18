@@ -3,7 +3,9 @@ const nodemailer = require('nodemailer');
 const dotenv = require('dotenv')
 dotenv.config({ path: "./config.env" });
 
-const websiteLink = process.env.NODE_ENV === "production" ? process.env.WEBSITE_URL : process.env.FRONTEND_PORT
+const websiteLink = process.env.NODE_ENV === "production" ? process.env.WEBSITE_URL : process.env.FRONTEND_PORT;
+
+const collection_address = "63 Peveril Road, Beeston, NG9 2HU";
 
 const EmailNoReply = () => nodemailer.createTransport({
     service: "gmail",
@@ -201,7 +203,7 @@ exports.sendOrderEmail = async options => {
                     Date - ${options.data.date} <br>
                     Name - ${options.data.first_name} ${options.data.last_name} <br>
                     Method - ${options.data.method} <br><br>
-                    Delivery/Collection Address - ${options.data.method === "Delivery" ? `${options.data.address_1}, ${options.data.address_2}, ${options.data.city}, ${options.data.postcode}` :  `63 Peveril Road, Beeston, NG9 2HU`}
+                    Delivery/Collection Address - ${options.data.method === "Delivery" ? `${options.data.address_1}, ${options.data.address_2}, ${options.data.city}, ${options.data.postcode}` :  `${collection_address}`}
                     </p> 
                 </td>
             </tr>

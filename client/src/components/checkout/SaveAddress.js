@@ -6,7 +6,7 @@ import {RiDeleteBin6Line, RiArrowRightSLine, RiArrowLeftSLine} from 'react-icons
 
 export const SaveAddress = (props) => {
     const user = props.user.user;
-    const loggedOn = props.auth.loggedOn ;
+    const loggedOn = props.auth.loggedOn;
     const addAddress = props.addAddress;
     const removeAddress = props.removeAddress;
     const orderData = props.orderData;
