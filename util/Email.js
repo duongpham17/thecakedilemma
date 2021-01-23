@@ -316,7 +316,7 @@ exports.EmailOrderIsReady = async options => {
             </tr>
         </table>
     
-        ${footer}
+        ${footer_reply}
         </body>
     </html>
     `

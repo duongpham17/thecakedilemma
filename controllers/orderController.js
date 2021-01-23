@@ -126,7 +126,7 @@ exports.completeOrder = catchAsync(async(req, res, next) => {
         return next (new appError("Could not find any receipt", 400))
     };
 
-    if(req.params.type === "delivery"){
+    if(req.params.type === "Delivery"){
         try{
             await EmailOrderIsReady({
                 email: order.email,
