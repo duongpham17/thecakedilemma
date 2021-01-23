@@ -31,37 +31,59 @@ const AddToBasket = props => {
     })
 
     const SaveDataToLocalStorage = (data) => {
+        //our basket 
         let item = [];
+        //add users items from localstorage basket to item.
         item = JSON.parse(localStorage.getItem('basket')) || [];
 
+        //check if any product inside item has the same unique value. This means there is a similar product within the product that needs to be updated.
         if(item.some(el => el.unique === data.unique)){
+            //find the index of the unique product within the item array
             const index = item.indexOf(item.find(i => i.unique === data.unique))
-            
+            //check the options. In this case the product can have a size and a flavour.
             if(item[index].size === data.size && item[index].flavour === data.flavour){
+                //update the quantity
                 item[index].quantity = item[index].quantity + amount;
+                //update the total
                 item[index].total = item[index].total + (amount * data.price);
+                //return the update to date basket
                 return localStorage.setItem('basket', JSON.stringify(item));
             } else {
+                //if item is unqiue but size and flavour does not match, add the product to the first index
                 item.unshift(data);
+                //return the update to date basket
                 return localStorage.setItem('basket', JSON.stringify(item));
             }
         } 
         else {
+            //if product is new add the product to the first index
             item.unshift(data);
+            //return the update to date basket
             localStorage.setItem('basket', JSON.stringify(item));
         }
     }
 
     const addToBasket = (e) => {
         e.preventDefault()
-        if(amount === 0) return
-        updateQuantity(product._id, amount, "minus")
-        SaveDataToLocalStorage(addBasket)
-        loadBasket(JSON.parse(localStorage.getItem("basket")))
-        if(!localStorage.getItem('basket-expires')) return localStorage.setItem('basket-expires', Date.now() + (2 * 3600000))
+        //if amount = 0 do not add to basket
+        if(amount === 0) return;
+        //first check stock available
+        let stock = product.quantity / 2;
+        //check if the amount added to basket is greter than available stock, if this is true simply reset the amount to 1
+        setAmount(stock < amount ? 1 : amount);
+        //update the quantity available
+        updateQuantity(product._id, amount, "minus");
+        //save the new item to localstorage
+        SaveDataToLocalStorage(addBasket);
+        //then save the new items added to redux
+        loadBasket(JSON.parse(localStorage.getItem("basket")));
+        //reset the basket expiry timer
+        if(!localStorage.getItem('basket-expires')) return localStorage.setItem('basket-expires', Date.now() + (2 * 3600000));
     }
 
     const dec_inc = (addsub) => {
+
+        //do not let amount ever go below 0
         if(amount === 0) {
             setAmount(1)
             return setAddBasket({...addBasket, quantity: 1, total: 1 * addBasket.price})
