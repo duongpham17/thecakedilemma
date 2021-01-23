@@ -4,8 +4,7 @@ const dotenv = require('dotenv')
 dotenv.config({ path: "./config.env" });
 
 const websiteLink = process.env.NODE_ENV === "production" ? process.env.WEBSITE_URL : process.env.FRONTEND_PORT;
-
-const collection_address = "63 Peveril Road, Beeston, NG9 2HU";
+const collection_address = "Infinity Nails, 121 high road, Beeston, NG9 2LH";
 
 const EmailNoReply = () => nodemailer.createTransport({
     service: "gmail",
@@ -22,6 +21,32 @@ const Email = () => nodemailer.createTransport({
         pass: process.env.EMAIL_PASSWORD,
     }
 })
+
+const footer = `
+<footer>
+    <p>The Cake Dilemma est. 2020. Please do not respond to this email. <br/>
+    For any enquiries, contact us by Email: <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a>
+    Or Whatsapp: <a target="_blank" rel="noreferrer" href="https://wa.me/+447838328990">+447838328990</a>
+    <br/>
+    Our Social Links - 
+    <a href="https://www.instagram.com/thecakedilemma/">Instagram</a> - 
+    <a href="https://www.facebook.com/thecakedilemma">Facebook</a>
+    </p>
+</footer>
+`
+
+const footer_reply = `
+<footer>
+    <p>The Cake Dilemma est. 2020.<br/>
+    For any enquiries, contact us by Email: <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a>
+    Or Whatsapp: <a target="_blank" rel="noreferrer" href="https://wa.me/+447838328990">+447838328990</a>
+    <br/>
+    Our Social Links - 
+    <a href="https://www.instagram.com/thecakedilemma/">Instagram</a> - 
+    <a href="https://www.facebook.com/thecakedilemma">Facebook</a>
+    </p>
+</footer>
+`
 
 exports.emailConfirmation = async options => {
     const transporter = EmailNoReply()
@@ -60,12 +85,7 @@ exports.emailConfirmation = async options => {
             </tr>
         </table>
     
-        <footer>
-            <p>The Cake Dilemma est. 2020. Please do not respond to this email. Contact us via email at 
-            <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a> with any enquiries or follow our socials - Instagram: 
-            <a href="https://www.instagram.com/thecakedilemma/">@thecakedilemma</a>
-            </p>
-        </footer>
+        ${footer}
         </body>
     </html>
     `
@@ -111,12 +131,7 @@ exports.sendForgotPasswordEmail = async options => {
             </tr>
         </table>
     
-        <footer>
-            <p>The Cake Dilemma est. 2020. Please do not respond to this email. Contact us via email at 
-            <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a> with any enquiries or follow our socials - Instagram: 
-            <a href="https://www.instagram.com/thecakedilemma/">@thecakedilemma</a>
-            </p>
-        </footer>
+        ${footer}
         </body>
     </html>
     `
@@ -210,12 +225,7 @@ exports.sendOrderEmail = async options => {
         </table>
     
     
-        <footer>
-            <p>The Cake Dilemma est. 2020. Please do not respond to this email. Contact us via email at 
-            <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a> with any enquiries or follow our socials - Instagram: 
-            <a href="https://www.instagram.com/thecakedilemma/">@thecakedilemma</a>
-            </p>
-        </footer>
+        ${footer}
         </body>
     </html>
     `
@@ -260,12 +270,7 @@ exports.sendOrderAlertEmail = async options => {
             </tr>
         </table>
     
-        <footer>
-            <p>The Cake Dilemma est. 2020. Please do not respond to this email. Contact us via email at 
-            <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a> with any enquiries or follow our socials - Instagram: 
-            <a href="https://www.instagram.com/thecakedilemma/">@thecakedilemma</a>
-            </p>
-        </footer>
+        ${footer}
         </body>
     </html>
     `
@@ -310,12 +315,7 @@ exports.EmailOrderIsReady = async options => {
             </tr>
         </table>
     
-        <footer>
-            <p>The Cake Dilemma est. 2020. Please do not respond to this email. Contact us via email at 
-            <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a> with any enquiries or follow our socials - Instagram: 
-            <a href="https://www.instagram.com/thecakedilemma/">@thecakedilemma</a>
-            </p>
-        </footer>
+        ${footer}
         </body>
     </html>
     `
@@ -357,7 +357,7 @@ exports.contactEmail = async options => {
                     </td>
                 </tr>
                 </table>
-            <footer> <p>The Cake Dilemma est. 2020. Follow our socials - Instagram: <a href="https://www.instagram.com/thecakedilemma/">@thecakedilemma</a> </p> </footer>
+                ${footer_reply}
             </body>
         </html>
     `

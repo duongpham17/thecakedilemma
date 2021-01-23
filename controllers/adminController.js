@@ -1,4 +1,5 @@
 const Product = require('../models/productModel');
+const Review = require('../models/reviewModel');
 const Variety = require('../models/varietyModel');
 const User = require('../models/userModel');
 const Order = require('../models/orderModel');
@@ -52,6 +53,8 @@ exports.activateProduct = catchAsync(async(req, res, next) => {
 exports.deleteProduct = catchAsync(async(req, res, next) => {
 
     const product = await Product.findByIdAndDelete(req.params.id)
+
+    await Review.deleteMany({"product": req.params.id})
 
     if(!product){
         return next (new appError("Could not delete product", 400))
