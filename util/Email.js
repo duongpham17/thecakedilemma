@@ -73,8 +73,7 @@ exports.emailConfirmation = async options => {
         <table>
             <tr>
                 <th>
-                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo.jpeg?alt=media&token=d14d06fa-88d3-422f-99c8-46c260502f19" />
-                    </a>
+                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" /></a>
                 </th>
             </tr>
             <tr>
@@ -119,8 +118,7 @@ exports.sendForgotPasswordEmail = async options => {
         <table>
             <tr>
                 <th>
-                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" />
-                    </a>
+                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" /></a>
                 </th>
             </tr>
             <tr>
