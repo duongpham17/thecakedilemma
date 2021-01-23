@@ -66,14 +66,14 @@
     
     .confirm-email-content{
         text-align: center;
+        h2{
+            font-size: 1rem;
+        }
 
         input{
             text-align: center;
             margin: 2rem auto;
-            &:hover{
-                border-right: none;
-                width: 180px;
-            }
+            width: 200px;
         }
     }
 }
