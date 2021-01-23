@@ -5,8 +5,10 @@ import OrderSummary from './OrderSummary';
 import Address from './Address';
 import {Redirect} from 'react-router-dom';
 
-const Checkout = ({user:{user}, order:{basket, total, mth}}) => {
-    
+const Checkout = ({user:{user}, order:{basket, total, mth}}) => {   
+
+    let postageCost = 5
+
     const [readyToPay, setReadyToPay] = useState(false);
     const [code, setCode] = useState("")
     const [check, setCheck] = useState("")
@@ -23,15 +25,15 @@ const Checkout = ({user:{user}, order:{basket, total, mth}}) => {
         postcode: "",
     
         method: "",
-        postage: total >= 50 ? 0 : 4,
+        postage: total >= 50 ? 0 : postageCost,
         order: !basket ? "" : basket,
         date: new Date().toISOString().slice(0,10),
 
-        saved_postage: 4,
-        saved_total_with_postage: total >= 50 ? total : total + 4,
+        saved_postage: postageCost,
+        saved_total_with_postage: total >= 50 ? total : total + postageCost,
             
         total_before_postage: total,
-        total: total >= 50 ? total : total + 4,
+        total: total >= 50 ? total : total + postageCost,
         total_with_discount: 0,
         discount_value: 0,
         discount: false,
