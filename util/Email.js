@@ -176,7 +176,7 @@ exports.sendOrderEmail = async options => {
                 <td>
                     <h2>Thank you for your purchase</h2>
                     <p>Hi ${options.data.first_name} ${options.data.last_name}, we have received your order.</p>
-                    <h2>Your Order ID : ${options.data.id}</h2>
+                    <h3>Your Order ID : ${options.data.id}</h3>
                 </td>
             </tr>
         </table>
@@ -218,7 +218,7 @@ exports.sendOrderEmail = async options => {
                     Date - ${options.data.date} <br>
                     Name - ${options.data.first_name} ${options.data.last_name} <br>
                     Method - ${options.data.method} <br><br>
-                    Delivery/Collection Address - ${options.data.method === "Delivery" ? `${options.data.address_1}, ${options.data.address_2}, ${options.data.city}, ${options.data.postcode}` :  `${collection_address}`}
+                    ${options.method === "Delivery" ? "Delivery Address" : "Collection Address"} - ${options.data.method === "Delivery" ? `${options.data.address_1}, ${options.data.address_2}, ${options.data.city}, ${options.data.postcode}` :  `${collection_address}`}
                     </p> 
                 </td>
             </tr>
@@ -262,10 +262,10 @@ exports.sendOrderAlertEmail = async options => {
             <tr>
                 <td>
                     <h3>Order Confirmation</h3>
-                    <p>Name: ${options.data.first_name} ${options.data.last_name}</h3>
-                    <p>Order ID: ${options.data._id}</h3>
-                    <p>Method: ${options.data.method}</h3>
-                    <p>Date: ${options.data.date}</h3>
+                    <p>Name: ${options.data.first_name} ${options.data.last_name}</p>
+                    <p>Order ID: ${options.data._id}</p>
+                    <p>Method: ${options.data.method}</p>
+                    <p>Date: ${options.data.date}</p>
                 </td>
             </tr>
         </table>
@@ -310,6 +310,7 @@ exports.EmailOrderIsReady = async options => {
             <tr>
                 <td>
                     <h1>${options.title}</h1>
+                    <p> Order ID: ${options.id}</p>
                     <p class="message">${options.message}</p>
                 </td>
             </tr>
