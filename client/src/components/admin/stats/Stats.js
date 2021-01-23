@@ -12,7 +12,7 @@ const Stats = ({admin:{stats}, findStats}) => {
             {!stats ? "" :
             <div className="stats-content">
                 {stats.map((el, index) => 
-                    <li key={index}> {index + 1} : {el.email} - point {el.loyalty_point}</li>
+                    <li key={index}> {index + 1} -- Loyalty Points {el.loyalty_point} -- {el.email}</li>
                 )}
             </div>
             }

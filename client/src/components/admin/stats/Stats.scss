@@ -16,8 +16,12 @@
             color: white;
         }
     }
-
     .stats-content{
-        margin: 2rem;
+        margin: 2rem auto;
+        text-align: left;
+        max-width: 400px;
+        li{
+           margin: 0.5rem 0;
+        }
     }
 }

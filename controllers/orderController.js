@@ -56,11 +56,11 @@ exports.createOrder = catchAsync(async(req, res, next) => {
 
     //set stats for amount sold and total
     let productIDs = [];
-    order.order.map(el => productIDs.push({id: el.id, total: el.total}))
+    order.order.map(el => productIDs.push({id: el.id, total: el.total, quantity: el.quantity}))
     
     let i;
     for(i = 0; i < productIDs.length; i++){
-        await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: 1, total: productIDs[i].total} })
+        await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: productIDs[i].quantity, total: productIDs[i].total} })
     }
 
     if(!order){
