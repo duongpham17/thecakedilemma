@@ -130,6 +130,7 @@ exports.completeOrder = catchAsync(async(req, res, next) => {
         try{
             await EmailOrderIsReady({
                 email: order.email,
+                subject: "Order Dispatched",
                 title: "Order has been shipped.",
                 id: order.id,
                 message: "Your order has been posted via Royal Mail 1st Class. This service aims to deliver your parcel within 1-2 days. Please ensure someone is available to accept the parcel as it is not letterbox friendly.",
@@ -145,6 +146,7 @@ exports.completeOrder = catchAsync(async(req, res, next) => {
         try{
             await EmailOrderIsReady({
                 email: order.email,
+                subject: "Order Is Ready",
                 title: "Order is ready to collect",
                 id: order.id,
                 message: "Please contact us to confirm your collection time to ensure contactless and safe collection.",

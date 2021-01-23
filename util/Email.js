@@ -285,7 +285,7 @@ exports.EmailOrderIsReady = async options => {
     const mailOptions = {
         from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
         to: options.email,
-        subject: "Order is ready",
+        subject: options.subject,
         html:`
     <html>
         <head>
