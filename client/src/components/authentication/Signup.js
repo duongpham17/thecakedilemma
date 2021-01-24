@@ -8,7 +8,8 @@ import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai';
 
 const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => {
 
-    const [see, setSee] = useState(false)
+    const [see, setSee] = useState(false);
+    const [check, setCheck] = useState(false);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -23,11 +24,14 @@ const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => 
 
     const onSubmit = (e, type) => {
         e.preventDefault()
+        setCheck(true)
         if(type === "verify"){
             if(password !== passwordConfirm){
                 setAlert("Passwords Don't Match.", "danger")
+                setCheck(false)
             } else {
                 signup(formData)
+                setTimeout(function(){setCheck(false) }, 2000);
             }
         }
 
@@ -60,7 +64,9 @@ const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => 
                 <input type={see ? 'text' : 'password'} className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="45"/>
                 <p>Password Confirm</p>
                 <input type={see ? 'text' : 'password'} className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  name="passwordConfirm" value={passwordConfirm} onChange={e => onChange(e) } required minLength="8" maxLength="45" />
-                <button>Create</button>
+                {check ? <Fragment><div className="loading_signup"/><br/><br/></Fragment> :
+                    <button>Create</button>
+                }
 
                 <div className="link-to">
                     <Link to="/login">Already have an account? Login</Link>

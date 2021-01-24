@@ -11,7 +11,8 @@ import {setAlert} from '../../actions/alertActions';
 
 const Guest = ({auth:{loggedOn, confirm}, signup, signupConfirm, setAlert}) => {
 
-    const [see, setSee] = useState(false)
+    const [see, setSee] = useState(false);
+    const [check, setCheck] = useState(false);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -24,13 +25,17 @@ const Guest = ({auth:{loggedOn, confirm}, signup, signupConfirm, setAlert}) => {
 
     const {email, user, password, passwordConfirm, code_confirm, code} = formData
 
+
     const onSubmit = (e, type) => {
         e.preventDefault()
+        setCheck(true)
         if(type === "verify"){
             if(password !== passwordConfirm){
                 setAlert("Passwords Don't Match.", "danger")
+                setCheck(false)
             } else {
                 signup(formData)
+                setTimeout(function(){setCheck(false) }, 2000);
             }
         }
 
@@ -42,6 +47,7 @@ const Guest = ({auth:{loggedOn, confirm}, signup, signupConfirm, setAlert}) => {
             }
         }
     }
+
     const onChange = e => setFormData({...formData, [e.target.name] : e.target.value})
 
     if(loggedOn){
@@ -67,18 +73,20 @@ const Guest = ({auth:{loggedOn, confirm}, signup, signupConfirm, setAlert}) => {
                     <p>Password Confirm</p>
                     <input type={see ? 'text' : 'password'} className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  name="passwordConfirm" value={passwordConfirm} onChange={e => onChange(e) } required minLength="8" maxLength="45" />
                     <br/>
-                    <button>Sign Up</button>
+                    {check ? <Fragment><div className="loading_signup"/><br/><br/></Fragment> :
+                    <button>Create</button>
+                }
                 </form>
             </div>
             </Fragment>
             : 
             <div className="sign-up-confirm-content">
-            <form onSubmit={e => onSubmit(e, "confirm")} >
-                <h2>Please check <br/> {formData.email} <br/> for the code.</h2>
-                <input type="text" placeholder="Enter code here" name="code_confirm" value={code_confirm} onChange={(e) => onChange(e) }  />
-                <br/>
-                <button>Confirm</button>
-            </form>
+                <form onSubmit={e => onSubmit(e, "confirm")} >
+                    <h2>Please check <br/> {formData.email} <br/> for the code.</h2>
+                    <input type="text" placeholder="Enter code here" name="code_confirm" value={code_confirm} onChange={(e) => onChange(e) }  />
+                    <br/>
+                    <button>Confirm</button>
+                </form>
             </div>
             }
         </div>

@@ -90,6 +90,21 @@ button{
     border-top-color: white;
     animation: spinner 1s linear infinite;
 }
+.loading_signup:before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 50%;
+    border: 3px solid var(--main-color);
+    border-top-color: white;
+    animation: spinner 1s linear infinite;
+}
+
 @keyframes spinner {
     to{
         transform: rotate(360deg);
