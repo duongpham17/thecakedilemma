@@ -7,7 +7,7 @@ import {Redirect} from 'react-router-dom';
 
 const Checkout = ({user:{user}, order:{basket, total, mth}}) => {   
 
-    let postageCost = 5
+    let postageCost = 4.99
 
     const [readyToPay, setReadyToPay] = useState(false);
     const [code, setCode] = useState("")
@@ -41,7 +41,7 @@ const Checkout = ({user:{user}, order:{basket, total, mth}}) => {
         message: "",
     })
 
-    if(!basket){
+    if(!basket || total < 10){
         return <Redirect to="/basket" />
     }
 
