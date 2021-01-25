@@ -55,7 +55,8 @@ const Address = (props) => {
             {method === "collect" ? 
             <div className="collection-container">
                 <h2>Collection Address</h2>
-                <p>Address: 63 Peveril Road</p>
+                <p>Adress: 121 high road</p>
+                <p>Second Address: Infinity Nails</p>
                 <p>City: Beeston</p>
                 <p>Postcode: NG9 2HU</p>
 
