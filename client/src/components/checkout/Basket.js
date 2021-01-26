@@ -16,7 +16,7 @@ export const Basket = ({order:{basket, total}, auth:{loggedOn}, updateQuantity, 
         saveDataToLocalStorage(unqiue)
         updateQuantity(id, quantity, "add")
         loadBasket(JSON.parse(localStorage.getItem("basket")))
-        if(!localStorage.getItem('basket-expires')) return localStorage.setItem('basket-expires', Date.now() + (2 * 3600000))
+        if(!localStorage.getItem('basket-expires')) return localStorage.setItem('basket-expires', Date.now() + (0.5 * 3600000))
     }
     
     const adjustQuantity = (e, value, total, id, unique, type) => {
