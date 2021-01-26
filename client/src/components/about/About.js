@@ -7,6 +7,7 @@ const About = () => {
         <div className="about-container">
            <h1>About Me</h1>
            <p className="about">
+           <img src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Femma.jpeg?alt=media&token=e512c598-af18-45b9-97fe-6b0bd916fa50" alt="about me" />
            <br/><br/>
            Hi! I’m Emma, just a girl who loves to bake. I’ve been baking since 9 years old when my mum got me a baking set for Christmas. 
            I didn’t even have an electric whisk so my older brother had to do all the heavy whisking, yes, he even hand-whisked meringues! 
