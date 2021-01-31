@@ -1,0 +1,47 @@
+.setting-container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 2rem 1rem;
+    background-color: white;
+    z-index: 1;
+    min-height: 50rem;
+
+    form{       
+        p, input{
+            font-size: 1rem;
+        }
+        input{
+            margin: 0 0.5rem;
+            text-align: center;
+            margin: 0.5rem;
+            border-bottom: 3px solid #555555;
+            &:hover{
+                border-bottom: 3px solid var(--main-color);
+            }
+        }
+        button{
+            padding: 0.5rem 1rem;
+            font-size: 2rem;
+            margin-top: 1rem;
+            animation: updown 2s infinite ;
+            &:hover{
+                color: var(--main-color);
+            }
+        }
+        
+        @keyframes updown {
+          0% {
+            transform: translateY(-10%);
+          }
+        
+          50% {
+            transform: translateY(10%);
+          }
+        
+          100% {
+            transform: translateY(-10%);
+          }
+        }
+    }
+}

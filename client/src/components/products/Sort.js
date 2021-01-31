@@ -27,7 +27,7 @@ const Sort = props => {
 
     return (
         <div className="sort-container">
-            <button className="sort-btn" onClick={() => setOpen(!open)}>Sort {open ? <RiArrowLeftSLine className="icon"/> : <RiArrowRightSLine className="icon"/>} </button>
+            <button className="sort-btn" onClick={() => setOpen(!open)}>Sort {open ? <RiArrowLeftSLine className="icon-sort"/> : <RiArrowRightSLine className="icon-sort"/>} </button>
 
             {open ?
             <Fragment>

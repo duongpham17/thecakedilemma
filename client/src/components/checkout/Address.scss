@@ -54,6 +54,9 @@
                     padding: 0.2rem 0.5rem;
                     margin-bottom: 0.5rem;
                     width: 95%;
+                    &:hover{
+                        background: rgb(255, 249, 239);
+                    }
                 }
                 button{
                     border-radius: 5px;
@@ -85,6 +88,9 @@
                 padding: 0.2rem 0.5rem;
                 margin-bottom: 0.5rem;
                 width: 95%;
+                &:hover{
+                    background: rgb(255, 249, 239);
+                }
             }
             button{
                 border-radius: 5px;
@@ -99,4 +105,24 @@
             }
         }
     }
+
+
+    .icon_move{
+        margin: -0.23rem 0.2rem;
+        animation: rightnleft 3s ease infinite;
+    }
+    @keyframes rightnleft {
+        0% {
+          transform: translateX(-20%);
+        }
+      
+        50% {
+          transform: translateX(20%);
+        }
+      
+        100% {
+          transform: translateX(-20%);
+        }
+    }
+
 }

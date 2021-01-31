@@ -1,4 +1,6 @@
 import {
+    GET_DATA,
+
     GET_FEED,
     CREATE_FEED,
     DELETE_FEED,
@@ -15,6 +17,19 @@ import {
 } from './types';
 import Api from '../routing/Api';
 import {setAlert} from './alertActions';
+
+//load the data 
+export const getData = () => async dispatch => {
+    try{
+        const res = await Api.get('/home/data');
+        dispatch({
+            type: GET_DATA,
+            payload: res.data.data,
+        })
+    } catch(err){
+        dispatch(setAlert("Something went wrong. Please refresh", "danger"))
+    }
+}
 
 //get feed
 export const getFeed = () => async dispatch => {

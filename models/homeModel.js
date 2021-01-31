@@ -1,5 +1,10 @@
 const mongoose = require('mongoose')
 
+const dataSchema = new mongoose.Schema({
+    delivery: Number,
+    minimumOrder: Number,
+})
+
 const feedSchema = new mongoose.Schema({
     description: {
         type: String
@@ -30,8 +35,9 @@ const questionSchema = new mongoose.Schema({
 
 })
 
+const Data = mongoose.model('Data', dataSchema)
 const Feed = mongoose.model('Feed', feedSchema)
 const Image = mongoose.model('Image', imageSchema)
 const Question = mongoose.model('Question', questionSchema)
 
-module.exports = {Feed, Image, Question}
+module.exports = {Feed, Image, Question, Data}

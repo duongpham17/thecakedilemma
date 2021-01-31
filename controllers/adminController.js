@@ -1,10 +1,25 @@
 const Product = require('../models/productModel');
+const {Data} = require('../models/homeModel');
 const Review = require('../models/reviewModel');
 const Variety = require('../models/varietyModel');
 const User = require('../models/userModel');
 const Order = require('../models/orderModel');
 
 const {appError, catchAsync} = require('../util/CatchError');
+
+// update settings for data
+exports.updateData = catchAsync(async(req, res, next) => {
+    const data = await Data.findByIdAndUpdate(req.params.id, req.body, {new: true});
+
+    if(!data){
+        return next (new appError("Could not update data", 400))
+    }
+
+    res.status(200).json({
+        status: "success",
+        data
+    })
+})
 
 //get product product 
 exports.getProducts = catchAsync(async(req, res, next) => {

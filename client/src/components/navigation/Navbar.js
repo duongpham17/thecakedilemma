@@ -10,7 +10,7 @@ import {FaShoppingBasket} from 'react-icons/fa';
 
 import Basket from './Basket';
 
-const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}}) => {
+const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}, home:{data}}) => {
 
     const mobileScreen = window.innerWidth <= 650;
 
@@ -35,7 +35,7 @@ const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}}) => {
                     <li><Link to="/basket">({!basket ? 0 : basket.length}) <FaShoppingBasket className="icon"/> </Link></li>
                     }
                     <div className="basket-dp-content">
-                        <Basket basket={basket} total={total} loggedOn={loggedOn} />
+                        <Basket basket={basket} total={total} loggedOn={loggedOn} minimum={!data ? 10 : data.minimumOrder} />
                     </div>
                 </div>
                 
@@ -58,7 +58,7 @@ const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}}) => {
                     <li><Link to="/basket">({!basket ? 0 : basket.length}) <FaShoppingBasket className="icon"/></Link></li> 
                     }
                     <div className="guest-basket-dp-content">
-                        <Basket basket={basket} total={total} loggedOn={loggedOn} />
+                        <Basket basket={basket} total={total} loggedOn={loggedOn} minimum={!data ? 10 : data.minimumOrder} />
                     </div>
                 </div>
             </Fragment>
@@ -69,6 +69,7 @@ const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}}) => {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/products/cake">Cakes</Link></li>
                 <li><Link to="/products/postal">Postal</Link></li>
+                <li><Link to="/products/seasonal">Seasonal</Link></li>
                 <li><Link to="/faqs">FAQs</Link></li>
             </div>
 
@@ -79,7 +80,8 @@ const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}}) => {
 const mapStateToProps = state => ({
     auth : state.authReducers,
     product : state.productReducers,
-    order: state.orderReducers
+    order: state.orderReducers,
+    home: state.homeReducers,
 })
 
 export default connect(mapStateToProps, {logout})(Navbar)

@@ -1,13 +1,17 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {loadUserData} from '../actions/userActions';
+import {getData} from '../actions/homeActions';
 import {loadBasket, deleteBasket} from '../actions/orderActions';
 
-const LoadUserData = ({auth:{loggedOn}, user:{user}, loadUserData, loadBasket, deleteBasket}) => {
+const LoadUserData = ({auth:{loggedOn}, user:{user}, home:{data}, getData, loadUserData, loadBasket, deleteBasket}) => {
 
     useEffect(() => {
         if(loggedOn && !user){
             loadUserData()
+        }
+        if(!data){
+            getData()
         }
     })
 
@@ -30,7 +34,8 @@ const LoadUserData = ({auth:{loggedOn}, user:{user}, loadUserData, loadBasket, d
 
 const mapStateToProp = state => ({
     user: state.userReducers,
-    auth: state.authReducers
+    auth: state.authReducers,
+    home: state.homeReducers
 })
 
-export default connect(mapStateToProp, {loadUserData, deleteBasket, loadBasket})(LoadUserData)
+export default connect(mapStateToProp, {getData, loadUserData, deleteBasket, loadBasket})(LoadUserData)

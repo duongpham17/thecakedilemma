@@ -1,5 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
+    GET_DATA,
+    UPDATE_DATA,
+
     GET_FEED,
     DELETE_FEED,
     CREATE_FEED,
@@ -16,6 +19,7 @@ import {
 } from '../actions/types'
 
 const initialState = {
+    data: null,
     feed: null,
     gallery: null,
     best: null,
@@ -26,6 +30,12 @@ export default function(state = initialState, action){
     const {type, payload} = action;
     
     switch(type){
+        case GET_DATA:
+        case UPDATE_DATA:
+            return{
+                ...state,
+                data: payload
+            }
         case GET_FEED:
             return {
                 ...state,

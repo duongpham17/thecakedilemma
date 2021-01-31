@@ -1,6 +1,21 @@
-const {Feed, Image, Question} = require('../models/homeModel');
+const {Feed, Image, Question, Data} = require('../models/homeModel');
 const Product = require('../models/productModel');
 const {appError, catchAsync} = require('../util/CatchError');
+
+//load the data
+exports.loadData = catchAsync(async(req, res, next) => {
+    const data = await Data.findById("601606f1208da5efae4a5e0a");
+
+    if(!data){
+        return next (new appError("Interet issue", 400))
+    }
+
+    res.status(200).json({
+        status: "success",
+        data
+    })
+})
+
 
 //create feed
 exports.createFeed = catchAsync(async(req, res, next) => {

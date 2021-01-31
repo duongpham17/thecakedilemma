@@ -5,9 +5,9 @@ import OrderSummary from './OrderSummary';
 import Address from './Address';
 import {Redirect} from 'react-router-dom';
 
-const Checkout = ({user:{user}, order:{basket, total, mth}}) => {   
+const Checkout = ({user:{user}, order:{basket, total, mth}, home:{data} }) => {   
 
-    let postageCost = 4.99
+    let postageCost = !data ? 4.99 : data.delivery;
 
     const [readyToPay, setReadyToPay] = useState(false);
     const [code, setCode] = useState("")
@@ -41,7 +41,7 @@ const Checkout = ({user:{user}, order:{basket, total, mth}}) => {
         message: "",
     })
 
-    if(!basket || total < 10){
+    if(!basket || total < data.minimumOrder){
         return <Redirect to="/basket" />
     }
 
@@ -64,7 +64,8 @@ const Checkout = ({user:{user}, order:{basket, total, mth}}) => {
 
 const mapStateToProps = state => ({
     user: state.userReducers,
-    order: state.orderReducers
+    order: state.orderReducers,
+    home: state.homeReducers,
 })
 
 export default connect(mapStateToProps, {})(Checkout)

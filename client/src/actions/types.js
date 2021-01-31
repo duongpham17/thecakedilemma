@@ -19,6 +19,8 @@ export const USER_DATA = 'USER_DATA';
 export const USER_ADDRESS = 'USER_ADDRESS';
 
 /* Admin */
+export const UPDATE_DATA = 'UPDATE_DATA';
+
 export const ADMIN_PRODUCT = 'ADMIN_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const EDIT_PRODUCT = 'EDIT_PRODUCT';
@@ -53,6 +55,7 @@ export const RESET_STATUS = 'RESET_STATUS';
 export const COMPLETE = 'COMPLETE';
 
 /* Home */
+export const GET_DATA = 'GET_DATA';
 export const GET_FEED = 'GET_FEED';
 export const CREATE_FEED = 'CREATE_FEED';
 export const DELETE_FEED = 'DELETE_FEED';

@@ -2,6 +2,7 @@ import './Address.scss';
 import React, {Fragment, useState} from 'react';
 import SaveAddress from './SaveAddress';
 import {GoCheck} from 'react-icons/go';
+import {IoIosArrowForward} from 'react-icons/io';
 
 const Address = (props) => {
     const setReadyToPay = props.setReadyToPay;
@@ -11,7 +12,7 @@ const Address = (props) => {
     const mth = props.mth;
 
     const [addressDone, setAddressDone] = useState(false)
-    const [method, setMethod] = useState("")
+    const [method, setMethod] = useState(mth === 0 ? "collect" : "delivery")
 
     const onChange = (e) => {
         setOrderData({...orderData, [e.target.name] : e.target.value})
@@ -71,7 +72,7 @@ const Address = (props) => {
                     <p>Email * for order receipt *</p>
                     <input type="email"  name="email" defaultValue={orderData.email}  onChange={e => onChange(e)} required minLength="2"/>
                     <br/>
-                    <button>Next</button>
+                    <button>Next <IoIosArrowForward className="icon_move"/></button>
                 </form>
                 }
                 </div>
@@ -101,7 +102,7 @@ const Address = (props) => {
                         <p>Postcode</p>
                         <input type="text"   name="postcode" defaultValue={orderData.postcode}  onChange={e => onChange(e)} required minLength="3"/>
                         <br/>
-                        <button>Next</button>
+                        <button>Next <IoIosArrowForward className="icon_move"/></button>
                     </form>
                     }
                 </div>

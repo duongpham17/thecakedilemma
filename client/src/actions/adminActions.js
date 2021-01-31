@@ -1,4 +1,5 @@
 import {
+    UPDATE_DATA,
     VARIETY,
     CREATE_VARIETY,
     EDIT_VARIETY,
@@ -18,7 +19,28 @@ import {
 import {setAlert} from './alertActions';
 import Api from '../routing/Api';
 
-/*ADMIN_PRODUCT**********************************************************************************/
+
+/* Settings ***********************************************************************************/
+export const updateData = (data, id) => async dispatch => {
+    try{
+        const config = {
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        }
+        const res = await Api.patch(`/admins/data/${id}`, data, config);
+        dispatch({
+            type: UPDATE_DATA,
+            payload: res.data.data
+        })
+        dispatch(setAlert("updated", 'success'))
+    } catch(err) {
+        dispatch(setAlert(err.response.data.message, "danger"))
+    }
+}
+
+/*Admin Products **********************************************************************************/
+
 //get products
 export const getAdminProducts = () => async dispatch => {
     try{

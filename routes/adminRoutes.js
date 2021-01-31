@@ -5,6 +5,9 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.use(authController.protect)
+
+router.patch('/data/:id', adminController.updateData);
+
 router.get('/products', adminController.getProducts)
 router.post('/products', adminController.createProduct);
 router.delete('/products/:id', adminController.deleteProduct);

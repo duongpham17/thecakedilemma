@@ -7,10 +7,11 @@ import {loadBasket} from '../../actions/orderActions';
 import {updateQuantity} from '../../actions/productActions';
 
 import {MdClose} from 'react-icons/md'
-import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai'
+import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai';
+import {IoIosArrowForward} from 'react-icons/io';
 
-export const Basket = ({order:{basket, total}, auth:{loggedOn}, updateQuantity, loadBasket}) => {
-    
+export const Basket = ({order:{basket, total}, auth:{loggedOn}, home:{data}, updateQuantity, loadBasket}) => {
+
     const removeFromBasket = (e, id, quantity, unqiue) => {
         e.preventDefault()
         saveDataToLocalStorage(unqiue)
@@ -67,13 +68,15 @@ export const Basket = ({order:{basket, total}, auth:{loggedOn}, updateQuantity, 
                 <p>Total £{Number(total).toFixed(2)}</p>
             </div>
 
+            {!data ? <div className="loading_2"/> : 
             <div className="checkout-link-content">
                 {loggedOn ? 
-                <p>{total >= 10 ? <Link to='/checkout'>Checkout</Link> : "Minimum order £10"}</p>
+                <p>{total >= data.minimumOrder ? <Link to='/checkout'>Checkout <IoIosArrowForward className="icon"/></Link> : "Minimum order £10"}</p>
                 :                 
-                <p>{total >= 10 ? <Link to='/basket/guest'>Checkout</Link> : "Minimum order £10"}</p>
+                <p>{total >= data.minimumOrder ? <Link to='/basket/guest'>Checkout <IoIosArrowForward className="icon"/></Link> : "Minimum order £10" }</p>
                 }
             </div>
+            }
 
             </Fragment>
         }
@@ -82,8 +85,9 @@ export const Basket = ({order:{basket, total}, auth:{loggedOn}, updateQuantity, 
 }
 
 const mapStateToProps = state => ({
-    order : state.orderReducers,
-    auth: state.authReducers
+    order: state.orderReducers,
+    auth : state.authReducers,
+    home : state.homeReducers
 })
 export default connect(mapStateToProps, {updateQuantity, loadBasket})(Basket)
 

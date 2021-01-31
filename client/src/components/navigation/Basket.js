@@ -13,6 +13,7 @@ const Basket = props => {
     const total = props.total;
     const loadBasket = props.loadBasket;
     const updateQuantity = props.updateQuantity;
+    const minimum = props.minimum;
 
     const slice = !basket ? "" : basket.length <= 5 ? "" : basket.slice(5, 100).map(el => el.total).reduce((a, c) => a + c)
 
@@ -45,8 +46,8 @@ const Basket = props => {
                 </Fragment>
                 : ""}
                 <li className="area-total">Total</li> <li className="area-basketTotal">£{Number(total).toFixed(2)}</li>
-                <li className={`area-view ${total >= 10 ? "" : "no-border"}`}><Link to="/basket">View</Link></li>
-                {total >= 10 ? <li className="area-checkout"><Link to={loggedOn ? "/checkout" : "/basket/guest"}>Checkout</Link></li> : "" }
+                <li className={`area-view ${total >= minimum ? "" : "no-border"}`}><Link to="/basket">View</Link></li>
+                {total >= minimum ? <li className="area-checkout"><Link to={loggedOn ? "/checkout" : "/basket/guest"}>Checkout</Link></li> : "" }
             </div>
             }
         </div>

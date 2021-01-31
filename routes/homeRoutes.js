@@ -4,6 +4,8 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
+router.get('/data', homeController.loadData);
+
 router.get('/feeds', homeController.getFeed);
 router.post('/feeds', authController.protect, homeController.createFeed);
 router.delete('/feeds/:id', authController.protect, homeController.deleteFeed);

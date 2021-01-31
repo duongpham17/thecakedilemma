@@ -44,6 +44,7 @@ const UpdateProduct = props => {
                 <p>Type</p>
                 <button type="button" className={type === "postal" ? "type" : ""} onClick={() => setFormData({...formData, type: type === "postal" ? "" : "postal"})}>Postal</button>
                 <button type="button" className={type === "cake" ? "type" : ""} onClick={() => setFormData({...formData, type: type === "cake" ? "" : "cake"})}>Cake</button>
+                <button type="button" className={type === "seasonal" ? "type" : ""} onClick={() => setFormData({...formData, type: type === "seasonal" ? "" : "seasonal"})}>Seasonal</button>
   
                 <p>Size ( no commas ) </p>
                 <textarea type="text" placeholder="E.g small medium large... Value? 1inches 2inches or 1-inch 2-inches... " name="size" value={size} onChange={e => onChange(e)}   />
