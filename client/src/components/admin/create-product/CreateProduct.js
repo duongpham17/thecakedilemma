@@ -35,7 +35,7 @@ const Create = ({createProduct, auth:{user}, home:{data} }) => {
 
                 <p>Type</p>
                 {!data ? "Loading..." : data.links.split(" ").map((el, index) => 
-                <button key={index} type="button" className={type === el ? "type" : ""} onClick={() => setFormData({...formData, type: type === el ? "" : el})}>{el}</button> 
+                <button key={index} type="button" className={type === el.toLowerCase() ? "type" : ""} onClick={() => setFormData({...formData, type: type === el.toLowerCase() ? "" : el.toLowerCase()})}>{el}</button> 
                 ) }
 
                 <p>Size ( no commas ) </p>

@@ -5,7 +5,8 @@ import UploadImage from './UploadImage';
 import UpdateProduct from './UpdateProduct';
 
 const EditPage = props => {
-    const data = props.data
+    const edit = props.edit;
+    const data = props.data;
     const setOpenEditPage = props.setOpenEditPage
 
     const done = () => {
@@ -15,13 +16,13 @@ const EditPage = props => {
     return (
         <div className="edit-container">
             <button className="done-edit-btn" onClick={() => done()}>Done</button>
-            {!data ? <div className="loading"/> :
+            {!edit ? <div className="loading"/> :
             <Fragment>
                 <div className="update-content"> 
-                    <UpdateProduct data={data} />
+                    <UpdateProduct edit={edit} data={data} />
                 </div>
                 <div className="upload-content"> 
-                    <UploadImage image={data.image} id={data._id} />
+                    <UploadImage image={edit.image} id={edit._id} />
                 </div>
             </Fragment>
             }

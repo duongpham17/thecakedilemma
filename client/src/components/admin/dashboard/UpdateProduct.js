@@ -5,30 +5,31 @@ import {updateProduct} from '../../../actions/adminActions';
 
 const UpdateProduct = props => {
     const updateProduct = props.updateProduct;
+    const edit = props.edit;
     const data = props.data;
 
     const [formData, setFormData] = useState({
-        title: data.title,
-        type: data.type,
-        size: data.size,
-        flavour: data.flavour,
-        description: data.description,
-        price: data.price,
-        quantity: data.quantity,
-        minimum: data.minimum,
-        ingredient: data.ingredient,
-        method: data.method,
-        deliveryMessage: data.deliveryMessage,
-        allergen: data.allergen,
-        optPrice: data.optPrice,
-        sortPrice: data.sortPrice
+        title: edit.title,
+        type: edit.type,
+        size: edit.size,
+        flavour: edit.flavour,
+        description: edit.description,
+        price: edit.price,
+        quantity: edit.quantity,
+        minimum: edit.minimum,
+        ingredient: edit.ingredient,
+        method: edit.method,
+        deliveryMessage: edit.deliveryMessage,
+        allergen: edit.allergen,
+        optPrice: edit.optPrice,
+        sortPrice: edit.sortPrice
     })
 
     const {title, description, price, quantity, minimum, type, ingredient, method, deliveryMessage, allergen, size, flavour, optPrice, sortPrice} = formData
 
     const onSubmit = e => {
         e.preventDefault()
-        updateProduct(data._id, formData)
+        updateProduct(edit._id, formData)
     }
 
     const onChange = e => setFormData({...formData, [e.target.name] : e.target.value})
@@ -42,9 +43,9 @@ const UpdateProduct = props => {
                 <input type="text" name="title" defaultValue={title} onChange={e => onChange(e)} required      />
 
                 <p>Type</p>
-                <button type="button" className={type === "postal" ? "type" : ""} onClick={() => setFormData({...formData, type: type === "postal" ? "" : "postal"})}>Postal</button>
-                <button type="button" className={type === "cake" ? "type" : ""} onClick={() => setFormData({...formData, type: type === "cake" ? "" : "cake"})}>Cake</button>
-                <button type="button" className={type === "seasonal" ? "type" : ""} onClick={() => setFormData({...formData, type: type === "seasonal" ? "" : "seasonal"})}>Seasonal</button>
+                {!data ? "Loading..." : data.links.split(" ").map((el, index) => 
+                <button key={index} type="button" className={type === el.toLowerCase() ? "type" : ""} onClick={() => setFormData({...formData, type: type === el.toLowerCase() ? "" : el.toLowerCase()})}>{el}</button> 
+                ) }
   
                 <p>Size ( no commas ) </p>
                 <textarea type="text" placeholder="E.g small medium large... Value? 1inches 2inches or 1-inch 2-inches... " name="size" value={size} onChange={e => onChange(e)}   />

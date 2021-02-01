@@ -10,7 +10,7 @@ import Activate from './Activate';
 import EditPage from './EditPage';
 import Gallery from './Gallery';
 
-export const Dashboard = ({admin:{products, edit, loading}, getProductToEdit, getAdminProducts}) => {
+export const Dashboard = ({admin:{products, edit, loading}, home:{data}, getProductToEdit, getAdminProducts}) => {
 
     const [openEditPage, setOpenEditPage] = useState(false)
 
@@ -36,7 +36,7 @@ export const Dashboard = ({admin:{products, edit, loading}, getProductToEdit, ge
         {openEditPage ? 
             <div className="dashboard-edit-container">
                 {!edit ? "" : 
-                    <EditPage data={edit} setOpenEditPage={setOpenEditPage} />
+                    <EditPage edit={edit} data={data} setOpenEditPage={setOpenEditPage} />
                 }
             </div>
         : ""} 
@@ -56,7 +56,7 @@ export const Dashboard = ({admin:{products, edit, loading}, getProductToEdit, ge
                 </div>
 
                 <div className="image-content">
-                    <Gallery data={products[index].image} />
+                    <Gallery edit={products[index].image} />
                 </div>
 
                 <div className="information-content">
@@ -81,7 +81,8 @@ export const Dashboard = ({admin:{products, edit, loading}, getProductToEdit, ge
 }
 
 const mapStateToProps = (state) => ({
-    admin: state.adminReducers
+    admin: state.adminReducers,
+    home: state.homeReducers
 })
 
 export default connect(mapStateToProps, {getAdminProducts, getProductToEdit})(Dashboard)
