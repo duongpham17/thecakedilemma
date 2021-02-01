@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const dataSchema = new mongoose.Schema({
     delivery: Number,
     minimumOrder: Number,
+    links: String
 })
 
 const feedSchema = new mongoose.Schema({

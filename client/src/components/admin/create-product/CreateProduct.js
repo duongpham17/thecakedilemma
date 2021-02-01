@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {createProduct} from '../../../actions/adminActions';
 
-const Create = ({createProduct, auth:{user} }) => {
+const Create = ({createProduct, auth:{user}, home:{data} }) => {
 
     const [formData, setFormData] = useState({
         user: user._id,
@@ -34,9 +34,9 @@ const Create = ({createProduct, auth:{user} }) => {
                 <input type="text" placeholder="....." name="title" value={title} onChange={e => onChange(e)} required  />
 
                 <p>Type</p>
-                <button type="button" className={type === "postal" ? "type" : ""} onClick={() => setFormData({...formData, type: type === "postal" ? "" : "postal"})}>Postal</button>
-                <button type="button" className={type === "cake" ? "type" : ""} onClick={() => setFormData({...formData, type: type === "cake" ? "" : "cake"})}>Cake</button>
-                <button type="button" className={type === "seasonal" ? "type" : ""} onClick={() => setFormData({...formData, type: type === "seasonal" ? "" : "seasonal"})}>Seasonal</button>
+                {!data ? "Loading..." : data.links.split(" ").map((el, index) => 
+                <button key={index} type="button" className={type === el ? "type" : ""} onClick={() => setFormData({...formData, type: type === el ? "" : el})}>{el}</button> 
+                ) }
 
                 <p>Size ( no commas ) </p>
                 <textarea type="text" placeholder="E.g small medium large... Value? 1inches 2inches or 1-inch 2-inches... " name="size" value={size} onChange={e => onChange(e)}   />
@@ -69,6 +69,7 @@ const Create = ({createProduct, auth:{user} }) => {
     )
 }
 const mapStateToProps = state => ({
-    auth: state.authReducers
+    auth: state.authReducers,
+    home: state.homeReducers
 })
 export default connect(mapStateToProps, {createProduct})(Create)

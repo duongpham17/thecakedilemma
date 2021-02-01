@@ -65,13 +65,13 @@ const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}, home:{dat
             }
             </div>
 
+            {!data ? "" :
             <div className="bottom-area">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/products/cake">Cakes</Link></li>
-                <li><Link to="/products/postal">Postal</Link></li>
-                <li><Link to="/products/seasonal">Seasonal</Link></li>
+                {data.links.split(" ").map((el, index) => <li key={index}><Link to={`/products/${el.toLowerCase()}`}>{el.charAt(0).toUpperCase() + el.slice(1)}</Link></li> )}
                 <li><Link to="/faqs">FAQs</Link></li>
             </div>
+            }
 
         </nav>
     )
@@ -85,61 +85,3 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps, {logout})(Navbar)
-
-
-/*
-return (
-        <header className="navbar">
-            <nav className="first-nav">
-                <Link to="/"><img src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=1b753feb-407c-4f98-afbe-0da61cce2b4d" alt="" /></Link>
-                <Link to="/product">Product</Link>
-            </nav>
-
-            <nav>
-                {loggedOn ? 
-                <div className="logged-on-container">
-                    {user.role === "admin" ? 
-                    <div className="displayed-container">
-                        <li><Link to="/admin">Admin <GiQueenCrown className="icon_"/> </Link></li> 
-                    </div>
-                    : "" }
-                    <div className="basket-dropdown-container">
-                        {mobileScreen ? 
-                        <li>({!basket ? 0 : basket.length})<FaShoppingBasket className="icon_"/></li>   : 
-                        <li><Link to="/basket">({!basket ? 0 : basket.length}) <FaShoppingBasket className="icon_"/> </Link></li>
-                        }
-                        <div className="basket-dropdown-content">
-                            <Basket basket={basket} total={total} />
-                        </div>
-                    </div>
-                    
-                    <div className="hamburger-dropdown-container">
-                        <button className="hamburger-dropdown-btn small-screen"><GiHamburgerMenu className="icon_"/></button>
-                        <div className="hamburger-dropdown-content">
-                            <li><Link to="/account">Account <RiAccountBoxLine className="icon_"/></Link></li>
-                            <li><Link to="/order">Orders <BiReceipt className="icon_"/></Link></li>
-                            <li><Link to='/' className="logout" onClick={() => logout()}>Logout <RiLogoutBoxRLine className="icon_"/></Link></li>
-                        </div>
-                    </div>
-                </div>
-                : 
-                <div className="guest-container">
-                    <li><Link to="/login">Login</Link></li>
-                    <li><Link to="/signup">Signup</Link></li>
-
-                    <div className="guest-basket-dropdown-container">
-                        {mobileScreen ? 
-                        <li>({!basket ? 0 : basket.length}) <FaShoppingBasket className="icon_"/></li> : 
-                        <li><Link to="/basket">({!basket ? 0 : basket.length}) <FaShoppingBasket className="icon_"/></Link></li> 
-                        }
-                        <div className="guest-basket-dropdown-content">
-                            <Basket basket={basket} />
-                        </div>
-                    </div>
-
-                </div>
-                }
-            </nav>
-        </header>
-    )
-*/

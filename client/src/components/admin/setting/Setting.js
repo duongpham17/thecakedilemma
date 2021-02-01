@@ -6,10 +6,11 @@ import {AiOutlineCloudUpload} from 'react-icons/ai';
 
 const Setting = ({home:{data}, updateData}) => {
     const [formData, setFormData] = useState({
+        links: data.links,
         delivery: data.delivery,
         minimumOrder: data.minimumOrder,
     })
-    const {delivery, minimumOrder} = formData;
+    const {links, delivery, minimumOrder} = formData;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -22,11 +23,12 @@ const Setting = ({home:{data}, updateData}) => {
         <div className="setting-container">
             {!data ? <div className="loading"/> : 
                 <form onSubmit={e => onSubmit(e)}>
+                    <p>Links</p>
+                    <input name="links" value={links} onChange={e => onChange(e)}/>
                     <p>Delivery Cost £</p>
                     <input name="delivery" value={delivery} onChange={e => onChange(e)}/>
                     <p>Minmum Order £</p>
                     <input name="minimumOrder" value={minimumOrder} onChange={e => onChange(e)}/>
-
                     <br/>
                     <button><AiOutlineCloudUpload/></button>
                 </form>
