@@ -3,7 +3,10 @@ const mongoose = require('mongoose')
 const dataSchema = new mongoose.Schema({
     delivery: Number,
     minimumOrder: Number,
-    links: String
+    links: {
+        type: String,
+        trim: true,
+    }
 })
 
 const feedSchema = new mongoose.Schema({
