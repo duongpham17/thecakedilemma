@@ -53,6 +53,8 @@ export const CHECKOUT_STATUS = 'CHECKOUT_STATUS';
 export const ORDERS = 'ORDERS';
 export const RESET_STATUS = 'RESET_STATUS';
 export const COMPLETE = 'COMPLETE';
+export const CREATE_GIFT_CARD_SESSION ='CREATE_GIFT_CARD_SESSION';
+
 
 /* Home */
 export const GET_DATA = 'GET_DATA';

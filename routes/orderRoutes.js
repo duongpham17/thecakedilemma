@@ -10,4 +10,6 @@ router.get('/', authController.protect, orderController.getOrders);
 router.get('/admin', authController.protect, orderController.getAdminOrders);
 router.patch('/complete/:id/:type', authController.protect, orderController.completeOrder);
 
+router.post('/gift-card-session', orderController.createGiftCardSession);
+
 module.exports = router

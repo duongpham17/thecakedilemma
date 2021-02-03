@@ -24,6 +24,7 @@ const initialState = {
     gallery: null,
     best: null,
     question: null,
+    loading: true,
 }
 
 export default function(state = initialState, action){
@@ -34,7 +35,8 @@ export default function(state = initialState, action){
         case UPDATE_DATA:
             return{
                 ...state,
-                data: payload
+                data: payload,
+                loading: false
             }
         case GET_FEED:
             return {

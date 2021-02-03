@@ -63,7 +63,7 @@ exports.emailConfirmation = async options => {
                 html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
                 table{ max-width: 600px; text-align: center; margin: 2rem auto;}
                 .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem}
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
                 h3{margin-bottom: 4rem}
                 .code{font-size: 30px}
             </style>
@@ -107,7 +107,7 @@ exports.sendForgotPasswordEmail = async options => {
                 html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
                 table{ max-width: 600px; text-align: center; margin: 2rem auto;}
                 .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem}
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
                 .reset_link {color: black; text-decoration: none; padding: 1rem 2rem; border: 1px solid #ffdab9; }
                 .reset_link:hover {color: white;background: #ffdab9; }
                 h3{margin-bottom: 4rem}
@@ -154,7 +154,7 @@ exports.sendOrderEmail = async options => {
                 table{ max-width: 600px; text-align: center; margin: 2rem auto;}
                 .logo{ width: 30%; height:auto }
                 .order-item p { text-align: left; width: 100%}
-                footer{padding: 1rem; background: #ffdab9; margin-top: 5rem}
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
                 .product {text-align: left; width: 100%;}
                 .product td {border-bottom: 1px solid #ffdab9; padding: 0.5rem 0}
                 .grand-total{text-align: right}
@@ -246,7 +246,7 @@ exports.sendOrderAlertEmail = async options => {
                 html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
                 table{ max-width: 600px; text-align: center; margin: 2rem auto}
                 .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem}
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
             </style>
         </head>
         
@@ -292,7 +292,7 @@ exports.EmailOrderIsReady = async options => {
                 html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
                 table{ max-width: 600px; text-align: center; margin: 2rem auto;}
                 .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem}
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
                 h3{margin-bottom: 5rem}
                 .message{font-size: 18px}
             </style>
@@ -339,7 +339,7 @@ exports.contactEmail = async options => {
                 html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
                 table{ max-width: 600px; text-align: center; margin: 2rem auto}
                 .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem}
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
             </style>
             </head>
             <body> 
@@ -359,6 +359,108 @@ exports.contactEmail = async options => {
                 ${footer_reply}
             </body>
         </html>
+    `
+    }
+    await transporter.sendMail(mailOptions)
+}
+
+// send a receipt to the gift card buyer
+exports.sendGiftCardToBuyerEmail = async options => {
+    const transporter = EmailNoReply()
+
+    const mailOptions = {
+        from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
+        to: options.email,
+        subject: "Gift Card",
+        html:`
+    <html>
+        <head>
+            <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
+            <style>
+                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
+                table{ max-width: 600px; text-align: center; margin: 2rem auto;}
+                .logo{ width: 40%; height:auto }
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
+                h3{margin-bottom: 5rem}
+                .message{font-size: 18px}
+            </style>
+        </head>
+        
+        <body> 
+        <table>
+            <tr>
+                <th>
+                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" /></a>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <h1>Thank You.</h1>
+                    <p> Gift Card Information </p>
+                    <p> Order ID: ${options.data._id}</p>
+                    <p> Balance: £${options.data.balance} </p>
+                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+                    <p> Code: ${options.data.code}</p>
+                    <p class="message">${!options.data.message ? " " : options.data.message}</p>
+                </td>
+            </tr>
+        </table>
+    
+        ${footer_reply}
+        </body>
+    </html>
+    `
+    }
+    await transporter.sendMail(mailOptions)
+}
+
+// send the gift card to the Recipient's email
+exports.sendGiftCardToRecipientEmail = async options => {
+    const transporter = EmailNoReply()
+
+    const mailOptions = {
+        from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
+        to: options.email,
+        subject: "Gift Card",
+        html:`
+    <html>
+        <head>
+            <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
+            <style>
+                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
+                table{ max-width: 600px; text-align: center; margin: 2rem auto;}
+                .logo{ width: 40%; height:auto }
+                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
+                h3{margin-bottom: 5rem}
+                .message{font-size: 18px}
+            </style>
+        </head>
+        
+        <body> 
+        <table>
+            <tr>
+                <th>
+                    <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" /></a>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <h1>Hello, its me ${options.name} enjoy this gift card.</h1>
+                    <br/>
+                    <p> Gift Card Information </p>
+                    <p> Order ID: ${options.data._id}</p>
+                    <p> Balance: ${options.data.balance} </p>
+                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+                    <p> Code: ${options.data.code}</p>
+                    <br/><br/>
+                    <p class="message">${!options.data.message ? " " : options.data.message}</p>
+                </td>
+            </tr>
+        </table>
+    
+        ${footer_reply}
+        </body>
+    </html>
     `
     }
     await transporter.sendMail(mailOptions)

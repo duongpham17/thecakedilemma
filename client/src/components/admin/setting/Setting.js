@@ -9,8 +9,9 @@ const Setting = ({home:{data}, updateData}) => {
         links: data.links,
         delivery: data.delivery,
         minimumOrder: data.minimumOrder,
+        gift: data.gift,
     })
-    const {links, delivery, minimumOrder} = formData;
+    const {links, delivery, minimumOrder, gift} = formData;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -29,6 +30,8 @@ const Setting = ({home:{data}, updateData}) => {
                     <input name="delivery" value={delivery} onChange={e => onChange(e)}/>
                     <p>Minmum Order £</p>
                     <input name="minimumOrder" value={minimumOrder} onChange={e => onChange(e)}/>
+                    <p>Gift Cards Price Range £</p>
+                    <input name="gift" value={gift} onChange={e => onChange(e)}/>
                     <br/>
                     <button><AiOutlineCloudUpload/></button>
                 </form>

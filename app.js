@@ -15,6 +15,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const authRoutes = require('./controllers/authController');
+const orderController = require('./controllers/orderController');
 const {errorMessage} = require('./util/CatchError');
 
 const app = express()
@@ -35,6 +36,9 @@ app.use(`/users/forgotpassword`, limiter(3, 3, "Please check your junk, or try a
 
 app.use(mongoSanitize());
 app.use(xss());
+
+//stripe webhook
+app.post('/webhook-checkout-gift-card', express.raw({type: 'application/json'}), orderController.webhookCheckoutGiftCard)
 
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({extended: true, limit: '100kb'}))

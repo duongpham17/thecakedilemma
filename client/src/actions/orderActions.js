@@ -5,6 +5,7 @@ import {
     COMPLETE,
     LOAD_BASKET,
     DELETE_BASKET,
+    CREATE_GIFT_CARD_SESSION,
 } from './types';
 import Api from '../routing/Api';
 import {setAlert} from './alertActions';
@@ -109,4 +110,36 @@ export const resetBuyStatus = () => async dispatch => {
     dispatch({
         type: RESET_STATUS
     })
+}
+
+//create gift card session
+export const createGiftCardSession = (data) => async dispatch => {
+    try{
+        const config = {
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        }
+        const res = await Api.post(`/orders/gift-card-session`, {data}, config);
+        dispatch({
+            type: CREATE_GIFT_CARD_SESSION,
+            payload: res.data.session,
+        })
+    } catch(err){
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
+}
+
+//create gift card
+export const createGiftCard = (formData) => async dispatch => {
+    try{
+        const config = {
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        }
+        await Api.post(`/orders/gift-cards`, formData, config);
+    } catch(err){
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
 }

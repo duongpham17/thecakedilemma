@@ -6,7 +6,11 @@ const dataSchema = new mongoose.Schema({
     links: {
         type: String,
         trim: true,
-    }
+    },
+    gift: {
+        type: String,
+        trim: true,
+    },
 })
 
 const feedSchema = new mongoose.Schema({

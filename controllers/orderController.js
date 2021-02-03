@@ -1,14 +1,14 @@
 const Order = require('../models/orderModel');
 const User = require('../models/userModel');
 const Product = require('../models/productModel');
+const Gift = require('../models/giftModel');
 
-const {sendOrderEmail, sendOrderAlertEmail, EmailOrderIsReady }= require('../util/Email');
+const {sendOrderEmail, sendOrderAlertEmail, EmailOrderIsReady, sendGiftCardToBuyerEmail, sendGiftCardToRecipientEmail}= require('../util/Email');
 const {appError, catchAsync} = require('../util/CatchError');
 const Feature = require('../util/Feature');
 
 const {v4 : uuidv4} = require("uuid");
-const stripe = require("stripe")(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV);
-
+const stripe = require('stripe')(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV)
 const dotenv = require('dotenv');
 dotenv.config({ path: "./config.env" });
 
@@ -160,3 +160,117 @@ exports.completeOrder = catchAsync(async(req, res, next) => {
         }
     }
 })
+
+/* GIFT Card */
+
+//create gift card checkout session
+exports.createGiftCardSession = catchAsync(async(req, res, next) => {
+    //get the data to fill out the gift card
+    const {data} = req.body;
+
+    //create checkout session
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        success_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma.com" : "http://localhost:3000"}/gift-success`,
+        cancel_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma" : "http://localhost:3000"}/gift-cards`,
+        customer_email: data.buyer_email,
+        client_reference_id: data,
+        line_items: [
+            {
+                name: "Gift Card",
+                //images: [''],
+                amount: data.balance * 100,
+                currency: "gbp",
+                quantity: 1
+            }
+        ]
+    })
+
+    //create session as response
+    res.status(200).json({
+        status: "success",
+        session
+    })
+})
+
+//creating our gift card to add into our database
+const createGiftCard = async session => {
+    await Gift.create(session.line_items[0].amount / 100)
+
+    try{
+        await sendGiftCardToBuyerEmail({
+            data: gift,
+            email: req.body.buyer_email,
+            name: req.body.name
+        });
+
+        await sendGiftCardToRecipientEmail({
+            data: gift,
+            email: req.body.recipient_email,
+            name: req.body.name
+        });
+
+        res.status(200).json({
+            status: "success",
+            gift
+        })
+    } catch (err){
+        return next(new appError("There was an error sending the email", 500))
+    }
+
+}
+
+//making sure the payment have been scompleted
+exports.webhookCheckoutGiftCard = (req, res, next) => {
+    const signature = req.headers['stripe-signature'];
+
+    let event;
+
+    try{
+        event = stripe.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
+    } catch(err){
+        return res.status(400).send(`Webhook Error: ${err.message}`)
+    }
+
+    console.log(event)
+
+    if(event.type === 'checkout.session.complete'){
+        createGiftCard(event.data.object)
+
+        res.status(200).json({received: true})
+    }
+}
+
+/*
+
+//create a gift card
+exports.createGiftCard = catchAsync(async(req, res, next) => {
+    const gift = await Gift.create(req.body);
+
+    if(!gift){
+        return next (new appError("Something went wrong. Please try again.", 400))
+    }
+
+    try{
+        await sendGiftCardToBuyerEmail({
+            data: gift,
+            email: req.body.buyer_email,
+            name: req.body.name
+        });
+
+        await sendGiftCardToRecipientEmail({
+            data: gift,
+            email: req.body.recipient_email,
+            name: req.body.name
+        });
+
+        res.status(200).json({
+            status: "success",
+            gift
+        })
+    } catch (err){
+        return next(new appError("There was an error sending the email", 500))
+    }
+})
+
+*/

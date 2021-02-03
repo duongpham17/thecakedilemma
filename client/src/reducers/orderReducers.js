@@ -6,6 +6,8 @@ import {
     COMPLETE,
     LOAD_BASKET,
     DELETE_BASKET,
+
+    CREATE_GIFT_CARD_SESSION,
 } from '../actions/types'
 
 const initialState = {
@@ -16,6 +18,10 @@ const initialState = {
     status: null,
     order: null,
     length: 0,
+
+    gift_card_session:null,
+    gift_session_id: null,
+    loading: true
 }
 
 export default function(state = initialState, action){
@@ -56,6 +62,13 @@ export default function(state = initialState, action){
                 ...state,
                 order: state.order.map(el => el._id === action.id ? {...el, status: "Completed"} : el),
             }
+
+        case CREATE_GIFT_CARD_SESSION:
+            return{
+                ...state,
+                gift_card_session: payload
+            }
+
         default:
             return state;
         }

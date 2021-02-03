@@ -32,6 +32,7 @@ const orderSchema = new mongoose.Schema({
         default: "Processing" 
     },
     date: String,
+    
     createdAt: {
         type: Date,
         default: Date.now()
