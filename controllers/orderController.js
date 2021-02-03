@@ -198,7 +198,6 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
 
 //making sure the payment have been scompleted
 exports.webhookCheckoutGiftCard = async(req, res, next) => {
-    const data = await createGiftCardSession()
     const signature = req.headers['stripe-signature'];
 
     let event;
@@ -211,17 +210,13 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
 
     // Handle the event
     switch (event.type) {
-        case 'checkout.session.complete':
+        case 'checkout.session.completed':
             const paymentIntent = event.data.object;
             await Gift.create({balance: paymentIntent.amount_total / 100})
             break;
         default:
             return res.status(400).send(`Webhook Error: ${event.type}`)
     }
-
-    console.log(data)
-    console.log(event)
-
 
     res.status(200).json({received: true})
 }
