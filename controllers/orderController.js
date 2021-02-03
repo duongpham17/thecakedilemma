@@ -174,8 +174,8 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
     //create checkout session
     const session = await stripe2.checkout.sessions.create({
         payment_method_types: ['card'],
-        success_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma.com" : "http://localhost:3000"}/gift-success`,
-        cancel_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma.com" : "http://localhost:3000"}/gift-cards`,
+        success_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/gift-success`,
+        cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/gift-cards`,
         customer_email: data.buyer_email,
         line_items: [
             {
