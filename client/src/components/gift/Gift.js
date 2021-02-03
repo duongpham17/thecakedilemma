@@ -37,8 +37,6 @@ const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSe
         setTimeout(() => {setDone(true)}, 2000)
     }
 
-    console.log(formData)
-
     //start the session
     const handleClick = async (event) => {
       // Get Stripe.js instance

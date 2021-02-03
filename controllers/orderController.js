@@ -11,7 +11,7 @@ const {v4 : uuidv4} = require("uuid");
 const stripe = require('stripe')(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV)
 
 //deve
-const stripe2 = require('stripe')( process.env.STRIPE_KEY_DEV)
+const stripe2 = require('stripe')(process.env.STRIPE_KEY_DEV)
 const dotenv = require('dotenv');
 dotenv.config({ path: "./config.env" });
 
