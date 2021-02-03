@@ -199,14 +199,8 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
     })
 })
 
-//creating our gift card to add into our database
-const createGiftCard = async session => {
-    console.log(session)
-    await Gift.create({balance: 15})
-}
-
 //making sure the payment have been scompleted
-exports.webhookCheckoutGiftCard = (req, res, next) => {
+exports.webhookCheckoutGiftCard = async(req, res, next) => {
     const signature = req.headers['stripe-signature'];
 
     let event;
@@ -217,7 +211,9 @@ exports.webhookCheckoutGiftCard = (req, res, next) => {
         return res.status(400).send(`Webhook Error: ${err.message}`)
     }
 
-    if(event.type === 'checkout.session.complete') createGiftCard(event.data.object);
+    if(event.type === 'checkout.session.complete'){
+        await Gift.create({balance: event.data.object.amount_total / 100})
+    }
 
     res.status(200).json({received: true})
 }

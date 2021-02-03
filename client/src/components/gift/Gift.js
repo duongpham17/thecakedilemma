@@ -27,7 +27,12 @@ const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSe
     })
     const {balance, buyer_email, recipient_email, message, name} = formData;
 
-    const onChange = (e) => setFormData({...formData, [e.target.name] : e.target.value})
+    const onChange = (e) =>{
+        setFormData({...formData, [e.target.name] : e.target.value})
+        if(buyer_email.includes("@")){
+            setDone(false)
+        }
+    }
 
     //create all the information needed for the session which will include the 
     const onSubmit = (e) => {
