@@ -214,11 +214,10 @@ exports.webhookCheckoutGiftCard = (req, res, next) => {
 
     console.log(event)
 
-    if(event.type === 'checkout.session.complete'){
+    if(event.type === 'checkout.session.complete')
         createGiftCard(event.data.object)
-
+        
         res.status(200).json({received: true})
-    }
 }
 
 /*
