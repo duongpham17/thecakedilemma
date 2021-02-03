@@ -69,7 +69,6 @@ const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}, home:{dat
             <div className="bottom-area">
                 <li><Link to="/">Home</Link></li>
                 {data.links.split(" ").map((el, index) => <li key={index}><Link to={`/products/${el.toLowerCase()}`}>{el.charAt(0).toUpperCase() + el.slice(1)}</Link></li> )}
-                <li><Link to="/gift-cards">Gifts</Link></li>
                 <li><Link to="/faqs">FAQs</Link></li>
             </div>
             }
@@ -77,6 +76,8 @@ const Navbar = ({logout, auth:{loggedOn, user}, order:{basket, total}, home:{dat
         </nav>
     )
 }
+
+//                <li><Link to="/gift-cards">Gifts</Link></li>
 
 const mapStateToProps = state => ({
     auth : state.authReducers,

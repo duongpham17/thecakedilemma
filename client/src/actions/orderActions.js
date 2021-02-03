@@ -129,17 +129,3 @@ export const createGiftCardSession = (data) => async dispatch => {
         dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
     }
 }
-
-//create gift card
-export const createGiftCard = (formData) => async dispatch => {
-    try{
-        const config = {
-            headers: {
-                "Content-Type" : "application/json"
-            }
-        }
-        await Api.post(`/orders/gift-cards`, formData, config);
-    } catch(err){
-        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
-    }
-}

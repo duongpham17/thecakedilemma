@@ -18,7 +18,7 @@ const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSe
     const [done, setDone] = useState("")
 
     const [formData, setFormData] = useState({
-        balance: "",
+        balance: 0,
         buyer_email: "",
         recipient_email: "",
         message: "",
@@ -35,6 +35,8 @@ const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSe
         setDone("awaiting")
         setTimeout(() => {setDone(true)}, 2000)
     }
+
+    console.log(formData)
 
     //start the session
     const handleClick = async (event) => {
@@ -86,7 +88,7 @@ const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSe
                     ?
                     <button type="button" className="buy-gift-card" role="link" onClick={handleClick}><BiRightArrowAlt className="gift-left-arrow"/> <AiFillGift/> <BiLeftArrowAlt className="gift-right-arrow"/> </button>
                     :  
-                    <button>{buyer_email.includes("@") ? "done" : ""}</button> 
+                    <button>done</button> 
                     }    
 
                 </form>

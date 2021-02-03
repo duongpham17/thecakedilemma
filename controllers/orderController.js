@@ -174,7 +174,6 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
         success_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma.com" : "http://localhost:3000"}/gift-success`,
         cancel_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma" : "http://localhost:3000"}/gift-cards`,
         customer_email: data.buyer_email,
-        client_reference_id: data,
         line_items: [
             {
                 name: "Gift Card",
@@ -189,7 +188,7 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
     //create session as response
     res.status(200).json({
         status: "success",
-        session
+        session,
     })
 })
 
@@ -217,7 +216,6 @@ const createGiftCard = async session => {
     } catch (err){
         return next(new appError("There was an error sending the email", 500))
     }
-
 }
 
 //making sure the payment have been scompleted
