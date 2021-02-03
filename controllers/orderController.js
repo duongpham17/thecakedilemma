@@ -203,18 +203,23 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
     console.log(data)
     let event;
     console.log(event)
-    try{
-        event = stripe2.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
-    } catch(err){
-        return res.status(400).send(`Webhook Error: ${err.message}`)
-    }
 
-    if(event.type === 'checkout.session.complete'){
-        await Gift.create({balance: data.balance})
+      // Handle the event
+    switch (event.type) {
+        case 'checkout.session.complete':
+        const paymentIntent = event.data.object;
+        await Gift.create({balance: paymentIntent.amount_total / 100})
+        break;
+        default:
+        return res.status(400).send(`Webhook Error: ${event.type}`)
     }
-
-    console.log(data)
-    console.log(event)
+    /*
+        try{
+            event = stripe2.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
+        } catch(err){
+            return res.status(400).send(`Webhook Error: ${err.message}`)
+        }
+    */
 
     res.status(200).json({received: true})
 }
