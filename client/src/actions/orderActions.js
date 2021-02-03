@@ -125,7 +125,9 @@ export const createGiftCardSession = (data) => async dispatch => {
             type: CREATE_GIFT_CARD_SESSION,
             payload: res.data.session,
         })
+        console.log(res.data)
     } catch(err){
+        console.log(err.reponse)
         dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
     }
 }
