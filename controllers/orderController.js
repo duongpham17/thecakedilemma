@@ -13,8 +13,6 @@ dotenv.config({ path: "./config.env" });
 const {v4 : uuidv4} = require("uuid");
 const stripe = require('stripe')(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV)
 
-const stripe2 = require('stripe')(process.env.STRIPE_KEY_DEV)
-
 //checkout
 exports.checkout = catchAsync(async(req, res, next) => {
     const {token, orderData} = req.body; 
@@ -172,7 +170,7 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
     const {data} = req.body;
 
     //create checkout session
-    const session = await stripe2.checkout.sessions.create({
+    const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         success_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/gift-success`,
         cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/gift-cards`,
@@ -197,7 +195,7 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
 
 //creating our gift card to add into our database
 const createGiftCard = async session => {
-    await Gift.create(session.line_items[0].amount / 100)
+    await Gift.create({balance: session.line_items[0].amount / 100})
 }
 
 //making sure the payment have been scompleted
@@ -207,7 +205,7 @@ exports.webhookCheckoutGiftCard = (req, res, next) => {
     let event;
 
     try{
-        event = stripe2.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
+        event = stripe.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
     } catch(err){
         return res.status(400).send(`Webhook Error: ${err.message}`)
     }

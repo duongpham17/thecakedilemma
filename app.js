@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path')
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -38,7 +39,7 @@ app.use(mongoSanitize());
 app.use(xss());
 
 //stripe webhook
-app.post('/webhook-checkout-gift-card', express.raw({type: 'application/json'}), orderController.webhookCheckoutGiftCard)
+app.post('/webhook-checkout-gift-card', bodyParser.raw({type: 'application/json'}), orderController.webhookCheckoutGiftCard)
 
 app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({extended: true, limit: '100kb'}))
