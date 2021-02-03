@@ -171,8 +171,6 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
     //get the data to fill out the gift card
     const {data} = req.body;
 
-    const idempotency_Key  = uuidv4();
-
     //create checkout session
     const session = await stripe2.checkout.sessions.create({
         payment_method_types: ['card'],
@@ -182,25 +180,25 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
         line_items: [
             {
                 name: "Gift Card",
-                //images: [''],
+                images: ['https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572'],
                 amount: data.balance * 100,
                 currency: "gbp",
-                quantity: 1
-            }
+                quantity: 1,
+            },
         ],
-    },{
-        idempotencyKey: idempotency_Key
     })
 
     //create session as response
     res.status(200).json({
         status: "success",
         session,
+        data
     })
 })
 
 //making sure the payment have been scompleted
 exports.webhookCheckoutGiftCard = async(req, res, next) => {
+    const data = createGiftCardSession()
     const signature = req.headers['stripe-signature'];
 
     let event;
@@ -212,7 +210,7 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
     }
 
     if(event.type === 'checkout.session.complete'){
-        await Gift.create({balance: event.data.object.amount_total / 100})
+        await Gift.create({balance: data.balance})
     }
 
     res.status(200).json({received: true})
