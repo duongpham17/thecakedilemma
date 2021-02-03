@@ -200,9 +200,9 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
 exports.webhookCheckoutGiftCard = async(req, res, next) => {
     const data = createGiftCardSession()
     const signature = req.headers['stripe-signature'];
-
+    console.log(data)
     let event;
-
+    console.log(event)
     try{
         event = stripe2.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
     } catch(err){
@@ -212,6 +212,9 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
     if(event.type === 'checkout.session.complete'){
         await Gift.create({balance: data.balance})
     }
+
+    console.log(data)
+    console.log(event)
 
     res.status(200).json({received: true})
 }
