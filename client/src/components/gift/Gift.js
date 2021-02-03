@@ -10,8 +10,7 @@ import {AiFillGift} from 'react-icons/ai';
 import {BiRightArrowAlt, BiLeftArrowAlt} from 'react-icons/bi';
 
 import {loadStripe} from '@stripe/stripe-js'
-//process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE :
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY)
+const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY)
 
 const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSession}) => {
     const gift_card_amount = data?.gift.split(" ").map(Number);

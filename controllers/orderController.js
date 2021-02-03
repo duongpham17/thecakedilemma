@@ -7,13 +7,14 @@ const {sendOrderEmail, sendOrderAlertEmail, EmailOrderIsReady, sendGiftCardToBuy
 const {appError, catchAsync} = require('../util/CatchError');
 const Feature = require('../util/Feature');
 
+const dotenv = require('dotenv');
+dotenv.config({ path: "./config.env" });
+
 const {v4 : uuidv4} = require("uuid");
 const stripe = require('stripe')(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV)
 
 //deve
 const stripe2 = require('stripe')(process.env.STRIPE_KEY_DEV)
-const dotenv = require('dotenv');
-dotenv.config({ path: "./config.env" });
 
 //checkout
 exports.checkout = catchAsync(async(req, res, next) => {
@@ -175,7 +176,7 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
     const session = await stripe2.checkout.sessions.create({
         payment_method_types: ['card'],
         success_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma.com" : "http://localhost:3000"}/gift-success`,
-        cancel_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma" : "http://localhost:3000"}/gift-cards`,
+        cancel_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma.com" : "http://localhost:3000"}/gift-cards`,
         customer_email: data.buyer_email,
         line_items: [
             {
