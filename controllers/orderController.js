@@ -202,7 +202,7 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
 //creating our gift card to add into our database
 const createGiftCard = async session => {
     console.log(session)
-    await Gift.create({balance: session.amount_total / 100})
+    await Gift.create({balance: 15})
 }
 
 //making sure the payment have been scompleted
