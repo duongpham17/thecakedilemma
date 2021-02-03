@@ -9,6 +9,9 @@ const Feature = require('../util/Feature');
 
 const {v4 : uuidv4} = require("uuid");
 const stripe = require('stripe')(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV)
+
+//deve
+const stripe2 = require('stripe')( process.env.STRIPE_KEY_DEV)
 const dotenv = require('dotenv');
 dotenv.config({ path: "./config.env" });
 
@@ -169,7 +172,7 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
     const {data} = req.body;
 
     //create checkout session
-    const session = await stripe.checkout.sessions.create({
+    const session = await stripe2.checkout.sessions.create({
         payment_method_types: ['card'],
         success_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma.com" : "http://localhost:3000"}/gift-success`,
         cancel_url: `${process.env.NODE_ENV === "production" ? "https://thecakedilemma" : "http://localhost:3000"}/gift-cards`,
@@ -204,7 +207,7 @@ exports.webhookCheckoutGiftCard = (req, res, next) => {
     let event;
 
     try{
-        event = stripe.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
+        event = stripe2.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
     } catch(err){
         return res.status(400).send(`Webhook Error: ${err.message}`)
     }
