@@ -188,7 +188,8 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
                 quantity: 1
             }
         ],
-        idempotencyKey: idempotency_Key 
+    },{
+        idempotencyKey: idempotency_Key
     })
 
     //create session as response
