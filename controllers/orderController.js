@@ -195,27 +195,6 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
 //creating our gift card to add into our database
 const createGiftCard = async session => {
     await Gift.create(session.line_items[0].amount / 100)
-
-    try{
-        await sendGiftCardToBuyerEmail({
-            data: gift,
-            email: req.body.buyer_email,
-            name: req.body.name
-        });
-
-        await sendGiftCardToRecipientEmail({
-            data: gift,
-            email: req.body.recipient_email,
-            name: req.body.name
-        });
-
-        res.status(200).json({
-            status: "success",
-            gift
-        })
-    } catch (err){
-        return next(new appError("There was an error sending the email", 500))
-    }
 }
 
 //making sure the payment have been scompleted
