@@ -370,7 +370,7 @@ exports.sendGiftCardToBuyerEmail = async options => {
 
     const mailOptions = {
         from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
-        to: options.data.buyer_email,
+        to: options.email,
         subject: "Gift Card",
         html:`
     <html>
@@ -420,7 +420,7 @@ exports.sendGiftCardToRecipientEmail = async options => {
 
     const mailOptions = {
         from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
-        to: options.data.recipient_email,
+        to: options.email,
         subject: "Gift Card",
         html:`
     <html>
