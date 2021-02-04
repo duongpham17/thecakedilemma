@@ -240,8 +240,8 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
 
             await sendGiftCardToBuyerEmail({
                 email: intent.metadata.buyer_email, 
-                data: gift, message: 
-                intent.metadata.message, 
+                data: gift, 
+                message: intent.metadata.message, 
                 name: intent.metadata.name
             });
             await sendGiftCardToRecipientEmail({

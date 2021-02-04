@@ -25,8 +25,10 @@ const Email = () => nodemailer.createTransport({
 const footer = `
 <footer>
     <p>The Cake Dilemma est. 2020. Please do not respond to this email. <br/>
-    For any enquiries, contact us by Email: <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a>
-    Or Whatsapp: <a target="_blank" rel="noreferrer" href="https://wa.me/+447838328990">+447838328990</a>
+    For any enquiries, contact us by <br/>
+    Email: <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a> <br/>
+    Or <br/>
+    Whatsapp: <a target="_blank" rel="noreferrer" href="https://wa.me/+447838328990">+447838328990</a>
     <br/>
     Our Social Links - 
     <a href="https://www.instagram.com/thecakedilemma/">Instagram</a> - 
@@ -48,6 +50,13 @@ const footer_reply = `
 </footer>
 `
 
+const main_style = `
+    html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
+    .logo{ width: 40%; height:auto }
+    footer{padding: 1rem; background: #ffdab9; margin-top: 20rem; border: 5px double white;}
+    table{ max-width: 600px; text-align: center; margin: 2rem auto;}
+`
+
 exports.emailConfirmation = async options => {
     const transporter = EmailNoReply()
 
@@ -60,10 +69,7 @@ exports.emailConfirmation = async options => {
         <head>
             <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
             <style>
-                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
-                table{ max-width: 600px; text-align: center; margin: 2rem auto;}
-                .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
+                ${main_style}
                 h3{margin-bottom: 4rem}
                 .code{font-size: 30px}
             </style>
@@ -104,10 +110,7 @@ exports.sendForgotPasswordEmail = async options => {
         <head>
             <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
             <style>
-                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
-                table{ max-width: 600px; text-align: center; margin: 2rem auto;}
-                .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
+                ${main_style}
                 .reset_link {color: black; text-decoration: none; padding: 1rem 2rem; border: 1px solid #ffdab9; }
                 .reset_link:hover {color: white;background: #ffdab9; }
                 h3{margin-bottom: 4rem}
@@ -150,11 +153,8 @@ exports.sendOrderEmail = async options => {
         <head>
             <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
             <style>
-                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
-                table{ max-width: 600px; text-align: center; margin: 2rem auto;}
-                .logo{ width: 30%; height:auto }
+                ${main_style}
                 .order-item p { text-align: left; width: 100%}
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
                 .product {text-align: left; width: 100%;}
                 .product td {border-bottom: 1px solid #ffdab9; padding: 0.5rem 0}
                 .grand-total{text-align: right}
@@ -243,10 +243,7 @@ exports.sendOrderAlertEmail = async options => {
         <head>
             <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
             <style>
-                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
-                table{ max-width: 600px; text-align: center; margin: 2rem auto}
-                .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
+                ${main_style}
             </style>
         </head>
         
@@ -289,10 +286,7 @@ exports.EmailOrderIsReady = async options => {
         <head>
             <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
             <style>
-                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
-                table{ max-width: 600px; text-align: center; margin: 2rem auto;}
-                .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
+                ${main_style}
                 h3{margin-bottom: 5rem}
                 .message{font-size: 18px}
             </style>
@@ -336,10 +330,7 @@ exports.contactEmail = async options => {
             <head>
             <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
             <style>
-                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
-                table{ max-width: 600px; text-align: center; margin: 2rem auto}
-                .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
+                ${main_style}
             </style>
             </head>
             <body> 
@@ -377,12 +368,11 @@ exports.sendGiftCardToBuyerEmail = async options => {
         <head>
             <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
             <style>
-                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
-                table{ max-width: 600px; text-align: center; margin: 2rem auto;}
-                .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
+                ${main_style}
                 h3{margin-bottom: 5rem}
-                .message{font-size: 18px}
+                .message{font-size: 16px}
+                p{font-size: 18px}
+                .core{border: 5px double #ffdab9; padding: 1rem}
             </style>
         </head>
         
@@ -393,15 +383,17 @@ exports.sendGiftCardToBuyerEmail = async options => {
                     <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" /></a>
                 </th>
             </tr>
-            <td>
-                <h1>Thank You ${options.name}</h1>
-                <p> Gift Card Information </p>
-                <p> Order ID: ${options.data._id}</p>
-                <p> Balance: £${options.data.balance} </p>
-                <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
-                <p> Code: ${options.data.code}</p>
-                <p class="message">${!options.message ? " " : options.message}</p>
-            </td>
+                <td>
+                    <h1>Thank You ${options.name}</h1>
+                    <br/>
+                    <p> Gift Card Information </p>
+                    <p> Order ID: ${options.data._id}</p>
+                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+                    <p class="core"> Balance: £${options.data.balance} </p>
+                    <p class="core"> Code: ${options.data.code}</p>
+                    <br/><br/>
+                    <p class="message">Message sent: ${!options.message ? " " : options.message}</p>
+                </td>
             <tr>
             </tr>
         </table>
@@ -427,12 +419,11 @@ exports.sendGiftCardToRecipientEmail = async options => {
         <head>
             <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200;400;600&display=swap" rel="stylesheet">
             <style>
-                html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
-                table{ max-width: 600px; text-align: center; margin: 2rem auto;}
-                .logo{ width: 40%; height:auto }
-                footer{padding: 1rem; background: #ffdab9; margin-top: 20rem, border: 5px double white}
+                ${main_style}
                 h3{margin-bottom: 5rem}
-                .message{font-size: 18px}
+                .message{font-size: 16px}
+                p{font-size: 18px}
+                .core{border: 5px double #ffdab9; padding: 1rem}
             </style>
         </head>
         
@@ -449,15 +440,14 @@ exports.sendGiftCardToRecipientEmail = async options => {
                     <br/>
                     <p> Gift Card Information </p>
                     <p> Order ID: ${options.data._id}</p>
-                    <p> Balance: £${options.data.balance} </p>
                     <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
-                    <p> Code: ${options.data.code}</p>
+                    <p class="core"> Balance: £${options.data.balance} </p>
+                    <p class="core"> Code: ${options.data.code}</p>
                     <br/><br/>
                     <p class="message">${!options.message ? " " : options.message}</p>
                 </td>
             </tr>
         </table>
-    
         ${footer_reply}
         </body>
     </html>
