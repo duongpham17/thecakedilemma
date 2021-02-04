@@ -23,10 +23,15 @@ const Address = (props) => {
         setAddressDone(false)
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = (e, m) => {
         e.preventDefault()
         setAddressDone(true)
         setReadyToPay(true)
+        if(m === "delivery"){
+            setOrderData({...orderData, method: "Delivery", postage: orderData.total >= 50 ? 0 : orderData.saved_postage, total: orderData.saved_total_with_postage, discount: false, total_with_discount: 0})
+        } else {
+            setOrderData({...orderData, method: "Collect", postage: 0, total: orderData.total_before_postage, discount: false, total_with_discount: 0 })
+        }
     }
 
     const orderMethod = (e, m) => {
@@ -64,7 +69,7 @@ const Address = (props) => {
                 <div className="collect-content">
                 <h2>For Order Confirmation</h2>
                 {addressDone ? <button className="check-address-btn" onClick={() => checkAddress()}>Check Email <GoCheck className="icon"/></button> :
-                <form onSubmit={e => onSubmit(e)}>
+                <form onSubmit={e => onSubmit(e, "collect")}>
                     <p>First Name</p>
                     <input type="text"  name="first_name" defaultValue={orderData.first_name}  onChange={e => onChange(e)} required minLength="2"/>
                     <p>Last Name</p>
@@ -86,7 +91,7 @@ const Address = (props) => {
                 <div className="shipping-container">
                     <h2>Shipping Address</h2>
                     {addressDone ? <button className="check-address-btn" onClick={() => checkAddress()}>Check Address <GoCheck className="icon"/></button> :
-                    <form onSubmit={e => onSubmit(e)}>
+                    <form onSubmit={e => onSubmit(e, "delivery")}>
                         <p>First Name</p>
                         <input type="text"   name="first_name" defaultValue={orderData.first_name}  onChange={e => onChange(e)} required minLength="2"/>
                         <p>Last Name</p>

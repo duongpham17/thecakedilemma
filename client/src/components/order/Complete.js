@@ -16,7 +16,7 @@ const Complete = props => {
 
     return (
         <li>
-            {click ? <p className="loading_3" /> :
+            {click ? <p className="loading_order_complete" /> :
             <button onClick={(e) => el.status === "Completed" ? "" : complete(e, el._id, el.method)}><GoPrimitiveDot className={`icon ${el.status === "Processing" ? "processing-icon" : "completed-icon" }`}/>{el.status}</button> 
             }
         </li>

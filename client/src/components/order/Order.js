@@ -72,6 +72,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                                 <li>&nbsp;&nbsp;&nbsp;{e.size} {e.flavour}</li>
                             </div>
                         )}
+                        
                         <div className="valuation">
                         <p>Total <span className="total">£{el.total_before_postage.toFixed(2)}</span></p>
                         <p>Postage <span className="postage">£{Number(el.postage).toFixed(2)}</span></p>
