@@ -394,15 +394,6 @@ exports.sendGiftCardToBuyerEmail = async options => {
                 </th>
             </tr>
             <tr>
-                <td>
-                    <h1>Thank You.</h1>
-                    <p> Gift Card Information </p>
-                    <p> Order ID: ${options.data._id}</p>
-                    <p> Balance: £${options.data.balance} </p>
-                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
-                    <p> Code: ${options.data.code}</p>
-                    <p class="message">${!options.data.message ? " " : options.data.message}</p>
-                </td>
             </tr>
         </table>
     
@@ -413,6 +404,18 @@ exports.sendGiftCardToBuyerEmail = async options => {
     }
     await transporter.sendMail(mailOptions)
 }
+
+/*
+                <td>
+                    <h1>Thank You.</h1>
+                    <p> Gift Card Information </p>
+                    <p> Order ID: ${options.data._id}</p>
+                    <p> Balance: £${options.data.balance} </p>
+                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+                    <p> Code: ${options.data.code}</p>
+                    <p class="message">${!options.data.message ? " " : options.data.message}</p>
+                </td>
+*/
 
 // send the gift card to the Recipient's email
 exports.sendGiftCardToRecipientEmail = async options => {
