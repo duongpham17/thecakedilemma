@@ -186,6 +186,7 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
                 quantity: 1,
             },
         ],
+        metadata: data
     })
 
     //create session as response
@@ -211,7 +212,7 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
     switch (event.type) {
         case 'checkout.session.completed':
             const intent = event.data.object
-            await Gift.create({balance: intent.amount / 100})
+            await Gift.create({balance: intent.metadata.balance / 100})
             break;
         default:
             return res.status(400).send(`Webhook Error: ${event.type}`)
