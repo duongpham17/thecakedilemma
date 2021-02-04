@@ -51,7 +51,8 @@ const footer_reply = `
 `
 
 const main_style = `
-    html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; background: white; padding: 1rem}
+    html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; padding: 1rem}
+    body {background-color: white}
     .logo{ width: 40%; height:auto }
     footer{padding: 1rem; background: #ffdab9; margin-top: 20rem; border: 5px double white;}
     table{ max-width: 600px; text-align: center; margin: 2rem auto;}

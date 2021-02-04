@@ -258,36 +258,4 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
     res.status(200).json({received: true})
 }
 
-/*
-
-//create a gift card
-exports.createGiftCard = catchAsync(async(req, res, next) => {
-    const gift = await Gift.create(req.body);
-
-    if(!gift){
-        return next (new appError("Something went wrong. Please try again.", 400))
-    }
-
-    try{
-        await sendGiftCardToBuyerEmail({
-            data: gift,
-            email: req.body.buyer_email,
-            name: req.body.name
-        });
-
-        await sendGiftCardToRecipientEmail({
-            data: gift,
-            email: req.body.recipient_email,
-            name: req.body.name
-        });
-
-        res.status(200).json({
-            status: "success",
-            gift
-        })
-    } catch (err){
-        return next(new appError("There was an error sending the email", 500))
-    }
-})
-
-*/
+//check balance of gift card
