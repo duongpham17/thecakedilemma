@@ -3,6 +3,8 @@ const User = require('../models/userModel');
 const Product = require('../models/productModel');
 const Gift = require('../models/giftModel');
 
+const crypto = require('crypto');
+
 const {sendOrderEmail, sendOrderAlertEmail, EmailOrderIsReady, sendGiftCardToBuyerEmail, sendGiftCardToRecipientEmail}= require('../util/Email');
 const {appError, catchAsync} = require('../util/CatchError');
 const Feature = require('../util/Feature');
@@ -212,7 +214,7 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
     switch (event.type) {
         case 'checkout.session.completed':
             const intent = event.data.object
-            await Gift.create({balance: intent.metadata.balance})
+            await Gift.create({balance: intent.metadata.balance, code: crypto.randomBytes(20).toString('hex').substring(0, 16).toUpperCase()})
             break;
         default:
             return res.status(400).send(`Webhook Error: ${event.type}`)
