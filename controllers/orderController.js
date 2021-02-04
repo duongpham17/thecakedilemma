@@ -186,9 +186,6 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
                 quantity: 1,
             },
         ],
-        metadata: {
-            data
-        }
     })
 
     //create session as response
