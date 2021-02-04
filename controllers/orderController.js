@@ -237,7 +237,7 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
         case 'checkout.session.completed':
             const intent = event.data.object
             await Gift.create({balance: intent.metadata.balance, code: crypto.randomBytes(20).toString('hex').substring(0, 16).toUpperCase()})
-            await sendGiftCardToBuyerEmail({email: intent.metadata.buyer_email });
+            await sendGiftCardToBuyerEmail({email: intent.metadata.buyer_email, data: intent.metadata });
             console.log("hello")
             break;
         default:

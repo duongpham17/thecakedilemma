@@ -393,6 +393,11 @@ exports.sendGiftCardToBuyerEmail = async options => {
                     <a href=${websiteLink}><img class="logo" src="https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572" /></a>
                 </th>
             </tr>
+            <td>
+                <h1>Thank You.</h1>
+                <p> Gift Card Information </p>
+                <p> Order ID: ${options.data.balance}</p>
+            </td>
             <tr>
             </tr>
         </table>
@@ -406,15 +411,15 @@ exports.sendGiftCardToBuyerEmail = async options => {
 }
 
 /*
-                <td>
-                    <h1>Thank You.</h1>
-                    <p> Gift Card Information </p>
-                    <p> Order ID: ${options.data._id}</p>
-                    <p> Balance: £${options.data.balance} </p>
-                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
-                    <p> Code: ${options.data.code}</p>
-                    <p class="message">${!options.data.message ? " " : options.data.message}</p>
-                </td>
+    <td>
+        <h1>Thank You.</h1>
+        <p> Gift Card Information </p>
+        <p> Order ID: ${options.data._id}</p>
+        <p> Balance: £${options.data.balance} </p>
+        <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+        <p> Code: ${options.data.code}</p>
+        <p class="message">${!options.data.message ? " " : options.data.message}</p>
+    </td>
 */
 
 // send the gift card to the Recipient's email
