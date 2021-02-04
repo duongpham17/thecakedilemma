@@ -212,7 +212,16 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
     switch (event.type) {
         case 'checkout.session.completed':
             const intent = event.data.object
-            await Gift.create({balance: intent.metadata.balance / 100})
+            await Gift.create({balance: intent.metadata.balance})
+
+            await sendGiftCardToBuyerEmail({
+                data: intent.metadata,
+            });
+    
+            await sendGiftCardToRecipientEmail({
+                data: intent.metadata,
+            });
+
             break;
         default:
             return res.status(400).send(`Webhook Error: ${event.type}`)
