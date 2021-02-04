@@ -198,21 +198,12 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
 
 //making sure the payment have been scompleted
 exports.webhookCheckoutGiftCard = async(req, res, next) => {
-    const signature = req.headers['stripe-signature'];
-
-    let event;
-
-    try{
-        event = stripe2.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
-    } catch(err){
-        return res.status(400).send(`Webhook Error: ${err.message}`)
-    }
+    const event = req.body
 
     // Handle the event
     switch (event.type) {
         case 'checkout.session.completed':
-            const paymentIntent = event.data.object;
-            await Gift.create({balance: paymentIntent.amount_total / 100})
+            console.log(event)
             break;
         default:
             return res.status(400).send(`Webhook Error: ${event.type}`)
