@@ -220,11 +220,15 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
             return res.status(400).send(`Webhook Error: ${event.type}`)
     }
 
-    const intent = event.data.object.metadata;
-    await sendGiftCardToBuyerEmail({ data: intent, email: intent.buyer_email });
-    await sendGiftCardToRecipientEmail({data: intent, email: intent.recipient_email });
-
-    console.log(intent);
+    if(event.type === 'checkout.session.completed'){
+        try{
+            const intent = event.data.object.metadata
+            await sendGiftCardToBuyerEmail({ data: intent, email: intent.buyer_email });
+            await sendGiftCardToRecipientEmail({data: intent, email: intent.recipient_email });
+        } catch(err){
+            return next(new appError("There was an error sending the email", 500))
+        }
+    }
 
     res.status(200).json({received: true})
 }
