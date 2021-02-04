@@ -2,9 +2,12 @@ import {
     CHECKOUT_STATUS,
     RESET_STATUS,
     ORDERS,
-    COMPLETE,
     LOAD_BASKET,
     DELETE_BASKET,
+
+    COMPLETE_ORDER,
+    DELETE_ORDER,
+
     CREATE_GIFT_CARD_SESSION,
 } from './types';
 import Api from '../routing/Api';
@@ -57,6 +60,13 @@ export const createOrder = (data) => async dispatch => {
     }
 }
 
+//reset checkout success to null after checking out
+export const resetBuyStatus = () => async dispatch => {
+    dispatch({
+        type: RESET_STATUS
+    })
+}
+
 //get orders for admin
 export const getAdminOrders = (page, limit) => async dispatch => {
     try{
@@ -85,7 +95,7 @@ export const getOrders = (page, limit) => async dispatch => {
     }
 }
 
-//get orders
+//complete orders 
 export const completeOrder = (id, type) => async dispatch => {
     try{
         const config = {
@@ -95,7 +105,7 @@ export const completeOrder = (id, type) => async dispatch => {
         }
         const res = await Api.patch(`/orders/complete/${id}/${type}`, {}, config);
         dispatch({
-            type: COMPLETE,
+            type: COMPLETE_ORDER,
             payload: res.data.order,
             id
         })
@@ -105,11 +115,24 @@ export const completeOrder = (id, type) => async dispatch => {
     }
 }
 
-//reset checkout success to null after checking out
-export const resetBuyStatus = () => async dispatch => {
-    dispatch({
-        type: RESET_STATUS
-    })
+//delete orders 
+export const deleteOrder = (id) => async dispatch => {
+    try{
+        const config = {
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        }
+        await Api.patch(`/orders/delete/${id}`, {}, config);
+        dispatch({
+            type: DELETE_ORDER,
+            id
+        })
+        dispatch(setAlert("Order deleted", "success"))
+    } catch(err){
+        console.log(err.response)
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
 }
 
 //create gift card session

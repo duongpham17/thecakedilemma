@@ -44,10 +44,7 @@ const Checkout = ({user:{user}, order:{basket, total, mth}, home:{data} }) => {
     if(!basket || total < data.minimumOrder){
         return <Redirect to="/basket" />
     }
-
-    console.log(orderData.method);
-    console.log(mth)
-
+    
     return (
         <div className="checkout-container">
             <h1>Checkout</h1>

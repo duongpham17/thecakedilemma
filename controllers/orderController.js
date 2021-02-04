@@ -166,6 +166,26 @@ exports.completeOrder = catchAsync(async(req, res, next) => {
     }
 })
 
+//delete orders 
+exports.deleteOrder = catchAsync(async(req, res, next) => {
+    const order = await Order.findById(req.params.id)
+
+    //set stats for amount sold and total
+    let productIDs = [];
+    order.order.map(el => productIDs.push({id: el.id, total: el.total, quantity: el.quantity}))
+    
+    let i;
+    for(i = 0; i < productIDs.length; i++){
+        await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: -productIDs[i].quantity, total: -productIDs[i].total, quantity: productIDs[i].quantity} })
+    }
+
+    await Order.findByIdAndDelete(req.params.id)
+
+    res.status(200).json({
+        status: "success"
+    })
+})
+
 /* GIFT Card */
 
 //create gift card checkout session

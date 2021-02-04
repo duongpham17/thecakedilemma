@@ -3,7 +3,10 @@ import {
     CHECKOUT_STATUS,
     ORDERS,
     RESET_STATUS,
-    COMPLETE,
+
+    COMPLETE_ORDER,
+    DELETE_ORDER,
+
     LOAD_BASKET,
     DELETE_BASKET,
 
@@ -57,10 +60,15 @@ export default function(state = initialState, action){
                 order: payload,
                 length: action.length,
             }
-        case COMPLETE:
+        case COMPLETE_ORDER:
             return{
                 ...state,
                 order: state.order.map(el => el._id === action.id ? {...el, status: "Completed"} : el),
+            }
+        case DELETE_ORDER:
+            return{
+                ...state,
+                order: state.order.filter(i => i._id !== action.id),
             }
 
         case CREATE_GIFT_CARD_SESSION:

@@ -7,12 +7,13 @@ import {AiOutlineCopy} from 'react-icons/ai';
 import {RiArrowDownSLine, RiArrowUpSLine} from 'react-icons/ri';
 import {GoPrimitiveDot} from 'react-icons/go';
 
-import {resetBuyStatus, getOrders, getAdminOrders, completeOrder} from '../../actions/orderActions';
+import {resetBuyStatus, getOrders, getAdminOrders, completeOrder, deleteOrder} from '../../actions/orderActions';
 
 import Complete from './Complete';
+import Delete from './Delete';
 import Pagination from './Pagination';
 
-const Order = ({order:{status, order, length}, auth:{user}, completeOrder, resetBuyStatus, getOrders, getAdminOrders}) => {
+const Order = ({order:{status, order, length}, auth:{user}, completeOrder, deleteOrder, resetBuyStatus, getOrders, getAdminOrders}) => {
     const [open, setOpen] = useState("")
 
     useEffect(() => {
@@ -40,6 +41,11 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
 
             {!order ? "Empty" :
             <Fragment>
+
+                {user.role === "admin" ?
+                    <Delete deleteOrder={deleteOrder}/>
+                : "" }
+                
                 <div className="header-content">
                     <li></li>
                     <li>Order ID</li>
@@ -58,7 +64,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, reset
                         {user.role === "admin" ?
                             <Complete completeOrder={completeOrder} el={el} />
                         : 
-                        <li><GoPrimitiveDot className={`icon ${el.status === "Processing" ? "processing-icon" : "completed-icon" }`}/> {el.status}</li>
+                            <li><GoPrimitiveDot className={`icon ${el.status === "Processing" ? "processing-icon" : "completed-icon" }`}/> {el.status}</li>
                         }
                     </div>
 
@@ -119,6 +125,7 @@ const mapDispatchToProps = {
     getOrders, 
     getAdminOrders, 
     completeOrder, 
+    deleteOrder,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)

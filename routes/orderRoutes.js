@@ -9,6 +9,7 @@ router.post('/', orderController.createOrder);
 router.get('/', authController.protect, orderController.getOrders);
 router.get('/admin', authController.protect, orderController.getAdminOrders);
 router.patch('/complete/:id/:type', authController.protect, orderController.completeOrder);
+router.patch('/delete/:id', authController.protect, orderController.deleteOrder)
 
 router.post('/gift-card-session', orderController.createGiftCardSession);
 

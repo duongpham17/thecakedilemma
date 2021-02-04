@@ -10,6 +10,37 @@
         font-weight: 600;
     }
 
+    .delete-order-container{
+        text-align: center; 
+        position: relative;
+        min-height: 2rem;
+        form{
+            input, button{
+                font-size: 1rem;
+            }
+
+            input{
+                text-align: center;
+                width: 220px;
+            }
+
+            button:hover{
+                color: rgb(251, 102, 102);
+            }
+        }
+        .loading-order-delete:before {
+            content: "";
+            position: absolute;
+            margin: 1rem 1rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 3px solid rgb(251, 102, 102);
+            border-top-color: white;
+            animation: spinner 1s linear infinite;
+        }
+    }
+
     .header-content{
         margin-top: 2rem;
         text-align: left;
