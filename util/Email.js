@@ -396,7 +396,11 @@ exports.sendGiftCardToBuyerEmail = async options => {
             <td>
                 <h1>Thank You.</h1>
                 <p> Gift Card Information </p>
-                <p> Order ID: ${options.data.balance}</p>
+                <p> Order ID: ${options.data._id}</p>
+                <p> Balance: £${options.data.balance} </p>
+                <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+                <p> Code: ${options.data.code}</p>
+                <p class="message">${!options.message ? " " : options.message}</p>
             </td>
             <tr>
             </tr>
@@ -453,7 +457,7 @@ exports.sendGiftCardToRecipientEmail = async options => {
             </tr>
             <tr>
                 <td>
-                    <h1>Hello, its me ${options.data.name} enjoy this gift card.</h1>
+                    <h1>Hello, its me ${options.name} enjoy this gift card.</h1>
                     <br/>
                     <p> Gift Card Information </p>
                     <p> Order ID: ${options.data._id}</p>
@@ -461,7 +465,7 @@ exports.sendGiftCardToRecipientEmail = async options => {
                     <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
                     <p> Code: ${options.data.code}</p>
                     <br/><br/>
-                    <p class="message">${!options.data.message ? " " : options.data.message}</p>
+                    <p class="message">${!options.message ? " " : options.message}</p>
                 </td>
             </tr>
         </table>
