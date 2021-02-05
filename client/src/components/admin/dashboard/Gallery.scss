@@ -1,7 +1,7 @@
 .gallery-container{
     padding: 0.5rem 0;
     display: grid;
-    grid-template-columns: 50px 340px;
+    grid-template-columns: 40px 250px;
     grid-column-gap: 0.2rem;
     grid-template-areas: 
     "small large"
@@ -23,16 +23,16 @@
 
     .gallery-select-image{
         grid-area: small;
-        max-height: 250px;
+        max-height: 220px;
         overflow: auto;
         .images{
-            @include image(50px, 50px, 105%)
+            @include image(40px, 40px, 105%)
         }
     }
 
     .gallery-main-image{
         grid-area: large;
-        @include image(340px, 250px, 105%)
+        @include image(250px, 220px, 105%)
     }
 }
 
@@ -65,7 +65,7 @@
             .images{
                 display:inline-block;
                 margin: 0 0.1rem;
-                @include image(50px, 50px, 150%)
+                @include image(40px, 40px, 120%)
             }
         }
     

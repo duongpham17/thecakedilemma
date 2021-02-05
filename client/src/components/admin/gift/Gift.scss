@@ -19,6 +19,10 @@
 
         button{
             padding: 1rem 2rem;
+            font-size: 1rem;
+            &:hover{
+                color: white;
+            }
         }
     }
 
@@ -33,6 +37,7 @@
             text-align: center;
             margin-bottom: 1rem;
             width: 90%;
+            font-size: 1rem;
         }
         textarea{
             min-height: 80px;

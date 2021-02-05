@@ -3,7 +3,7 @@ import React, {useState, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {date} from '../../../functions/functions';
 import {findOrder} from '../../../actions/adminActions';
-
+import {BsSearch} from 'react-icons/bs';
 
 export const FindOrder = ({admin:{order, loading}, findOrder}) => {
 
@@ -21,7 +21,7 @@ export const FindOrder = ({admin:{order, loading}, findOrder}) => {
             <div className="find-bar">
                 <input type="text" placeholder="Order ID or Email" onChange={(e) => setId(e.target.value)}/>
                 <br/>
-                <button onClick={(e) => findById(e)}>Find</button>
+                <button onClick={(e) => findById(e)}><BsSearch/></button>
             </div>
 
             {!order ? "" :
@@ -44,10 +44,13 @@ export const FindOrder = ({admin:{order, loading}, findOrder}) => {
                             </div>
                         )}
                         <br/>
-                        <p>Total: £{order.total_before_postage}</p>
-                        <p>Discount: -£{order.discount}</p>
-                        <p>Postage: £{order.postage}</p>
-                        <p>Grand Total: £{order.discount ? order.total_with_discount : order.total}</p>
+                        <pre>
+                        <p>Total:&nbsp;               £{order.original_total}</p>
+                        <p>Postage:&nbsp;         £{order.postage}</p>
+                        <p>Discount:&nbsp;       £{order.discount_value}</p>
+                        <p>Gift Card:&nbsp;       £{order.gift_card_value || 0}</p>
+                        <p>Grand Total:&nbsp; £{order.grand_total}</p>
+                        </pre>
                     </div>
                     }
                 </Fragment>

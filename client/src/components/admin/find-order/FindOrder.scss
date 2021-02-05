@@ -8,7 +8,7 @@
     min-height: 50rem;
 
     .find-bar{
-        button, input{
+        input{
             border-radius: 10px;
             border: 2px solid var(--main-color);
             text-align: center;
@@ -25,6 +25,16 @@
         }
         button{
             margin-top: 1rem;
+            font-size: 1.3rem;
+            animation: GoAround 4s linear infinite;
+            padding: 1rem;
+            &:hover{
+                color: var(--main-color);
+            }
+        }
+        @keyframes GoAround {
+            from { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+            to   { transform: rotate(360deg) translateX(10px) rotate(-360deg); }
         }
     }
 

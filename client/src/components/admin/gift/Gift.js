@@ -14,7 +14,7 @@ const Gift = ({createGiftCard, deleteExpiredGiftCards}) => {
         balance: "",
         user_email: "",
         name: "The Cake Dilemma",
-        message: "Enjoy this gift card on us from The Cake Dilemma. Thank you for being a loyal customer with us.",
+        message: "Enjoy this gift card on us, thank you for being a loyal customer and supporting our small business!",
     })
     const {balance, user_email, name, message} = formData;
 
@@ -28,7 +28,7 @@ const Gift = ({createGiftCard, deleteExpiredGiftCards}) => {
                 balance: "",
                 user_email: "",
                 name: "The Cake Dilemma",
-                message: "Enjoy this gift card on us from The Cake Dilemma. Thank you for being a loyal customer with us.",
+                message: "Enjoy this gift card on us, thank you for being a loyal customer and supporting our small business!",
             })
         }, 3000)
     }
