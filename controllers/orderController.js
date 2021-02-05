@@ -215,6 +215,9 @@ exports.createZeroGrandTotalOrder = catchAsync(async(req, res, next) => {
 })
 
 
+
+/* order */
+
 //get receipt for user
 exports.getOrders = catchAsync(async(req, res, next) => {
     const ord = new Feature(Order.find({user: req.user.id}), req.query).sort().pagination()
@@ -309,6 +312,10 @@ exports.deleteOrder = catchAsync(async(req, res, next) => {
         status: "success"
     })
 })
+
+
+
+
 
 /* GIFT Card */
 

@@ -101,7 +101,7 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
                     ?
                     <button type="button" className="buy-gift-card" role="link" onClick={handleClick}><BiRightArrowAlt className="gift-left-arrow"/> <AiFillGift/> <BiLeftArrowAlt className="gift-right-arrow"/> </button>
                     :  
-                    <button>wrap</button> 
+                    <button>wrap gift</button> 
                     }   
                 </form>
             </div>

@@ -24,11 +24,10 @@ const Email = () => nodemailer.createTransport({
 
 const footer = `
 <footer>
-    <p>The Cake Dilemma est. 2020. Please do not respond to this email. <br/>
-    For any enquiries, contact us by <br/>
-    Email: <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a> <br/>
-    Or <br/>
-    Whatsapp: <a target="_blank" rel="noreferrer" href="https://wa.me/+447838328990">+447838328990</a>
+    <p>The Cake Dilemma est. 2020. Please do not respond to this email. 
+    <br/>
+    For any enquiries, contact us by Email: <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a>
+    or Whatsapp: <a target="_blank" rel="noreferrer" href="https://wa.me/+447838328990">+447838328990</a>
     <br/>
     Our Social Links - 
     <a href="https://www.instagram.com/thecakedilemma/">Instagram</a> - 

@@ -3,20 +3,6 @@
     margin: 2rem auto;
     padding: 0.5rem;
 
-    .gift-card-balance{
-        margin-bottom: 5rem;
-
-        form{
-            input{
-                text-align: center;
-                width: 200px;
-                padding: 0.5rem;
-                font-size: 1rem;
-                border-bottom: 2px solid var(--main-color);
-            }
-        }
-    }
-
     .gift-content{
         margin: 3rem auto;
 
@@ -54,6 +40,9 @@
                 &:hover{
                     border-bottom: 2px solid rgb(255, 166, 2);
                 }
+            }
+            label{
+                font-size: 1.2rem;
             }
             h1{
                 margin: 0.5rem;
@@ -103,4 +92,22 @@
             }
         }
     }
+
+    .gift-card-balance{
+        margin-bottom: 5rem;
+
+        form{
+            input{
+                text-align: center;
+                width: 200px;
+                padding: 0.5rem;
+                font-size: 1rem;
+                border-bottom: 2px solid var(--main-color);
+                &:hover{
+                    border-bottom: 2px solid rgb(255, 166, 2);
+                }
+            }
+        }
+    }
+
 }
