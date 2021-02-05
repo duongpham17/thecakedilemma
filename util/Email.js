@@ -54,7 +54,7 @@ const main_style = `
     html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; padding: 1rem}
     body {background-color: white}
     .logo{ width: 40%; height:auto }
-    footer{padding: 0.3rem; background: #ffdab9; margin-top: 10rem; font-size: 0.7rem}
+    footer{padding: 0.3rem; background: #ffdab9; margin-top: 10rem; font-size: 1rem}
     table{ max-width: 600px; text-align: center; margin: 2rem auto;}
 `
 
