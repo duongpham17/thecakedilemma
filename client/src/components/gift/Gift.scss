@@ -23,41 +23,89 @@
         }
     }
 
+    h2{
+        padding: 1rem;
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
     .gift-card-content{
         min-height: 450px;
+
         form{
             max-width: 400px;
             min-height: 200px;
             border-radius: 10px;
             border: 5px double var(--main-color);
-            margin: 1rem auto;
+            margin: 1.5rem auto;
+            padding: 1rem;
 
+            input, label, textarea{
+                font-size: 1rem;
+                width: 100%;
+                text-align: left;
+                display: inline-block;
+            }
             input{
-                text-align: center;
                 margin-bottom: 0.5rem;
-                width: 80%;
-                border-bottom: 2px solid var(--main-color);
-                &:hover{
-                    border-bottom: 2px solid rgb(255, 166, 2);
+            }
+
+            .balance{
+                position: relative;
+                p{
+                    font-size: 1.7rem;
+                    background-color: white;
+                    color: var(--main-color);
+                    width: 50px;
+                    position: absolute;
+                    right: 0;
+                    text-align: center;
+                    &:before{
+                        content: "-----";
+                        color: transparent;
+                        position: absolute;
+                        width: 50px;
+                        height: 50px;
+                        left: -0.1rem;
+                        margin-top:-0.5rem;
+                        border-radius: 50%;
+                        border: 3px solid var(--main-color);
+                        border-top-color: white;
+                        animation: rotate 0.8s linear infinite;
+                    }
+                    @keyframes rotate {
+                        to{
+                            transform: rotate(360deg);
+                        }
+                    }
                 }
-            }
-            label{
-                font-size: 1.2rem;
-            }
-            h1{
-                margin: 0.5rem;
             }
 
             textarea{
-                width: 95%;
-                text-align: center;
-                min-height: 50px;
+                min-height: 100px;
+            }
+        }
+        .wrap-gift-card-btn{
+            font-size: 1.5rem;
+            margin-bottom: -1rem;   
+            &:before{
+                position: absolute;
+                content: "------";
+                color: transparent;
+                border-bottom: 3px solid var(--main-color);
+                animation: movingborder 3s ease infinite;
+            }
+        }
+        @keyframes movingborder {
+            50% {
+            transform: translateX(110%);
             }
         }
 
-        .buy-gift-card{
-            margin-top: 1rem;
+        .buy-gift-card-btn{
             font-size: 3rem;
+            margin-bottom: -1rem;
         }
         .gift-right-arrow{
             animation: rightArrow 3s ease infinite;
@@ -95,7 +143,6 @@
 
     .gift-card-balance{
         margin-bottom: 5rem;
-
         form{
             input{
                 text-align: center;

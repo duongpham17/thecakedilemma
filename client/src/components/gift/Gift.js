@@ -10,8 +10,7 @@ import {AiFillGift} from 'react-icons/ai';
 import {BiRightArrowAlt, BiLeftArrowAlt} from 'react-icons/bi';
 
 import {loadStripe} from '@stripe/stripe-js'
-//const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY)
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY)
+const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY)
 
 const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance}, createGiftCardSession, checkGiftCardBalance}) => {
     const gift_card_amount = data?.gift.split(" ").map(Number);
@@ -64,14 +63,18 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
       }
     };
 
-
-
     return (
         <Fragment>
         {loading ? <div className="loading"/> : 
         <div className="gift-container">
 
             <h1>Gift Cards</h1>
+
+            <h2>
+                Send the gift of cake to your loved ones! <br/> The Cake Dilemma gift cards are all sent virtually 
+                - the code is sent either directly to your recipient's email or to your email for you to personally present them. <br/>
+                After all, what's a better gift than delicious treats?
+            </h2>
 
             <div className="gift-content">
             {gift_card_amount.map((el, index) => 
@@ -83,26 +86,26 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
 
             <div className="gift-card-content">
                 <form onSubmit={(e) => onSubmit(e)}>
-                    <h1>£{balance}</h1>
-                    <label>Your Name</label> <br/>
+                    <div className="balance"><p>£{balance}</p></div>
+                    <label>Your Name :  </label>
                     <input type="text" placeholder="..." name="name" value={name} onChange={e => onChange(e)} minLength="2" required /><br/>
-                    <label>Your Email</label> <br/>
-                    <input type="email" placeholder="..." name="buyer_email" value={buyer_email} onChange={e => onChange(e)} minLength="5" required /><br/>
-                    <label>Recipient's Email (optional) </label> <br/>
-                    <input type="email" placeholder="..." name="recipient_email" value={recipient_email} onChange={e => onChange(e)}    /><br/>
-                    <label>Message (optional) </label> <br/>
-                    <textarea type="text" placeholder="Send a personal message with the gift card :)" name="message" value={message} onChange={e => onChange(e)} maxLength="1000"    /><br/>
+                    <label>Your Email :  </label>
+                    <input type="email" placeholder="...." name="buyer_email" value={buyer_email} onChange={e => onChange(e)} minLength="5" required /><br/>
+                    <label>Send To ( optional ) :  </label>
+                    <input type="email" placeholder="...." name="recipient_email" value={recipient_email} onChange={e => onChange(e)}    /><br/>
+                    <label>Send A Message ( optional ) :  </label>
+                    <textarea type="text" placeholder="..." name="message" value={message} onChange={e => onChange(e)} maxLength="1000"    /><br/>
                     <br/>
-
-                    {done === "awaiting" ?
-                    <div className="loading_3" />
-                    :
-                    done
-                    ?
-                    <button type="button" className="buy-gift-card" role="link" onClick={handleClick}><BiRightArrowAlt className="gift-left-arrow"/> <AiFillGift/> <BiLeftArrowAlt className="gift-right-arrow"/> </button>
-                    :  
-                    <button>wrap gift</button> 
-                    }   
+                
+                        {done === "awaiting" ?
+                        <div className="loading_3" />
+                        :
+                        done
+                        ?
+                        <button type="button" className="buy-gift-card-btn" role="link" onClick={handleClick}><BiRightArrowAlt className="gift-left-arrow"/> <AiFillGift/> <BiLeftArrowAlt className="gift-right-arrow"/> </button>
+                        :  
+                        <button className="wrap-gift-card-btn">Wrap Gift</button> 
+                        }   
                 </form>
             </div>
 
