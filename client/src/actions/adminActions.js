@@ -214,6 +214,72 @@ export const findStats = () => async dispatch => {
     }
 }
 
+/* Gift Cards **********************************************************************************/
+
+//create gift cards
+export const createGiftCard = (data) => async dispatch => {
+    try{
+        const config = {
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        }
+        await Api.post(`/admins/gift`, {data}, config);
+        dispatch(setAlert("Gift card was sent successfully.", "success"))
+    } catch(err) {
+        dispatch(setAlert(err.response.data.message, "danger"))
+    }
+}
+
+//delete expired gift cards
+export const deleteExpiredGiftCards = () => async dispatch => {
+    try{
+        await Api.delete(`/admins/gift`);
+        dispatch(setAlert("Gift cards deleted successfully.", "success"))
+    } catch(err) {
+        dispatch(setAlert(err.response.data.message, "danger"))
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*VARIETIES**********************************************************************************/
 //get all variety box
 export const getVariety = () => async dispatch => {

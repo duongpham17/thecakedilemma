@@ -24,7 +24,7 @@ const Email = () => nodemailer.createTransport({
 
 const footer = `
 <footer>
-    <p>The Cake Dilemma est. 2020. Please do not respond to this email. 
+    <p>The Cake Dilemma est. 2020. @<a href=${websiteLink}>Thecakedilemma.com</a>. Please do not respond to this email. 
     <br/>
     For any enquiries, contact us by Email: <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a>
     or Whatsapp: <a target="_blank" rel="noreferrer" href="https://wa.me/+447838328990">+447838328990</a>
@@ -38,7 +38,7 @@ const footer = `
 
 const footer_reply = `
 <footer>
-    <p>The Cake Dilemma est. 2020.
+    <p>The Cake Dilemma est. 2020. @<a href=${websiteLink}>Thecakedilemma.com</a>
     <br/>
     For any enquiries, contact us by Email: <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a>
     Or Whatsapp: <a target="_blank" rel="noreferrer" href="https://wa.me/+447838328990">+447838328990</a>
@@ -362,7 +362,7 @@ exports.sendGiftCardToBuyerEmail = async options => {
     const mailOptions = {
         from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
         to: options.email,
-        subject: "Gift Card",
+        subject: "Gift Card Purchase",
         html:`
     <html>
         <head>
@@ -383,13 +383,13 @@ exports.sendGiftCardToBuyerEmail = async options => {
                 </th>
             </tr>
                 <td>
-                    <h1>Thank You ${options.name}.</h1>
+                    <h1>Thank You ${options.name} for purchasing a gift card.</h1>
                     <br/>
                     <p class="message">Message sent: <br> ${!options.message ? " " : options.message}</p>
                     <p class="core"> Balance: £${options.data.balance} </p>
                     <p class="core"> Code: ${options.data.code}</p>
                     <br/><br/>
-                    <p> Gift Card Information </p>
+                    <p> Gift card information </p>
                     <p> Order ID: ${options.data._id}</p>
                     <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
                     <p>How to Use: Copy the code above and paste into the gift card box at the checkout on our website. Can be used multiple times until the balance has been used up or the gift card expires.</p>
@@ -413,7 +413,7 @@ exports.sendGiftCardToRecipientEmail = async options => {
     const mailOptions = {
         from: 'Cake Dilemma <thecakedilemma.noreply@gmail.com>',
         to: options.email,
-        subject: "Gift Card",
+        subject: "Your Gift Card",
         html:`
     <html>
         <head>
@@ -435,16 +435,17 @@ exports.sendGiftCardToRecipientEmail = async options => {
             </tr>
             <tr>
                 <td>
-                    <h1>Hi! You have received a gift card for The Cake Dilemma from ${options.name}</h1>
+                    <h1>Hi! You have received a gift card for The Cake Dilemma from ${options.name}.</h1>
                     <br/>
                     <p class="message">Message from sender: <br> ${!options.message ? " " : options.message}</p>
                     <p class="core"> Balance: £${options.data.balance} </p>
                     <p class="core"> Code: ${options.data.code}</p>
                     <br/><br/>
-                    <p> Gift Card Information </p>
+                    <p> Gift card information </p>
                     <p> Order ID: ${options.data._id}</p>
                     <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
-                    <p>How to Use: Copy the code above and paste into the gift card box at the checkout on our website. Can be used multiple times until the balance has been used up or the gift card expires.</p>
+                    <p>How to Use: Copy the code above and paste into the gift card box at the checkout on our website. Can be used multiple times until the balance has been used up or the gift card expires. <br>
+                    You can check your gift card balance anytime on the the website</p>
                 </td>
             </tr>
         </table>

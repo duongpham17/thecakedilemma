@@ -82,8 +82,9 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
             </h2>
 
             <div className="gift-content">
+
             {gift_card_amount.map((el, index) => 
-                <button key={index+el} className="" onClick={() => setFormData({...formData, balance: el})}>
+                <button key={index+el} className="pick-balance" onClick={() => setFormData({...formData, balance: el})}>
                 {balance === el ? <BsCircleFill className="icon-selected"/>  : <BsCircle className="icon"/> }
                 £{el}
                 </button>
@@ -119,10 +120,8 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
                 <h1>Check Gift Card Balance</h1>
                 <form onSubmit={(e) => onSubmitCheckBalance(e)}>
                     <input type="text" placeholder="Enter your 16 digit code" onChange={(e) => setCheckBalance(e.target.value)} minLength="16" required />
-                    <br/><br/>
                     <h2>{!gift_card_balance ? "" : `Remaning balance : £${gift_card_balance}`}</h2>
-                    <br/>
-                    {checkBalance.length !== 16 ? "" : <button>Check</button> }
+                    {checkBalance.length !== 16 ? "" : <button className="check-gift-card-btn">Check</button> }
                 </form>
             </div>
 

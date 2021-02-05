@@ -4,6 +4,11 @@ const Review = require('../models/reviewModel');
 const Variety = require('../models/varietyModel');
 const User = require('../models/userModel');
 const Order = require('../models/orderModel');
+const Gift = require('../models/giftModel');
+
+const crypto = require('crypto');
+
+const {sendGiftCardToRecipientEmail} = require('../util/Email');
 
 const {appError, catchAsync} = require('../util/CatchError');
 
@@ -325,4 +330,42 @@ exports.findStats = catchAsync(async(req, res, next) => {
         status: "success",
         stats
     })
+})
+
+/* Gift Cards */
+exports.createGiftCard = catchAsync(async(req, res, next) => {
+    const {data} = req.body
+
+    const gift = await Gift.create({balance: data.balance, code: crypto.randomBytes(20).toString('hex').substring(0, 16).toUpperCase()});
+
+    if(!gift){
+        return next (new appError("Could not create gift card", ))
+    }
+
+    try{
+        await sendGiftCardToRecipientEmail({
+            email: data.user_email,
+            name: data.name,
+            message: data.message,
+            data: gift
+        })
+
+        res.status(200).json({
+            status: "success",
+            gift
+        })
+    } catch(err){
+        return next (new appError(err.response, 400))
+    }
+})
+
+//delete expired gift cards
+exports.deleteExpiredGiftCards = catchAsync(async(req, res, next) => {
+    const gift = await Gift.deleteMany({expiry: {$lte: Date.now() }})
+
+    if(!gift){
+        return next(new appError("Something went wrong", 400))
+    }
+
+    res.status(200).json({status: "success"});
 })

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const crypto = require('crypto');
 
 const giftSchema = new mongoose.Schema({
     balance: Number,

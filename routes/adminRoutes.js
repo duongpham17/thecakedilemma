@@ -21,6 +21,9 @@ router.patch('/edit/:id', adminController.updateProduct);
 router.put('/edit/images/:id', adminController.uploadImage);
 router.delete('/edit/images/:id/:image_id', adminController.deleteImage);
 
+router.post('/gift', adminController.createGiftCard);
+router.delete('/gift', adminController.deleteExpiredGiftCards);
+
 router.get('/varieties', adminController.getVarieties);
 router.post('/varieties', adminController.createVariety);
 router.put('/varieties/:id', adminController.addProductToVariety);

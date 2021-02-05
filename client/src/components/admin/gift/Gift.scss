@@ -1,0 +1,59 @@
+.admin-gift-container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 2rem 1rem;
+    background-color: white;
+    z-index: 1;
+    min-height: 50rem;
+
+    .delete-gift-card-epxired{
+        box-shadow: 0px 2px 10px -3px lightgrey;
+        max-width: 330px;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        &:hover{
+            background-color:rgb(246, 105, 105);
+        }
+
+        button{
+            padding: 1rem 2rem;
+        }
+    }
+
+    form{
+        margin: auto;
+        max-width: 300px ;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0px 2px 10px -3px lightgrey;
+
+        input, textarea{
+            text-align: center;
+            margin-bottom: 1rem;
+            width: 90%;
+        }
+        textarea{
+            min-height: 80px;
+        }
+
+        button{
+            font-size: 2rem;
+            &:hover{
+                color: var(--main-color);
+            }
+        }
+        .gift-again-btn{
+            font-size: 1rem;
+        }
+        .gift-is-loading{
+            font-size: 2rem;
+            animation: changeColor 2s infinite;
+        }
+        @keyframes changeColor {
+            from {color: var(--main-color)}
+            to {color: rgb(74, 239, 110)}
+        }
+    }
+}
