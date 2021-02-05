@@ -1,6 +1,5 @@
 import {
     CHECKOUT_STATUS,
-    RESET_STATUS,
     ORDERS,
     LOAD_BASKET,
     DELETE_BASKET,
@@ -8,7 +7,11 @@ import {
     COMPLETE_ORDER,
     DELETE_ORDER,
 
+    ZERO_CHECKOUT,
+
+    APPLY_GIFT_CARD_BALANCE,
     CREATE_GIFT_CARD_SESSION,
+    CHECK_GIFT_CARD_BALANCE,
 } from './types';
 import Api from '../routing/Api';
 import {setAlert} from './alertActions';
@@ -60,12 +63,6 @@ export const createOrder = (data) => async dispatch => {
     }
 }
 
-//reset checkout success to null after checking out
-export const resetBuyStatus = () => async dispatch => {
-    dispatch({
-        type: RESET_STATUS
-    })
-}
 
 //get orders for admin
 export const getAdminOrders = (page, limit) => async dispatch => {
@@ -130,7 +127,24 @@ export const deleteOrder = (id) => async dispatch => {
         })
         dispatch(setAlert("Order deleted", "success"))
     } catch(err){
-        console.log(err.response)
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
+}
+
+
+//create zero grand total checkout order
+export const createZeroGrandTotalOrder = (data) => async dispatch => {
+    try{
+        const config = {
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        }
+        await Api.post(`/zero-checkout`, data, config);
+        dispatch({
+            type: ZERO_CHECKOUT,
+        })
+    } catch(err) {
         dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
     }
 }
@@ -148,9 +162,33 @@ export const createGiftCardSession = (data) => async dispatch => {
             type: CREATE_GIFT_CARD_SESSION,
             payload: res.data.session,
         })
-        console.log(res.data)
     } catch(err){
-        console.log(err.response)
         dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
+}
+
+//check gift card balance
+export const checkGiftCardBalance = (id) => async dispatch => {
+    try{
+        const res = await Api.get(`/orders/gift-card-balance/${id}`);
+        dispatch({
+            type: CHECK_GIFT_CARD_BALANCE,
+            payload: res.data.gift,
+        })
+    } catch(err){
+        dispatch(setAlert(err.response.data.message, "danger"))
+    }
+}
+
+//check gift card balance
+export const applyGiftCardBalance = (id) => async dispatch => {
+    try{
+        const res = await Api.get(`/orders/gift-card-checkout/${id}`);
+        dispatch({
+            type: APPLY_GIFT_CARD_BALANCE,
+            payload: res.data.gift,
+        })
+    } catch(err){
+        dispatch(setAlert("Something went wrong please reload", "danger"))
     }
 }

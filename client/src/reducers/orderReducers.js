@@ -2,7 +2,6 @@
 import {
     CHECKOUT_STATUS,
     ORDERS,
-    RESET_STATUS,
 
     COMPLETE_ORDER,
     DELETE_ORDER,
@@ -10,12 +9,16 @@ import {
     LOAD_BASKET,
     DELETE_BASKET,
 
+    ZERO_CHECKOUT,
+    APPLY_GIFT_CARD_BALANCE,
+
     CREATE_GIFT_CARD_SESSION,
+    CHECK_GIFT_CARD_BALANCE,
 } from '../actions/types'
 
 const initialState = {
     basket: null,   
-    mth: 0,
+    containCollect: 0,
     total: 0,
 
     status: null,
@@ -24,6 +27,8 @@ const initialState = {
 
     gift_card_session:null,
     gift_session_id: null,
+    gift_card_balance: 0,
+    gift_card_balance_checkout: 0,
     loading: true
 }
 
@@ -36,7 +41,7 @@ export default function(state = initialState, action){
                 ...state,
                 basket: payload,
                 total: payload.length === 0 ? 0 : payload.map((el) => el.total).reduce((a, c) => a + c),
-                mth: payload.length === 0 ? 0 : payload.map((el) => el.method).reduce((a, c) => a * c)
+                containCollect: payload.length === 0 ? 0 : payload.map((el) => el.method).reduce((a, c) => a * c)
             }
         case DELETE_BASKET:
             return{
@@ -48,11 +53,6 @@ export default function(state = initialState, action){
             return{
                 ...state,
                 status: action.status,
-            }
-        case RESET_STATUS:
-            return{
-                ...state,
-                status: "message",
             }
         case ORDERS:
             return{
@@ -70,11 +70,25 @@ export default function(state = initialState, action){
                 ...state,
                 order: state.order.filter(i => i._id !== action.id),
             }
-
+        case ZERO_CHECKOUT:
+            return{
+                ...state,
+                status: "message"
+            }
         case CREATE_GIFT_CARD_SESSION:
             return{
                 ...state,
                 gift_card_session: payload
+            }
+        case CHECK_GIFT_CARD_BALANCE:
+            return{
+                ...state,
+                gift_card_balance: payload
+            }
+        case APPLY_GIFT_CARD_BALANCE:
+            return{
+                ...state,
+                gift_card_balance_checkout: payload
             }
 
         default:

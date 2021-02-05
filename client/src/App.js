@@ -61,6 +61,9 @@ import GuestOrder from './components/order/GuestOrder';
 import Gift from './components/gift/Gift';
 import GiftSent from './components/gift/GiftSent';
 
+import testCheckout from './components/test/Checkout';
+import testBasket from './components/test/Basket';
+
 const App = () => {
 
   useEffect(() => {
@@ -99,7 +102,10 @@ const App = () => {
             <Route exact path='/basket'     component={Basket}                />
 
             <Route exact path='/gift-cards'     component={Gift}              />
-            <Route exact path='/gift-success'     component={GiftSent}            />
+            <Route exact path='/gift-success'     component={GiftSent}        />
+
+            <Route exact path='/test-checkout' component={testCheckout}       />
+            <Route exact path='/test-basket' component={testBasket}          />
 
             <PrivateRoute exact path='/order' component={Order}               />
             <PrivateRoute exact path='/account' component={Account}           />

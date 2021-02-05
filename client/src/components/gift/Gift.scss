@@ -3,6 +3,20 @@
     margin: 2rem auto;
     padding: 0.5rem;
 
+    .gift-card-balance{
+        margin-bottom: 5rem;
+
+        form{
+            input{
+                text-align: center;
+                width: 200px;
+                padding: 0.5rem;
+                font-size: 1rem;
+                border-bottom: 2px solid var(--main-color);
+            }
+        }
+    }
+
     .gift-content{
         margin: 3rem auto;
 
@@ -24,6 +38,7 @@
     }
 
     .gift-card-content{
+        min-height: 450px;
         form{
             max-width: 400px;
             min-height: 250px;

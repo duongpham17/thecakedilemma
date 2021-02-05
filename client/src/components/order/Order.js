@@ -7,24 +7,18 @@ import {AiOutlineCopy} from 'react-icons/ai';
 import {RiArrowDownSLine, RiArrowUpSLine} from 'react-icons/ri';
 import {GoPrimitiveDot} from 'react-icons/go';
 
-import {resetBuyStatus, getOrders, getAdminOrders, completeOrder, deleteOrder} from '../../actions/orderActions';
+import { getOrders, getAdminOrders, completeOrder, deleteOrder} from '../../actions/orderActions';
 
 import Complete from './Complete';
 import Delete from './Delete';
 import Pagination from './Pagination';
 
-const Order = ({order:{status, order, length}, auth:{user}, completeOrder, deleteOrder, resetBuyStatus, getOrders, getAdminOrders}) => {
+const Order = ({order:{status, order, length}, auth:{user}, completeOrder, deleteOrder,  getOrders, getAdminOrders}) => {
     const [open, setOpen] = useState("")
-
-    useEffect(() => {
-        if(status === "success"){
-            resetBuyStatus()
-        }
-    }, [status, resetBuyStatus])
 
     const limit = 100
     const [page, setPage] = useState(1)
-    const array = !order || order.length === 0 ? "" : order.map(el => el.discount ? el.total_with_discount : el.total )
+    const array = !order || order.length === 0 ? "" : order.map(el => el?.grand_total )
     const Total = !array || order.length === 0 ? "" : array.reduce((a, c) => a + c)
 
     useEffect(() => {
@@ -60,7 +54,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, delet
                         <li><button onClick={() => setOpen(open === index ? "" : index)}>{open === index ? <RiArrowUpSLine/> : <RiArrowDownSLine/>}</button></li>
                         <li><button onClick={() => {copy(el._id)}}><AiOutlineCopy className="icon"/> {el._id.slice(16, 100)}</button></li>
                         <li>{date(el.createdAt)}</li>
-                        <li>£{el.discount ? el.total_with_discount.toFixed(2) : el.total.toFixed(2)}</li>
+                        <li>£{el.grand_total}</li>
                         {user.role === "admin" ?
                             <Complete completeOrder={completeOrder} el={el} />
                         : 
@@ -80,10 +74,11 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, delet
                         )}
                         
                         <div className="valuation">
-                        <p>Total <span className="total">£{el.total_before_postage.toFixed(2)}</span></p>
+                        <p>Total <span className="total">£{el.original_total.toFixed(2)}</span></p>
                         <p>Postage <span className="postage">£{Number(el.postage).toFixed(2)}</span></p>
                         <p>Discount <span className="discount">{el.discount ? `£${el.discount_value.toFixed(2)}` : "£0.00"}</span> </p>
-                        <p>Grand Total <span className="final-total">£{el.discount ? el.total_with_discount.toFixed(2) : el.total.toFixed(2)}</span></p>
+                        <p>Gift Card <span className="discount">{el.gift_card ? `£${el.gift_card_value.toFixed(2)}` : "£0.00"}</span> </p>
+                        <p>Grand Total <span className="final-total">£{Number(el.grand_total).toFixed(2)}</span></p>
                         </div> 
 
                         <div className="valuation">
@@ -121,7 +116,7 @@ const mapStateToProps = state => ({
     order: state.orderReducers,
 })
 const mapDispatchToProps = {
-    resetBuyStatus, 
+     
     getOrders, 
     getAdminOrders, 
     completeOrder, 

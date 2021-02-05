@@ -5,11 +5,9 @@ import {GoCheck} from 'react-icons/go';
 import {IoIosArrowForward} from 'react-icons/io';
 
 const Address = (props) => {
-    const setReadyToPay = props.setReadyToPay;
-    const setOrderData = props.setOrderData;
-    const orderData = props.orderData;
-    const setCheck = props.setCheck;
-    const containCollect = props.containCollect;
+    const [setDeducation] = [props.setDeducation]
+    const [orderData, setOrderData] = [props.orderData, props.setOrderData]
+    const [setReadyToPay, containCollect] = [props.setReadyToPay, props.containCollect]
 
     const [addressDone, setAddressDone] = useState(false)
     const [method, setMethod] = useState(containCollect === 0 ? "collect" : "delivery")
@@ -23,38 +21,40 @@ const Address = (props) => {
         setAddressDone(false)
     }
 
+    //Must reset deductions when delivery method is changed, because delivery and collect have different set postage cost
+    const orderMethod = (e, m) => {
+        e.preventDefault()
+        setDeducation([]);
+        setOrderData({
+            ...orderData,
+            grand_total: orderData.saved_grand_total, 
+            discount: false, discount_value: 0,
+            gift_card: false, gift_card_code: "", gift_card_value: 0, 
+        })
+        setMethod(m === "delivery" ? "delivery" : "collect");
+        setAddressDone(false);
+        setReadyToPay(false);
+    }
+
     const onSubmit = (e, m) => {
+        if(m === "collect"){
+            setOrderData({...orderData, grand_total: orderData.grand_total - orderData.savePost, postage: 0 })
+        } else {
+            setOrderData({...orderData, grand_total: !orderData.postage ? orderData.grand_total + orderData.savePost : orderData.grand_total, postage: orderData.savePost})
+        }
         e.preventDefault()
         setAddressDone(true)
         setReadyToPay(true)
-        if(m === "delivery"){
-            setOrderData({...orderData, method: "Delivery", postage: orderData.total >= 50 ? 0 : orderData.saved_postage, total: orderData.saved_total_with_postage, discount: false, total_with_discount: 0})
-        } else {
-            setOrderData({...orderData, method: "Collect", postage: 0, total: orderData.total_before_postage, discount: false, total_with_discount: 0 })
-        }
     }
 
-    const orderMethod = (e, m) => {
-        e.preventDefault()
-        if(m === "delivery"){
-            setOrderData({...orderData, method: "Delivery", postage: orderData.total >= 50 ? 0 : orderData.saved_postage, total: orderData.saved_total_with_postage, discount: false, total_with_discount: 0})
-        } else {
-            setOrderData({...orderData, method: "Collect", postage: 0, total: orderData.total_before_postage, discount: false, total_with_discount: 0 })
-        }
-        setMethod(m === "delivery" ? "delivery" : "collect")
-        setCheck("")
-        setAddressDone(false)
-        setReadyToPay(false)
-    }
+    console.log(orderData.method)
 
     return (
         <div className="address-container">
 
             <div className="delivery-method-container">
                 <h2>Delivery Method</h2>
-                {containCollect === 1 ? 
-                <button className={method === "delivery" ? "method" : ""} onClick={(e) =>  orderMethod(e, "delivery") }>Delivery</button>
-                : "" }
+                {containCollect === 1 ?  <button className={method === "delivery" ? "method" : ""} onClick={(e) =>  orderMethod(e, "delivery") }>Delivery</button> : "" }
                 <button className={method === "collect" ? "method" : ""}  onClick={(e) =>  orderMethod(e, "collect") }>Collect</button>
             </div>
 

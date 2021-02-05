@@ -1,0 +1,74 @@
+.order-summary-container{
+    max-width: 600px;
+    background: white;
+    min-height: 200px;
+    border-radius: 10px;
+    text-align: left;
+    border: 3px solid var(--main-color);
+    padding: 1rem;
+    * {
+        margin: 0.5rem 0;
+    }
+    h2{
+        margin-top: -0.3rem;
+        font-weight: 600;
+    }
+    .item-total{
+        padding: 0.3rem 0;
+        border-top: 1px solid var(--main-color);
+    }
+
+    .applying-codes{
+        input, button{
+            display: inline;
+            font-size: 16px;
+            width: 130px;
+            border-radius: 0;
+            border: 2px solid white;
+            border-bottom: 2px solid var(--main-color);
+            &:hover{
+                border: 2px solid var(--main-color);
+            }
+        }
+        button{
+            padding: 0 1rem;
+            width: 70px;
+            border: 2px solid var(--main-color);
+            &:hover{
+                background: var(--main-color);
+                color: white;
+            }
+        }
+        .icon{
+            margin: -0.15rem 0;
+        }
+        .code-no{
+            color: rgb(245, 120, 120);
+        }
+        .code-yes{
+            color: rgb(64, 222, 133);
+        }
+    }
+
+    .grand-total{
+        margin-top: 2rem;
+    }
+}
+
+.order-message-container{
+    margin-top: 1rem;
+    max-width: 600px;
+    background: white;
+    min-height: 100px;
+    border-radius: 10px;
+    text-align: left;
+    border: 3px solid var(--main-color);
+    padding: 1rem;
+    h2{
+        font-weight: 600;
+    }
+    textarea{
+        width: 100%;
+        min-height: 100px;
+    }
+}

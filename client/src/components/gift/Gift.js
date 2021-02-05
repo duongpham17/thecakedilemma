@@ -3,7 +3,7 @@ import React, { Fragment, useState} from 'react';
 import {connect} from 'react-redux';
 import {setAlert} from '../../actions/alertActions';
 
-import {createGiftCardSession} from '../../actions/orderActions';
+import {createGiftCardSession, checkGiftCardBalance} from '../../actions/orderActions';
 
 import {BsCircle, BsCircleFill} from 'react-icons/bs';
 import {AiFillGift} from 'react-icons/ai';
@@ -13,10 +13,11 @@ import {loadStripe} from '@stripe/stripe-js'
 //const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY)
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY)
 
-const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSession}) => {
+const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance}, createGiftCardSession, checkGiftCardBalance}) => {
     const gift_card_amount = data?.gift.split(" ").map(Number);
 
     const [done, setDone] = useState("")
+    const [checkBalance, setCheckBalance] = useState("")
 
     const [formData, setFormData] = useState({
         balance: 0,
@@ -42,6 +43,12 @@ const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSe
         setTimeout(() => {setDone(true)}, 2000)
     }
 
+    //check gift card balance
+    const onSubmitCheckBalance = (e) => {
+        e.preventDefault(e)
+        checkGiftCardBalance(checkBalance)
+    }
+
     //start the session
     const handleClick = async (event) => {
       // Get Stripe.js instance
@@ -57,10 +64,13 @@ const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSe
       }
     };
 
+
+
     return (
         <Fragment>
         {loading ? <div className="loading"/> : 
         <div className="gift-container">
+
             <h1>Gift Cards</h1>
 
             <div className="gift-content">
@@ -71,8 +81,8 @@ const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSe
                 </button>
             )}
 
-            {!balance ? "" :
             <div className="gift-card-content">
+            {!balance ? "" :
                 <form onSubmit={(e) => onSubmit(e)}>
                     <h1>£{balance}</h1>
                     <label>Your Name</label> <br/>
@@ -96,9 +106,20 @@ const Gift = ({home:{data, loading}, order:{gift_card_session}, createGiftCardSe
                     }    
 
                 </form>
-      
-            </div>
             }
+            </div>
+
+
+            <div className="gift-card-balance">
+                <h1>Check Gift Card Balance</h1>
+                <form onSubmit={(e) => onSubmitCheckBalance(e)}>
+                    <input type="text" placeholder="Enter your 16 digit code" onChange={(e) => setCheckBalance(e.target.value)} minLength="16" required />
+                    <br/><br/>
+                    <h2>{!gift_card_balance ? "" : `Remaning balance : £${gift_card_balance}`}</h2>
+                    <br/>
+                    {checkBalance.length !== 16 ? "" : <button>Check</button> }
+                </form>
+            </div>
 
             </div>
         </div>
@@ -112,4 +133,4 @@ const mapStateToProps = state => ({
     order: state.orderReducers,
 })
 
-export default connect(mapStateToProps, {createGiftCardSession})(Gift)
+export default connect(mapStateToProps, {createGiftCardSession, checkGiftCardBalance})(Gift)

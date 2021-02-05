@@ -5,7 +5,7 @@ import OrderSummary from './OrderSummary';
 import Address from './Address';
 import {Redirect} from 'react-router-dom';
 
-const Checkout = ({user:{user}, order:{basket, total, mth}, home:{data} }) => {   
+const Checkout = ({user:{user}, order:{basket, total, containCollect}, home:{data} }) => {   
 
     let postageCost = !data ? 4.99 : data.delivery;
 
@@ -51,7 +51,7 @@ const Checkout = ({user:{user}, order:{basket, total, mth}, home:{data} }) => {
 
             <div className="checkout-content">
                 <div className="area-address">
-                    <Address setReadyToPay={setReadyToPay} readyToPay={readyToPay} setOrderData={setOrderData} orderData={orderData} setCheck={setCheck} mth={mth}/>
+                    <Address setReadyToPay={setReadyToPay} readyToPay={readyToPay} setOrderData={setOrderData} orderData={orderData} setCheck={setCheck} containCollect={containCollect}/>
                 </div>
                 <div className="area-ordersummary">
                     <OrderSummary setOrderData={setOrderData} orderData={orderData} readyToPay={readyToPay} setCheck={setCheck} check={check} setCode={setCode} code={code} />

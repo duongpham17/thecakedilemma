@@ -91,6 +91,50 @@ exports.createOrder = catchAsync(async(req, res, next) => {
     }
 })
 
+
+//create an order once payment is successful,
+exports.createZeroGrandTotalOrder = catchAsync(async(req, res, next) => {
+    const order = await Order.create(req.body)
+
+    //increase loyalty points
+    if(req.body.user !== "guest"){
+        const user = await User.findById(req.body.user)
+        user.loyalty_point += 1
+        await user.save()
+    }
+
+    //set stats for amount sold and total
+    let productIDs = [];
+    order.order.map(el => productIDs.push({id: el.id, grand_total: el.grand_total, quantity: el.quantity}))
+    
+    let i;
+    for(i = 0; i < productIDs.length; i++){
+        await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: productIDs[i].quantity, grand_total: productIDs[i].grand_total} })
+    }
+
+    if(!order){
+        return next(new appError("Could not create an order.", 400))
+    }
+
+    try{
+        await sendOrderEmail({
+            email: order.email,
+            data: order
+        });
+
+        await sendOrderAlertEmail({
+            data: order
+        });
+
+        res.status(200).json({
+            status: "success",
+            message: 'Confirmation sent'
+        })
+    } catch (err){
+        return next(new appError("There was an error sending the email", 500))
+    }
+})
+
 //get receipt for user
 exports.getOrders = catchAsync(async(req, res, next) => {
     const ord = new Feature(Order.find({user: req.user.id}), req.query).sort().pagination()
@@ -258,4 +302,35 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
     res.status(200).json({received: true})
 }
 
-//check balance of gift card
+//check balance of gift card, gift card page
+exports.getGiftCardBalance = catchAsync(async(req, res, next) => {
+
+    const gift = await Gift.findOne({code: req.params.id})
+
+    if(!gift || Date.now() > Date.parse(gift.expiry)){
+        return next (new appError("Gift card doesn't exist or has expired.", 400))
+    }
+
+    res.status(200).json({
+        status: "success",
+        gift: gift.balance,
+    })
+})
+
+//check balance of gift card, checkout page
+exports.applyGiftCardBalance = catchAsync(async(req, res, next) => {
+
+    const gift = await Gift.findOne({code: req.params.id})
+
+    if(!gift || Date.now() > Date.parse(gift.expiry)){
+        return res.status(200).json({
+               status: "success",
+               gift: -1,
+        })
+    } else {
+        res.status(200).json({
+            status: "success",
+            gift: gift.balance,
+        })
+    }   
+})

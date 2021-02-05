@@ -12,12 +12,10 @@ const orderSchema = new mongoose.Schema({
     postcode: String,
 
     method: String,
-    postage: String,
+    postage: Number,
     order:[],
 
-    total_before_postage: Number,
-    total: Number,
-    total_with_discount: Number,
+    orginal_total: Number,
 
     discount:{ 
         type: Boolean, 
@@ -25,12 +23,22 @@ const orderSchema = new mongoose.Schema({
     },
     discount_value: Number,
 
+    gift_card: {
+        type: Boolean,
+        default: false
+    },
+    gift_card_code: String,
+    gift_card_value: Number,
+
+    grand_total: Number,
+
     message: String,
 
     status: { 
         type: String, 
         default: "Processing" 
     },
+
     date: String,
     
     createdAt: {
