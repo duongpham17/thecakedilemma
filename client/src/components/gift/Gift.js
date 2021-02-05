@@ -12,10 +12,10 @@ import {BiRightArrowAlt, BiLeftArrowAlt} from 'react-icons/bi';
 import {loadStripe} from '@stripe/stripe-js'
 
 //for production
-//const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY)
+const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY)
 
 //for development
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY)
+//const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY)
 
 const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance}, createGiftCardSession, checkGiftCardBalance}) => {
     const gift_card_amount = data?.gift.split(" ").map(Number);

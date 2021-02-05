@@ -286,7 +286,7 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
     const {data} = req.body;
 
     //create checkout session
-    const session = await stripe2.checkout.sessions.create({
+    const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         success_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/gift-success`,
         cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/gift-cards`,
@@ -313,17 +313,17 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
 //making sure the payment have been scompleted
 exports.webhookCheckoutGiftCard = async(req, res, next) => {
     //development webhook
-    const webhook = process.env.WEBHOOK_SECRET_GIFT_CARD;
+    //const webhook = process.env.WEBHOOK_SECRET_GIFT_CARD;
 
     //production webhook
-    //const webhook = process.env.WEBHOOK_SECRET_GIFT_CARD_LIVE 
+    const webhook = process.env.WEBHOOK_SECRET_GIFT_CARD_LIVE 
 
     const signature = req.headers['stripe-signature'];
 
     let event;
 
     try{
-        event = stripe2.webhooks.constructEvent(req.body, signature, webhook);
+        event = stripe.webhooks.constructEvent(req.body, signature, webhook);
     } catch(err){
         return res.status(400).send(`Webhook Error: ${err.message}`)
     }
