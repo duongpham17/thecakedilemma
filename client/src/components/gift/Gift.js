@@ -20,7 +20,7 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
     const [checkBalance, setCheckBalance] = useState("")
 
     const [formData, setFormData] = useState({
-        balance: 0,
+        balance: 5 || gift_card_amount[0],
         buyer_email: "",
         recipient_email: "",
         message: "",
@@ -35,18 +35,18 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
         }
     }
 
+    //check gift card balance
+    const onSubmitCheckBalance = (e) => {
+        e.preventDefault(e)
+        checkGiftCardBalance(checkBalance)
+    }
+
     //create all the information needed for the session which will include the 
     const onSubmit = (e) => {
         e.preventDefault();
         createGiftCardSession(formData)
         setDone("awaiting")
         setTimeout(() => {setDone(true)}, 2000)
-    }
-
-    //check gift card balance
-    const onSubmitCheckBalance = (e) => {
-        e.preventDefault(e)
-        checkGiftCardBalance(checkBalance)
     }
 
     //start the session
@@ -82,7 +82,6 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
             )}
 
             <div className="gift-card-content">
-            {!balance ? "" :
                 <form onSubmit={(e) => onSubmit(e)}>
                     <h1>£{balance}</h1>
                     <label>Your Name</label> <br/>
@@ -102,11 +101,9 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
                     ?
                     <button type="button" className="buy-gift-card" role="link" onClick={handleClick}><BiRightArrowAlt className="gift-left-arrow"/> <AiFillGift/> <BiLeftArrowAlt className="gift-right-arrow"/> </button>
                     :  
-                    <button>done</button> 
-                    }    
-
+                    <button>wrap</button> 
+                    }   
                 </form>
-            }
             </div>
 
 

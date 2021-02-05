@@ -15,7 +15,7 @@ const orderSchema = new mongoose.Schema({
     postage: Number,
     order:[],
 
-    orginal_total: Number,
+    original_total: Number,
 
     discount:{ 
         type: Boolean, 

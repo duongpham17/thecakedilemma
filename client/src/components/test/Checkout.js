@@ -46,8 +46,6 @@ const Checkout = ({user:{user}, order:{basket, total, containCollect, gift_card_
         saved_grand_total: Number(total + postageCost).toFixed(2), 
     })
 
-    console.log(orderData.method)
-
     //take back to basket, if consumer has to reload the basket
     if(!basket || total < data.minimumOrder){
         return <Redirect to="/test-basket" />

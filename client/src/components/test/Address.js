@@ -47,8 +47,6 @@ const Address = (props) => {
         setReadyToPay(true)
     }
 
-    console.log(orderData.method)
-
     return (
         <div className="address-container">
 

@@ -55,7 +55,7 @@ import Guest from './components/checkout/Guest';
 
 /* Order */
 import Order from './components/order/Order';
-import GuestOrder from './components/order/GuestOrder';
+import OrderSuccess from './components/order/OrderSuccess';
 
 /* Gifts */
 import Gift from './components/gift/Gift';
@@ -97,7 +97,7 @@ const App = () => {
             <Route path='/product'        component={Product}                 />
 
             <Route exact path='/basket/guest' component={Guest}               />
-            <Route exact path='/order/guest' component={GuestOrder}           />
+            <Route exact path='/order-success' component={OrderSuccess}       />
             <Route exact path='/checkout'   component={Checkout}              />
             <Route exact path='/basket'     component={Basket}                />
 

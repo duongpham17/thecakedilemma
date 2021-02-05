@@ -116,7 +116,6 @@ const mapStateToProps = state => ({
     order: state.orderReducers,
 })
 const mapDispatchToProps = {
-     
     getOrders, 
     getAdminOrders, 
     completeOrder, 

@@ -11,10 +11,11 @@ router.get('/admin', authController.protect, orderController.getAdminOrders);
 router.patch('/complete/:id/:type', authController.protect, orderController.completeOrder);
 router.patch('/delete/:id', authController.protect, orderController.deleteOrder);
 
+router.post('/checkout-session', orderController.createOrderCheckoutSession )
 router.post('/zero-checkout', orderController.createZeroGrandTotalOrder);
 
-router.get('/gift-card-checkout/:id', orderController.applyGiftCardBalance)
 router.post('/gift-card-session', orderController.createGiftCardSession);
+router.get('/gift-card-checkout/:id', orderController.applyGiftCardBalance)
 router.get('/gift-card-balance/:id', orderController.getGiftCardBalance);
 
 module.exports = router

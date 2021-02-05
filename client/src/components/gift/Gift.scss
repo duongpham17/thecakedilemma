@@ -41,7 +41,7 @@
         min-height: 450px;
         form{
             max-width: 400px;
-            min-height: 250px;
+            min-height: 200px;
             border-radius: 10px;
             border: 5px double var(--main-color);
             margin: 1rem auto;
@@ -49,9 +49,10 @@
             input{
                 text-align: center;
                 margin-bottom: 0.5rem;
-                width: 95%;
+                width: 80%;
+                border-bottom: 2px solid var(--main-color);
                 &:hover{
-                    background-color:  var(--main-color);
+                    border-bottom: 2px solid rgb(255, 166, 2);
                 }
             }
             h1{
@@ -61,7 +62,7 @@
             textarea{
                 width: 95%;
                 text-align: center;
-                min-height: 100px;
+                min-height: 50px;
             }
         }
 

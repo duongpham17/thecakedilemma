@@ -13,38 +13,45 @@
         margin-top: -0.3rem;
         font-weight: 600;
     }
-    input, button{
-        font-size: 16px;
-        border-radius: 0;
-        border: 2px solid white;
-        border-bottom: 2px solid var(--main-color);
-        &:hover{
-            border: 2px solid var(--main-color);
-        }
-    }
     .item-total{
         padding: 0.3rem 0;
         border-top: 1px solid var(--main-color);
     }
-    button{
-        padding: 0 1rem;
-        border: 2px solid var(--main-color);
-        &:hover{
-            background: var(--main-color);
-            color: white;
+
+    .applying-codes{
+        input, button{
+            display: inline;
+            font-size: 16px;
+            width: 130px;
+            border-radius: 0;
+            border: 2px solid white;
+            border-bottom: 2px solid var(--main-color);
+            &:hover{
+                border: 2px solid var(--main-color);
+            }
+        }
+        button{
+            padding: 0 1rem;
+            width: 70px;
+            border: 2px solid var(--main-color);
+            &:hover{
+                background: var(--main-color);
+                color: white;
+            }
+        }
+        .icon{
+            margin: -0.15rem 0;
+        }
+        .code-no{
+            color: rgb(245, 120, 120);
+        }
+        .code-yes{
+            color: rgb(64, 222, 133);
         }
     }
-    .promo-no{
-        color: rgb(245, 120, 120);
-    }
-    .checkout-btn2{
-        border-radius: 5px;
-        padding: 0.2rem 1rem;
-        border: 2px solid var(--main-color);
-        &:hover{
-            background: var(--main-color);
-            color: white;
-        }
+
+    .grand-total{
+        margin-top: 2rem;
     }
 }
 
@@ -63,22 +70,5 @@
     textarea{
         width: 100%;
         min-height: 100px;
-    }
-}
-
-@media (max-width: 550px){
-    .order-summary-container{
-        input, button{
-            display: block;
-        }
-        button{
-            padding: 0.2rem 0.5rem;
-            border-radius: 5px;
-            border: 2px solid var(--main-color);
-            &:hover{
-                background: var(--main-color);
-                color: white;
-            }
-        }
     }
 }

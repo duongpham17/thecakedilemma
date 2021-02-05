@@ -39,6 +39,7 @@ app.use(mongoSanitize());
 app.use(xss());
 
 //stripe webhook
+///app.post('/webhook-checkout-order', bodyParser.raw({type: 'application/json'}), orderController.webhookCheckoutOrder)
 app.post('/webhook-checkout-gift-card', bodyParser.raw({type: 'application/json'}), orderController.webhookCheckoutGiftCard)
 
 app.use(express.json({ limit: '100kb' }));

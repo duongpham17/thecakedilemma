@@ -141,7 +141,6 @@ exports.sendForgotPasswordEmail = async options => {
     await transporter.sendMail(mailOptions)
 }
 
-
 exports.sendOrderEmail = async options => {
     const transporter = EmailNoReply()
 
@@ -194,8 +193,8 @@ exports.sendOrderEmail = async options => {
                 `
                 )}
             <tr>
-                <td class="grand-total"> <p>Shipping<br>Discount<br>Total</p> </td>
-                <td> <p>£${Number(options.data.postage).toFixed(2)}<br>£${Number(options.data.discount_value).toFixed(2)}<br> £${options.data.discount ? Number(options.data.total_with_discount).toFixed(2) : Number(options.data.total).toFixed(2)}</p> </td>
+                <td class="grand-total"> <p>Shipping<br>Discount<br>Gift Card<br>Total</p> </td>
+                <td> <p>£${Number(options.data.postage).toFixed(2)}<br>£${Number(options.data.discount_value).toFixed(2)}<br>£${Number(options.data.gift_card_value).toFixed(2)}<br>£${Number(options.data.grand_total).toFixed(2)}</p></td>
             </tr>
         </table>
         

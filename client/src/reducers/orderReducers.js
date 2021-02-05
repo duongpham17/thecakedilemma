@@ -1,15 +1,18 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
+    LOAD_BASKET,
+    DELETE_BASKET,
+
+    CREATE_ORDER_CHECKOUT_SESSION,
+
     CHECKOUT_STATUS,
+    RESET_STATUS,
     ORDERS,
 
     COMPLETE_ORDER,
     DELETE_ORDER,
 
-    LOAD_BASKET,
-    DELETE_BASKET,
 
-    ZERO_CHECKOUT,
     APPLY_GIFT_CARD_BALANCE,
 
     CREATE_GIFT_CARD_SESSION,
@@ -24,6 +27,8 @@ const initialState = {
     status: null,
     order: null,
     length: 0,
+
+    order_checkout_session: null,
 
     gift_card_session:null,
     gift_session_id: null,
@@ -54,6 +59,12 @@ export default function(state = initialState, action){
                 ...state,
                 status: action.status,
             }
+        case RESET_STATUS: {
+            return{
+                ...state,
+                status: null
+            }
+        }
         case ORDERS:
             return{
                 ...state,
@@ -70,10 +81,10 @@ export default function(state = initialState, action){
                 ...state,
                 order: state.order.filter(i => i._id !== action.id),
             }
-        case ZERO_CHECKOUT:
-            return{
+        case CREATE_ORDER_CHECKOUT_SESSION:
+            return {
                 ...state,
-                status: "message"
+                order_checkout_session: payload
             }
         case CREATE_GIFT_CARD_SESSION:
             return{

@@ -1,13 +1,15 @@
 import {
-    CHECKOUT_STATUS,
-    ORDERS,
     LOAD_BASKET,
     DELETE_BASKET,
+    
+    CREATE_ORDER_CHECKOUT_SESSION,
+
+    CHECKOUT_STATUS,
+    RESET_STATUS,
+    ORDERS,
 
     COMPLETE_ORDER,
     DELETE_ORDER,
-
-    ZERO_CHECKOUT,
 
     APPLY_GIFT_CARD_BALANCE,
     CREATE_GIFT_CARD_SESSION,
@@ -48,6 +50,14 @@ export const checkout = (token, orderData) => async dispatch => {
         dispatch(setAlert("Something went wrong. Please try again.", "danger"))
     }
 }
+
+//delete all items from basket
+export const resetStatus = () => async dispatch => {
+    dispatch({
+        type: RESET_STATUS,
+    })
+}
+
 
 //create receipt
 export const createOrder = (data) => async dispatch => {
@@ -140,11 +150,28 @@ export const createZeroGrandTotalOrder = (data) => async dispatch => {
                 "Content-Type" : "application/json"
             }
         }
-        await Api.post(`/zero-checkout`, data, config);
-        dispatch({
-            type: ZERO_CHECKOUT,
-        })
+        await Api.post(`/orders/zero-checkout`, data, config);
     } catch(err) {
+        console.log(err.response)
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
+}
+
+export const createOrderCheckoutSession = (orderData) => async dispatch => {
+    try{
+        const config = {
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        }
+        const res = await Api.post(`/orders/checkout-session`, {orderData}, config);
+        dispatch({
+            type: CREATE_ORDER_CHECKOUT_SESSION,
+            payload: res.data.session,
+        })
+        console.log(res.data.session)
+    } catch(err){
+        console.log(err.response)
         dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
     }
 }

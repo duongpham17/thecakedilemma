@@ -16,10 +16,12 @@ const OrderSummary = props => {
     const applyDiscount = (e) => {
         e.preventDefault()
 
+        //let users put in disocunt code, if a discount code is correct then this code no longer works
         if(!deducation.includes("discount_code_applied")){
             setDeducation([...deducation, "discount_code_no_exist"])
         }
 
+        //then this code will run once
         if(checkDiscountCode === code && !deducation.includes("discount_code_applied")){
             setOrderData({
                 ...orderData, 
@@ -30,6 +32,7 @@ const OrderSummary = props => {
         }
     }
 
+    //for form input field
     const [checkGiftCode, setCheckGiftCode] = useState("");
     //instantly search for the gift card code and return its value
     useEffect(() => {
@@ -55,7 +58,7 @@ const OrderSummary = props => {
                     ...orderData, 
                     gift_card: true, 
                     gift_card_code: checkGiftCode, 
-                    gift_card_value: gift_card_balance_checkout > orderData.grand_total ? gift_card_balance_checkout - orderData.grand_total : gift_card_balance_checkout,
+                    gift_card_value: gift_card_balance_checkout > orderData.grand_total ? orderData.grand_total :gift_card_balance_checkout,
                     grand_total: gift_card_balance_checkout > orderData.grand_total ? 0 : orderData.grand_total - gift_card_balance_checkout,
                 });
                 setDeducation([...deducation, "gift_card_applied"])
@@ -90,8 +93,8 @@ const OrderSummary = props => {
                 <input placeholder="Gift Card Code" onChange={(e) => setCheckGiftCode(e.target.value)} minLength="16" required/>
                 <button>{deducation.includes("gift_card_applied") ? <MdDone className="icon"/>  : deducation.includes("gift_card_exist") ? "apply" : "find"}</button>
                 {   
-                    deducation.includes("gift_card_applied") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 : gift_card_balance_checkout} <br/> Balance after checkout £{orderData.gift_card_value.toFixed(2)} </p> :
-                    deducation.includes("gift_card_exist") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 : gift_card_balance_checkout} <br/>  Spending £{orderData.grand_total.toFixed(2)}</p> :
+                    deducation.includes("gift_card_applied") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 : gift_card_balance_checkout} <br/> Balance after checkout £{ gift_card_balance_checkout - orderData.gift_card_value } </p> :
+                    deducation.includes("gift_card_exist") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 : gift_card_balance_checkout} <br/>  Spending £{Number(orderData.grand_total).toFixed(2)}</p> :
                     deducation.includes("gift_card_no_exist") ? <p className="code-no">Code does not exist or has expired</p> : ""
                 }
             </form>
