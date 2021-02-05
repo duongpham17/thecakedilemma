@@ -15,6 +15,7 @@ dotenv.config({ path: "./config.env" });
 const {v4 : uuidv4} = require("uuid");
 const stripe = require('stripe')(process.env.NODE_ENV === "production" ? process.env.STRIPE_KEY_LIVE : process.env.STRIPE_KEY_DEV)
 
+//for development
 const stripe2 = require('stripe')(process.env.STRIPE_KEY_DEV)
 
 //checkout
@@ -59,6 +60,18 @@ exports.createOrder = catchAsync(async(req, res, next) => {
         await user.save()
     }
 
+    //decrease or delete gift card if it has been used
+    if(order.gift_card){
+        const gift = await Gift.findOne({code: order.gift_card_code})
+        const value = gift.balance - order.gift_card_value;
+        if(value === 0 || gift.expiry < Date.now()){
+            await Gift.deleteOne({"code": order.gift_card_code})
+        } else {
+            gift.balance -= order.gift_card_value;
+            await gift.save()
+        }
+    }
+    
     //set stats for amount sold and total
     let productIDs = [];
     order.order.map(el => productIDs.push({id: el.id, total: el.total, quantity: el.quantity}))
@@ -90,58 +103,6 @@ exports.createOrder = catchAsync(async(req, res, next) => {
         return next(new appError("There was an error sending the email", 500))
     }
 })
-
-//create order checkout session
-exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
-    //get the data to fill out the order 
-    const {orderData} = req.body;
-
-    //create checkout session
-    const session = await stripe2.checkout.sessions.create({
-        payment_method_types: ['card'],
-        success_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/order-success`,
-        cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/basket`,
-        customer_email: orderData.buyer_email,
-        line_items: [{
-            name: "Ordering",
-            images: ['https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572'],
-            amount: orderData.grand_total * 100,
-            currency: "gbp",
-            quantity: 1,
-        }]
-        ,
-        metadata: {
-            first_name: orderData.first_name,
-            last_name: orderData.last_name,
-            address_1: orderData.address_1,
-            address_2: orderData.address_2,
-            city: orderData.city,
-            postcode: orderData.postcode,
-            method: orderData.method,
-            postage: orderData.postcode,
-            date: orderData.date,
-            original_total: orderData.original_total,
-            grand_total: orderData.grand_total,
-            discount: orderData.discount,
-            discount_value: orderData.discount_value,
-            gift_card: orderData.gift_card,
-            gift_card_value: orderData.gift_card_value,
-            gift_card_code: orderData.gift_card_code,
-            user: orderData.user,
-            message: orderData.message,
-        }
-    })
-
-    res.status(200).json({
-        status: "success",
-        session
-    })
-})
-
-//making sure the payment have been scompleted
-exports.webhookCheckoutOrder = async(req, res, next) => {
-
-}
 
 //check balance of gift card, checkout page
 exports.applyGiftCardBalance = catchAsync(async(req, res, next) => {
@@ -325,7 +286,7 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
     const {data} = req.body;
 
     //create checkout session
-    const session = await stripe2.checkout.sessions.create({
+    const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         success_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/gift-success`,
         cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/gift-cards`,
@@ -353,12 +314,13 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
 
 //making sure the payment have been scompleted
 exports.webhookCheckoutGiftCard = async(req, res, next) => {
+    const webhook = process.env.NODE_ENV === "production" ? process.env.WEBHOOK_SECRET_GIFT_CARD_LIVE : process.env.WEBHOOK_SECRET_GIFT_CARD;
     const signature = req.headers['stripe-signature'];
 
     let event;
 
     try{
-        event = stripe2.webhooks.constructEvent(req.body, signature, process.env.WEBHOOK_SECRET_GIFT_CARD);
+        event = stripe.webhooks.constructEvent(req.body, signature, webhook);
     } catch(err){
         return res.status(400).send(`Webhook Error: ${err.message}`)
     }
@@ -403,3 +365,67 @@ exports.getGiftCardBalance = catchAsync(async(req, res, next) => {
         gift: gift.balance,
     })
 })
+
+
+
+
+
+
+
+
+
+/* Testing / development */
+
+
+
+//create order checkout session
+exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
+    //get the data to fill out the order 
+    const {orderData} = req.body;
+
+    //create checkout session
+    const session = await stripe2.checkout.sessions.create({
+        payment_method_types: ['card'],
+        success_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/order-success`,
+        cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/basket`,
+        customer_email: orderData.buyer_email,
+        line_items: [{
+            name: "Ordering",
+            images: ['https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572'],
+            amount: orderData.grand_total * 100,
+            currency: "gbp",
+            quantity: 1,
+        }]
+        ,
+        metadata: {
+            first_name: orderData.first_name,
+            last_name: orderData.last_name,
+            address_1: orderData.address_1,
+            address_2: orderData.address_2,
+            city: orderData.city,
+            postcode: orderData.postcode,
+            method: orderData.method,
+            postage: orderData.postcode,
+            date: orderData.date,
+            original_total: orderData.original_total,
+            grand_total: orderData.grand_total,
+            discount: orderData.discount,
+            discount_value: orderData.discount_value,
+            gift_card: orderData.gift_card,
+            gift_card_value: orderData.gift_card_value,
+            gift_card_code: orderData.gift_card_code,
+            user: orderData.user,
+            message: orderData.message,
+        }
+    })
+
+    res.status(200).json({
+        status: "success",
+        session
+    })
+})
+
+//making sure the payment have been scompleted
+exports.webhookCheckoutOrder = async(req, res, next) => {
+
+}

@@ -383,7 +383,7 @@ exports.sendGiftCardToBuyerEmail = async options => {
                 </th>
             </tr>
                 <td>
-                    <h1>Thank You ${options.name}</h1>
+                    <h1>Thank You ${options.name}.</h1>
                     <br/>
                     <p> Gift Card Information </p>
                     <p> Order ID: ${options.data._id}</p>
