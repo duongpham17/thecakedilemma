@@ -370,8 +370,7 @@ exports.sendGiftCardToBuyerEmail = async options => {
             <style>
                 ${main_style}
                 h3{margin-bottom: 5rem}
-                .message{font-size: 16px}
-                p{font-size: 18px}
+                .message, p {font-size: 18px}
                 .core{border: 5px double #ffdab9; padding: 1rem; border-radius: 10px }
             </style>
         </head>
@@ -422,8 +421,7 @@ exports.sendGiftCardToRecipientEmail = async options => {
             <style>
                 ${main_style}
                 h3{margin-bottom: 5rem}
-                .message{font-size: 16px}
-                p{font-size: 18px}
+                .message, p {font-size: 18px}
                 .core{border: 5px double #ffdab9; padding: 1rem; border-radius: 10px }
             </style>
         </head>
