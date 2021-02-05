@@ -385,13 +385,14 @@ exports.sendGiftCardToBuyerEmail = async options => {
                 <td>
                     <h1>Thank You ${options.name}.</h1>
                     <br/>
-                    <p> Gift Card Information </p>
-                    <p> Order ID: ${options.data._id}</p>
-                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+                    <p class="message">Message sent: ${!options.message ? " " : options.message}</p>
                     <p class="core"> Balance: £${options.data.balance} </p>
                     <p class="core"> Code: ${options.data.code}</p>
                     <br/><br/>
-                    <p class="message">Message sent: ${!options.message ? " " : options.message}</p>
+                    <p> Gift Card Information </p>
+                    <p> Order ID: ${options.data._id}</p>
+                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+                    <p>How to Use: Copy the code above and paste into the gift card box at the checkout on our website. Can be used multiple times until the balance has been used up or the gift card expires.</p>
                 </td>
             <tr>
             </tr>
@@ -437,13 +438,14 @@ exports.sendGiftCardToRecipientEmail = async options => {
                 <td>
                     <h1>Hello, its me ${options.name} enjoy this gift card.</h1>
                     <br/>
-                    <p> Gift Card Information </p>
-                    <p> Order ID: ${options.data._id}</p>
-                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+                    <p class="message">${!options.message ? " " : options.message}</p>
                     <p class="core"> Balance: £${options.data.balance} </p>
                     <p class="core"> Code: ${options.data.code}</p>
                     <br/><br/>
-                    <p class="message">${!options.message ? " " : options.message}</p>
+                    <p> Gift Card Information </p>
+                    <p> Order ID: ${options.data._id}</p>
+                    <p> Expiry Date: ${new Date(options.data.expiry).toISOString().slice(0,10)} </p>
+                    <p>How to Use: Copy the code above and paste into the gift card box at the checkout on our website. Can be used multiple times until the balance has been used up or the gift card expires.</p>
                 </td>
             </tr>
         </table>
