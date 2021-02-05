@@ -303,8 +303,6 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
         metadata: data
     })
 
-    console.log(session.metadata)
-
     //create session as response
     res.status(200).json({
         status: "success",
@@ -314,7 +312,12 @@ exports.createGiftCardSession = catchAsync(async(req, res, next) => {
 
 //making sure the payment have been scompleted
 exports.webhookCheckoutGiftCard = async(req, res, next) => {
-    const webhook = process.env.NODE_ENV === "production" ? process.env.WEBHOOK_SECRET_GIFT_CARD_LIVE : process.env.WEBHOOK_SECRET_GIFT_CARD;
+    //development webhook
+    const webhook = process.env.WEBHOOK_SECRET_GIFT_CARD;
+
+    //production webhook
+    //const webhook = process.env.WEBHOOK_SECRET_GIFT_CARD_LIVE 
+
     const signature = req.headers['stripe-signature'];
 
     let event;
