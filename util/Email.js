@@ -53,7 +53,7 @@ const main_style = `
     html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; padding: 1rem}
     body {background-color: white}
     .logo{ width: 40%; height:auto }
-    footer{padding: 1rem; background: #ffdab9; margin-top: 20rem; border: 5px double white;}
+    footer{padding: 0.5rem; background: #ffdab9; margin-top: 10rem; font-size: 0.9rem}
     table{ max-width: 600px; text-align: center; margin: 2rem auto;}
 `
 
@@ -436,9 +436,9 @@ exports.sendGiftCardToRecipientEmail = async options => {
             </tr>
             <tr>
                 <td>
-                    <h1>Hello, its me ${options.name} enjoy this gift card.</h1>
+                    <h1>Hi! You have received a gift card for The Cake Dilemma from ${options.name}</h1>
                     <br/>
-                    <p class="message">${!options.message ? " " : options.message}</p>
+                    <p class="message">Message from sender: <br> ${!options.message ? " " : options.message}</p>
                     <p class="core"> Balance: £${options.data.balance} </p>
                     <p class="core"> Code: ${options.data.code}</p>
                     <br/><br/>
