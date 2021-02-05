@@ -38,7 +38,8 @@ const footer = `
 
 const footer_reply = `
 <footer>
-    <p>The Cake Dilemma est. 2020.<br/>
+    <p>The Cake Dilemma est. 2020.
+    <br/>
     For any enquiries, contact us by Email: <a href="mailto:thecakedilemma@gmail.com">thecakedilemma@gmail.com</a>
     Or Whatsapp: <a target="_blank" rel="noreferrer" href="https://wa.me/+447838328990">+447838328990</a>
     <br/>
@@ -53,7 +54,7 @@ const main_style = `
     html { font-family: 'Assistant', 'Arial', 'sans-serif'; text-align: center; padding: 1rem}
     body {background-color: white}
     .logo{ width: 40%; height:auto }
-    footer{padding: 0.5rem; background: #ffdab9; margin-top: 10rem; font-size: 0.9rem}
+    footer{padding: 0.3rem; background: #ffdab9; margin-top: 10rem; font-size: 0.7rem}
     table{ max-width: 600px; text-align: center; margin: 2rem auto;}
 `
 
@@ -385,7 +386,7 @@ exports.sendGiftCardToBuyerEmail = async options => {
                 <td>
                     <h1>Thank You ${options.name}.</h1>
                     <br/>
-                    <p class="message">Message sent: ${!options.message ? " " : options.message}</p>
+                    <p class="message">Message sent: <br> ${!options.message ? " " : options.message}</p>
                     <p class="core"> Balance: £${options.data.balance} </p>
                     <p class="core"> Code: ${options.data.code}</p>
                     <br/><br/>
