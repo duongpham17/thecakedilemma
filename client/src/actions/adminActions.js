@@ -9,6 +9,8 @@ import {
     FIND_ORDER,
     FIND_STATS,
 
+    GET_GIFT_CARDS,
+
     ADMIN_PRODUCT,
     EDIT_PRODUCT,
     CREATE_PRODUCT,
@@ -216,6 +218,20 @@ export const findStats = () => async dispatch => {
 
 /* Gift Cards **********************************************************************************/
 
+//get gift cards in the database
+export const getGiftCards = () => async dispatch => {
+    try{
+        const res = await Api.get(`/admins/gift`);
+        dispatch({
+            type: GET_GIFT_CARDS,
+            payload: res.data.data,
+        })
+    } catch(err) {
+        dispatch(setAlert(err.response.data.message, "danger"))
+    }
+}
+
+
 //create gift cards
 export const createGiftCard = (data) => async dispatch => {
     try{
@@ -240,13 +256,6 @@ export const deleteExpiredGiftCards = () => async dispatch => {
         dispatch(setAlert(err.response.data.message, "danger"))
     }
 }
-
-
-
-
-
-
-
 
 
 

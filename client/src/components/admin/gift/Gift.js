@@ -1,11 +1,11 @@
 import './Gift.scss';
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import {connect} from 'react-redux'
-import {createGiftCard, deleteExpiredGiftCards} from '../../../actions/adminActions';
+import {createGiftCard, deleteExpiredGiftCards, getGiftCards} from '../../../actions/adminActions';
 
 import {AiFillGift} from 'react-icons/ai';
 
-const Gift = ({createGiftCard, deleteExpiredGiftCards}) => {
+const Gift = ({admin:{gift}, createGiftCard, deleteExpiredGiftCards, getGiftCards}) => {
 
     const [giftDelete, setDeleteGift] = useState("")
     const [sent, setSent] = useState("processing")
@@ -51,6 +51,17 @@ const Gift = ({createGiftCard, deleteExpiredGiftCards}) => {
                 }
             </div>
 
+            <div className="get-gift-cards">
+                {!gift ? 
+                <button onClick={() => getGiftCards()}>Find Gift Cards</button> 
+                : 
+                <Fragment>
+                    <p>Total Gift Cards: {gift[1]}</p>
+                    <p>Total Gift Card Balance: £{gift[0]}</p>
+                </Fragment>
+                }
+            </div>
+
             <form onSubmit={(e) => onSubmit(e)}>
                 <small>Name:</small>
                 <input type="text" name="name" value={name} onChange={(e) => onChange(e)} required /><br/>
@@ -69,8 +80,13 @@ const Gift = ({createGiftCard, deleteExpiredGiftCards}) => {
                 <button><AiFillGift/></button>
                 }
             </form>
+
         </div>
     )
 }
 
-export default connect(null,{createGiftCard, deleteExpiredGiftCards})(Gift)
+const mapStateToProps = state => ({
+    admin: state.adminReducers
+})
+
+export default connect(mapStateToProps, {createGiftCard, deleteExpiredGiftCards, getGiftCards})(Gift)

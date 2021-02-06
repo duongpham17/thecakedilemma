@@ -7,6 +7,8 @@ import {
     DELETE_PRODUCT,
     CLEAR_PRODUCT,
 
+    GET_GIFT_CARDS,
+
     FIND_ORDER,
     FIND_STATS,
 
@@ -24,6 +26,7 @@ const initialState = {
     loading: true,
     order: null,
     stats: null,
+    gift: null,
 }
 
 export default function(state = initialState, action){
@@ -65,6 +68,12 @@ export default function(state = initialState, action){
             return{
                 ...state,
                 edit: null,
+            }
+
+        case GET_GIFT_CARDS:
+            return{
+                ...state,
+                gift: payload
             }
 
         case FIND_ORDER: 

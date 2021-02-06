@@ -68,24 +68,26 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, delet
                             <div key={e.id+i} className="content">
                                 <li className="title">- {e.title}</li>
                                 <li className="quantity">Qty: {e.quantity}</li>
-                                <li className="price">Price: £{Number(e.price).toFixed(2)}</li><br/>
-                                <li>&nbsp;&nbsp;&nbsp;{e.size} {e.flavour}</li>
+                                <li className="price">£{Number(e.price).toFixed(2)}</li><br/>
+                                <li>&nbsp;{e.size} {e.flavour}</li>
                             </div>
                         )}
                         
                         <div className="valuation">
-                        <p>Total <span className="total">£{el.original_total.toFixed(2)}</span></p>
-                        <p>Postage <span className="postage">£{Number(el.postage).toFixed(2)}</span></p>
-                        <p>Discount <span className="discount">{el.discount ? `£${el.discount_value.toFixed(2)}` : "£0.00"}</span> </p>
-                        <p>Gift Card <span className="discount">{el.gift_card ? `£${el.gift_card_value.toFixed(2)}` : "£0.00"}</span> </p>
-                        <p>Grand Total <span className="final-total">£{Number(el.grand_total).toFixed(2)}</span></p>
+                            <pre>
+                            <p>Total:               £{el.original_total.toFixed(2)}</p>
+                            <p>Postage:         £{Number(el.postage).toFixed(2)}</p>
+                            <p>Discount:      -{el.discount ? `£${el.discount_value.toFixed(2)}` : "£0.00"}</p>
+                            <p>Gift Card:      -{el.gift_card ? `£${el.gift_card_value.toFixed(2)}` : "£0.00"}</p>
+                            <p>Grand Total:  £{Number(el.grand_total).toFixed(2)}</p>
+                            </pre>
                         </div> 
 
                         <div className="valuation">
                         <p>Method: <span>{el.method}</span></p>
                         <p>Full name: <span>{el.first_name} {el.last_name}</span></p>
                         <p>Email: <span>{el.email}</span></p>
-                        {el.method === "Collect" ? "" : <p>Address: <span>{el.address_1}, {el.address_2}, {el.city}, {el.postcode}</span></p> }
+                        {el.method === "Collect" ? "" : <p>Address: <span>{el.address_1}, {!el.address_2 ? "": `${el.address_2},`} {el.city}, {el.postcode}</span></p> }
                         </div>
                         
                         {!el.message ? "" : 

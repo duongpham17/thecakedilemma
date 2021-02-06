@@ -21,6 +21,8 @@ export const USER_ADDRESS = 'USER_ADDRESS';
 /* Admin */
 export const UPDATE_DATA = 'UPDATE_DATA';
 
+export const GET_GIFT_CARDS = 'GET_GIFT_CARDS';
+
 export const ADMIN_PRODUCT = 'ADMIN_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const EDIT_PRODUCT = 'EDIT_PRODUCT';

@@ -369,3 +369,21 @@ exports.deleteExpiredGiftCards = catchAsync(async(req, res, next) => {
 
     res.status(200).json({status: "success"});
 })
+
+//get all the gift cards
+exports.getGiftCards = catchAsync(async(req, res, next) => {
+    const gift = await Gift.find()
+
+    const total = gift.map(el => el.balance).reduce((a, b) => a + b)
+
+    const data = [total, gift.length]
+
+    if(!gift){
+        return next(new appError("No gift cards found"))
+    }
+
+    res.status(200).json({
+        status:"success",
+        data
+    })
+})
