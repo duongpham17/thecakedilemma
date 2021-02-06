@@ -57,13 +57,13 @@ const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => 
             <form onSubmit={e => onSubmit(e, "verify")}>
                 <h2>Creating Account</h2>
                 <p>Email</p>
-                <input type="email" name="email" value={email}  onChange={e => onChange(e) } required minLength="4" maxLength="45"  />
+                <input type="email" name="email" value={email}  onChange={e => onChange(e) } required minLength="4"  />
                 <p>Username</p>
-                <input type="text"  name="user" value={user}     onChange={e => onChange(e) }  required minLength="4" maxLength="22" />
+                <input type="text"  name="user" value={user}     onChange={e => onChange(e) }  required minLength="4" />
                 <p className="see" onClick={() => setSee(!see) }>{see ?  <AiFillEye/> : <AiFillEyeInvisible/> } Password</p>
-                <input type={see ? 'text' : 'password'} className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="45"/>
+                <input type={see ? 'text' : 'password'} className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="1000"/>
                 <p>Password Confirm</p>
-                <input type={see ? 'text' : 'password'} className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  name="passwordConfirm" value={passwordConfirm} onChange={e => onChange(e) } required minLength="8" maxLength="45" />
+                <input type={see ? 'text' : 'password'} className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  name="passwordConfirm" value={passwordConfirm} onChange={e => onChange(e) } required minLength="8" maxLength="1000" />
                 {check ? <Fragment><div className="loading_signup"/><br/><br/></Fragment> :
                     <button>Create</button>
                 }
