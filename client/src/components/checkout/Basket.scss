@@ -103,11 +103,11 @@
 
     .checkout-link-content{
         a{
-            padding: 0 5rem;
+            padding: 0 4rem;
             font-size: 2rem;
         }
         .icon{
-            margin: -0.3rem 0.5rem;
+            margin: -0.3rem;
             animation: rightnleft 3s ease infinite;
         }
         @keyframes rightnleft {

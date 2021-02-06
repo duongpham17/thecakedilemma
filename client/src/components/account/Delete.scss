@@ -7,17 +7,14 @@
 
     form{
         margin: auto;
-        max-width: 400px;
+        max-width: 300px;
         padding: 1rem;
         border-radius: 10px;
-        text-align: left;
         border: 2px solid var(--main-color);
-        &:hover{
-            box-shadow: 0 5px 12px -3px var(--main-color);
-        }
 
         button, input{
             font-size: 1rem;
+            text-align: center;
         }
 
         input{

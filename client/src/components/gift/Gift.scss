@@ -57,28 +57,10 @@
                     font-size: 1.7rem;
                     background-color: white;
                     color: var(--main-color);
-                    width: 50px;
                     position: absolute;
-                    right: 0;
-                    text-align: center;
-                    &:before{
-                        content: "-----";
-                        color: transparent;
-                        position: absolute;
-                        width: 50px;
-                        height: 50px;
-                        left: -0.1rem;
-                        margin-top:-0.5rem;
-                        border-radius: 50%;
-                        border: 3px solid var(--main-color);
-                        border-top-color: white;
-                        animation: rotate 2s linear infinite;
-                    }
-                    @keyframes rotate {
-                        to{
-                            transform: rotate(360deg);
-                        }
-                    }
+                    right: -0.5rem;
+                    margin-top: -1rem;
+                    padding: 0.5rem;
                 }
             }
 
@@ -89,17 +71,8 @@
         .wrap-gift-card-btn{
             font-size: 1.5rem;
             margin-bottom: -1rem;   
-            &:before{
-                position: absolute;
-                content: "------";
-                color: transparent;
-                border-bottom: 3px solid var(--main-color);
-                animation: movingborder 3s ease infinite;
-            }
-        }
-        @keyframes movingborder {
-            50% {
-            transform: translateX(110%);
+            &:hover{
+                color: var(--main-color);
             }
         }
 

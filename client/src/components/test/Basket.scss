@@ -79,52 +79,6 @@
         }
     }
 
-    .checkout-total-content, .checkout-link-content{
-        margin:2rem auto;
-        text-align: center;
-        width: 57%;
-        min-width: 200px;
-        border: 2px solid var(--main-color);
-        padding: 1rem;
-        &:hover{
-            background: var(--main-color);
-            *{
-                color: white;
-            }
-        }
-    }
-
-
-    .checkout-total-content{
-        p{
-            font-size: 2rem;
-        }
-    }
-
-    .checkout-link-content{
-        a{
-            padding: 0 5rem;
-            font-size: 2rem;
-        }
-        .icon{
-            margin: -0.3rem 0.5rem;
-            animation: rightnleft 3s ease infinite;
-        }
-        @keyframes rightnleft {
-            0% {
-              transform: translateX(-20%);
-            }
-          
-            50% {
-              transform: translateX(20%);
-            }
-          
-            100% {
-              transform: translateX(-20%);
-            }
-          }
-    }
-
 }
 
 @media (max-width: 550px){

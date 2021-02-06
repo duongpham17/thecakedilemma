@@ -6,26 +6,23 @@
 
     form{
         margin: auto;
-        max-width: 400px;
+        max-width: 300px;
         padding: 1rem;
         border-radius: 10px;
-        text-align: left;
         border: 2px solid var(--main-color);
-        &:hover{
-            box-shadow: 0 5px 12px -3px var(--main-color);
-        }
 
         p, input{
             font-size: 16px;
         }
 
         input{
+            text-align: center;
             border-radius: 0px;
             margin-top: 0.2rem;
             margin-bottom: 1rem;
             border-bottom: 2px solid var(--main-color);
             padding: 0.2rem 0.2rem;
-            width: 200px;
+            width: 95%;
         }
 
         button{

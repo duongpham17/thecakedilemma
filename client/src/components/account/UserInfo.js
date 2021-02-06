@@ -36,7 +36,7 @@ const UserInfo = ({user:{user}, updateUserInfo}) => {
         <div className="user-info-container">
             <h2>Account Information</h2>
             <form onSubmit={(e) => onSubmit(e)}>
-                <p className="see-password" onClick={() => setSee(!see)}>{see ? <AiFillEye className="icon_s_black"/> : <AiFillEyeInvisible className="icon_s_black"/>} Enter current password to change information:</p>
+                <p className="see-password" onClick={() => setSee(!see)}>{see ? <AiFillEye className="icon_s_black"/> : <AiFillEyeInvisible className="icon_s_black"/>} Enter current password:</p>
                 <input type={see ? "text" : "password"} name="passwordCurrent" value={passwordCurrent || ""} onChange={e => onChange(e)} minLength="8" required="" />
 
                 <p>Username:</p>
