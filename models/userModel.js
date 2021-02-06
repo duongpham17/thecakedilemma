@@ -24,10 +24,6 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    shipping_point:{
-        type: Number,
-        default: 0
-    },
     address:[{
         first_name: String,
         last_name: String,
