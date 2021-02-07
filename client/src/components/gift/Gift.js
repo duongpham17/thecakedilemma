@@ -39,10 +39,11 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
         }
     }
 
-    //check gift card balance
-    const onSubmitCheckBalance = (e) => {
-        e.preventDefault(e)
-        checkGiftCardBalance(checkBalance)
+    //change gift card balance 
+    const pickBalance = (e, el) => {
+        e.preventDefault();
+        setFormData({...formData, balance: el})
+        setDone(false);
     }
 
     //create all the information needed for the session which will include the 
@@ -68,6 +69,12 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
       }
     };
 
+    //check gift card balance
+    const onSubmitCheckBalance = (e) => {
+        e.preventDefault(e)
+        checkGiftCardBalance(checkBalance)
+    }
+
     return (
         <Fragment>
         {loading ? <div className="loading"/> : 
@@ -84,7 +91,7 @@ const Gift = ({home:{data, loading}, order:{gift_card_session, gift_card_balance
             <div className="gift-content">
 
             {gift_card_amount.map((el, index) => 
-                <button key={index+el} className="pick-balance" onClick={() => setFormData({...formData, balance: el})}>
+                <button key={index+el} className="pick-balance" onClick={(e) => pickBalance(e, el)}>
                 {balance === el ? <BsCircleFill className="icon-selected"/>  : <BsCircle className="icon"/> }
                 £{el}
                 </button>

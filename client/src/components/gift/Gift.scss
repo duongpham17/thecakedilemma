@@ -79,6 +79,9 @@
         .buy-gift-card-btn{
             font-size: 3rem;
             margin-bottom: -1rem;
+            &:hover{
+                color: var(--main-color)
+            }
         }
         .gift-right-arrow{
             animation: rightArrow 3s ease infinite;

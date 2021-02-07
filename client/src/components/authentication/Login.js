@@ -37,9 +37,9 @@ const Login = ({login, auth:{loggedOn}}) => {
                 <button>Login</button>
                 
                 <div className="link-to">
-                <Link to="/forgot password">Forgot Password</Link>
+                <Link to="/forgot password">Forgot Password?</Link>
                 <small> or </small>
-                <Link to="/signup">Signup?</Link>
+                <Link to="/signup">Create Account?</Link>
                 </div>
             </form>
         </div>
