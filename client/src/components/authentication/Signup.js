@@ -4,11 +4,8 @@ import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
 import {signup, signupConfirm} from '../../actions/authActions';
 import {setAlert} from '../../actions/alertActions';
-import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai';
 
 const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => {
-
-    const [see, setSee] = useState(false);
     const [check, setCheck] = useState(false);
 
     const [formData, setFormData] = useState({
@@ -56,14 +53,10 @@ const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => 
             {!confirm ?
             <form onSubmit={e => onSubmit(e, "verify")}>
                 <h2>Creating Account</h2>
-                <p>Email</p>
-                <input type="email" name="email" value={email}  onChange={e => onChange(e) } required minLength="4"  />
-                <p>Username</p>
-                <input type="text"  name="user" value={user}     onChange={e => onChange(e) }  required minLength="4" />
-                <p className="see" onClick={() => setSee(!see) }>{see ?  <AiFillEye/> : <AiFillEyeInvisible/> } Password</p>
-                <input type={see ? 'text' : 'password'} className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="1000"/>
-                <p>Password Confirm</p>
-                <input type={see ? 'text' : 'password'} className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  name="passwordConfirm" value={passwordConfirm} onChange={e => onChange(e) } required minLength="8" maxLength="1000" />
+                <input type="email" placeholder="Your email" name="email" value={email}  onChange={e => onChange(e) } required minLength="4"  />
+                <input type="text" placeholder="Username" name="user" value={user}     onChange={e => onChange(e) }  required minLength="4" />
+                <input type="password" className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  placeholder="Password" name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="1000"/>
+                <input type="password" className={password === passwordConfirm && password.length === 8 ? "correct" : ""} placeholder="Confirm Password" name="passwordConfirm" value={passwordConfirm} onChange={e => onChange(e) } required minLength="8" maxLength="1000" />
                 {check ? <Fragment><div className="loading_signup"/><br/><br/></Fragment> :
                     <button>Create</button>
                 }

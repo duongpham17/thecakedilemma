@@ -274,10 +274,6 @@ exports.deleteOrder = catchAsync(async(req, res, next) => {
     })
 })
 
-
-
-
-
 /* GIFT Card */
 
 //create gift card checkout session
@@ -379,8 +375,6 @@ exports.getGiftCardBalance = catchAsync(async(req, res, next) => {
 
 /* Testing / development */
 
-
-
 //create order checkout session
 exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
     //get the data to fill out the order 
@@ -390,7 +384,7 @@ exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
     const session = await stripe2.checkout.sessions.create({
         payment_method_types: ['card'],
         success_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/order-success`,
-        cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/basket`,
+        cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/test-checkout`,
         customer_email: orderData.buyer_email,
         line_items: [{
             name: "Ordering",
@@ -399,27 +393,6 @@ exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
             currency: "gbp",
             quantity: 1,
         }]
-        ,
-        metadata: {
-            first_name: orderData.first_name,
-            last_name: orderData.last_name,
-            address_1: orderData.address_1,
-            address_2: orderData.address_2,
-            city: orderData.city,
-            postcode: orderData.postcode,
-            method: orderData.method,
-            postage: orderData.postcode,
-            date: orderData.date,
-            original_total: orderData.original_total,
-            grand_total: orderData.grand_total,
-            discount: orderData.discount,
-            discount_value: orderData.discount_value,
-            gift_card: orderData.gift_card,
-            gift_card_value: orderData.gift_card_value,
-            gift_card_code: orderData.gift_card_code,
-            user: orderData.user,
-            message: orderData.message,
-        }
     })
 
     res.status(200).json({

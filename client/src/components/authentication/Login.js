@@ -4,11 +4,7 @@ import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
 import {login} from '../../actions/authActions';
 
-import {AiFillEyeInvisible, AiFillEye} from 'react-icons/ai';
-
 const Login = ({login, auth:{loggedOn}}) => {
-
-    const [see, setSee] = useState(false)
 
     const [formData, setFormData] = useState({
         user: "",
@@ -36,16 +32,14 @@ const Login = ({login, auth:{loggedOn}}) => {
         <div className="authentication-container">
             <form onSubmit={e => onSubmit(e)}>
                 <h2>Login</h2>
-                <p>Username or Email</p>
-                <input type="text"  name="user" value={user} onChange={e => onChange(e) }  required minLength="4" />
-                <p className="see" onClick={() => setSee(!see) }>{see ?  <AiFillEye className="icon_s_white"/> : <AiFillEyeInvisible className="icon_s_white"/> } Password</p>
-                <input type={see ? 'text' : 'password'} name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="1000"/>
+                <input type="text" placeholder="Username or Email"  name="user" value={user} onChange={e => onChange(e) }  required minLength="4" />
+                <input type="password" placeholder="Password" name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="1000"/>
                 <button>Login</button>
                 
                 <div className="link-to">
-                <Link to="/forgot password">Forgot Password?</Link>
-                <br/><br/>
-                <Link to="/signup">Create account? Signup</Link>
+                <Link to="/forgot password">Forgot Password</Link>
+                <small> or </small>
+                <Link to="/signup">Signup?</Link>
                 </div>
             </form>
         </div>

@@ -169,9 +169,7 @@ export const createOrderCheckoutSession = (orderData) => async dispatch => {
             type: CREATE_ORDER_CHECKOUT_SESSION,
             payload: res.data.session,
         })
-        console.log(res.data.session)
     } catch(err){
-        console.log(err.response)
         dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
     }
 }
