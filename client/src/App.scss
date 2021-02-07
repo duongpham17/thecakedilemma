@@ -24,6 +24,7 @@ a, li, input, button, p, label, h1, h2, h3, div, img, textarea, form, label{
 }
 
 a, li, input, button, p, label{
+    background-clip: padding-box;
     text-decoration: none;
     list-style-type: none;
     outline: none;
