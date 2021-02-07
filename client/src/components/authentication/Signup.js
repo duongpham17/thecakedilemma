@@ -53,7 +53,7 @@ const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => 
             {!confirm ?
             <form onSubmit={e => onSubmit(e, "verify")}>
                 <h2>Creating Account</h2>
-                <input type="email" placeholder="Your email" name="email" value={email}  onChange={e => onChange(e) } required minLength="4"  />
+                <input type="email" placeholder="Email" name="email" value={email}  onChange={e => onChange(e) } required minLength="4"  />
                 <input type="text" placeholder="Username" name="user" value={user}     onChange={e => onChange(e) }  required minLength="4" />
                 <input type="password" className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  placeholder="Password" name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="1000"/>
                 <input type="password" className={password === passwordConfirm && password.length === 8 ? "correct" : ""} placeholder="Confirm Password" name="passwordConfirm" value={passwordConfirm} onChange={e => onChange(e) } required minLength="8" maxLength="1000" />
