@@ -50,6 +50,8 @@ const Checkout = ({user:{user}, order:{basket, total, containCollect, gift_card_
     if(!basket || total < data.minimumOrder){
         return <Redirect to="/basket" />
     }
+
+    console.log(orderData);
     
     return (
         <div className="checkout-container">
