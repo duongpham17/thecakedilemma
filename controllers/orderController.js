@@ -31,7 +31,7 @@ exports.checkout = catchAsync(async(req, res, next) => {
 
     const charge = await stripe.charges.create(
         {
-            amount: +(orderData.grand_total * 100).toFixed(2),
+            amount: +(Math.round(orderData.grand_total * 100)).toFixed(2),
             currency: "gbp",
             customer: customer.id,
             receipt_email: token.email,

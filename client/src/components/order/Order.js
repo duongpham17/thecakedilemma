@@ -54,7 +54,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, delet
                         <li><button onClick={() => setOpen(open === index ? "" : index)}>{open === index ? <RiArrowUpSLine/> : <RiArrowDownSLine/>}</button></li>
                         <li><button onClick={() => {copy(el._id)}}><AiOutlineCopy className="icon"/> {el._id.slice(16, 100)}</button></li>
                         <li>{date(el.createdAt)}</li>
-                        <li>£{el.grand_total}</li>
+                        <li>£{el.grand_total.toFixed(2)}</li>
                         {user.role === "admin" ?
                             <Complete completeOrder={completeOrder} el={el} />
                         : 
