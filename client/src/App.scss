@@ -65,21 +65,27 @@ button{
         background: var(--main-color);
     }
 }
-
-.loading:before {
+@mixin Loading($width, $heigth, $top){
     content: "";
     position: absolute;
     left:0;
     right:0;
     margin-left:auto;
     margin-right:auto;
-    margin-top: 10rem;
-    width: 60px;
-    height: 60px;
+    margin-top: $top;
+    width: $width;
+    height: $width;
     border-radius: 50%;
     border: 3px solid var(--main-color);
     border-top-color: white;
     animation: spinner 1s linear infinite;
+}
+
+.loading:before {
+    @include Loading(60px, 60px, 10rem)
+}
+.loading_3:before {
+    @include Loading(15px, 15px, -2rem)
 }
 .loading_2:before {
     content: "";
@@ -91,21 +97,10 @@ button{
     border-top-color: white;
     animation: spinner 1s linear infinite;
 }
-.loading_3:before {
-    content: "";
-    position: absolute;
-    margin-top: -2rem;
-    left:0;
-    right:0;
-    margin-left:auto;
-    margin-right:auto;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    border: 3px solid var(--main-color);
-    border-top-color: white;
-    animation: spinner 1s linear infinite;
+.loading_4:before{
+    @include Loading(30px, 30px, 1rem)
 }
+
 
 @keyframes spinner {
     to{

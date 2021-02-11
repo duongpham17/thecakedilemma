@@ -28,7 +28,6 @@ exports.updateUserInfo = catchAsync(async (req, res, next) => {
     }
   
     // 3) update user information
-    user.user = req.body.user;
     user.email = req.body.email;
     user.password = req.body.password;
     await user.save();

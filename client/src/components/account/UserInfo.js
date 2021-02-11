@@ -8,29 +8,25 @@ const UserInfo = ({user:{user}, updateUserInfo}) => {
 
     const [see, setSee] = useState(false)
 
-    const [data, setData] = useState({
-        User: "",
+    const [formData, setFormData] = useState({
         email: "",
         password: "",
         passwordCurrent: ""
     })
-
-    const {User, email, password, passwordCurrent} = data
+    const {email, password, passwordCurrent} = formData;
 
     useEffect(() => {
-        setData({
-            User: !user ? "" : user.user,
-            email: !user ? "" : user.email,
+        setFormData({
+            email: !user ? "" : user.email
         })
-    }, [setData, user])
+    }, [setFormData, user])
 
     const onSubmit = (e) => {
         e.preventDefault()
-        updateUserInfo(email, User, !password ? passwordCurrent : password, passwordCurrent)
+        updateUserInfo(formData)
     }
 
-    const onChange = (e) => setData({...data, [e.target.name]: e.target.value})
-
+    const onChange = (e) => setFormData({...formData, [e.target.name]: e.target.value})
 
     return (
         <div className="user-info-container">
@@ -38,9 +34,6 @@ const UserInfo = ({user:{user}, updateUserInfo}) => {
             <form onSubmit={(e) => onSubmit(e)}>
                 <p className="see-password" onClick={() => setSee(!see)}>{see ? <AiFillEye className="icon_s_black"/> : <AiFillEyeInvisible className="icon_s_black"/>} Enter current password:</p>
                 <input type={see ? "text" : "password"} name="passwordCurrent" value={passwordCurrent || ""} onChange={e => onChange(e)} minLength="8" required="" />
-
-                <p>Username:</p>
-                <input type="text" name="User" value={User} onChange={e => onChange(e)} required minLength="4" />
 
                 <p>Email:</p>
                 <input type="email" name="email" value={email} onChange={e => onChange(e)} required minLength="6" />

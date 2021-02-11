@@ -1,8 +1,6 @@
 import './ForgotPassword.scss';
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {AiOutlineMail} from 'react-icons/ai';
-
 import { forgottenPassword } from "../../actions/authActions";
 
 const ForgotLogin = ({forgottenPassword, auth:{sent}}) => {
@@ -25,7 +23,7 @@ const ForgotLogin = ({forgottenPassword, auth:{sent}}) => {
             <form onSubmit={(e) => onSubmit(e) }>
             <h2>Forgotten Password</h2>
             <input minLength="6" type="email" placeholder="Enter Your Email" onChange={e => setForgotPasswordEmail(e.target.value)} required /><br/>
-            {loading ? <div className="loading"></div> :
+            {loading ? <div className="loading_4"></div> :
                 <button>Send</button>
             }
             </form>

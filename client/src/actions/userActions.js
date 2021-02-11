@@ -19,15 +19,14 @@ export const loadUserData = () => async dispatch => {
 }
 
 //update user information
-export const updateUserInfo = (email, user, password, passwordCurrent) => async dispatch => {
+export const updateUserInfo = (formData) => async dispatch => {
     try{
         const config = { 
             headers:{
                 "Content-Type" : "application/json"
             }
-        };
-        const body = {email, user, password, passwordCurrent}
-        const res = await Api.patch(`/users/account`, body, config);
+        }
+        const res = await Api.patch(`/users/account`, formData, config);
         dispatch({
             type: USER_DATA,
             payload: res.data.user

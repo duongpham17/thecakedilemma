@@ -35,7 +35,7 @@ const ResetPassword = ({resetPassword, location, setAlert, auth:{loggedOn}}) => 
                 <input minLength="8" type={see === true ? "text" : "password"} placeholder="New Password" onChange={e => setPass({...pass, password: e.target.value})} required/><br/>
                 <input minLength="8" type={see === true ? "text" : "password"} placeholder="Confirm New Password" onChange={e => setPass({...pass, confirmPassword: e.target.value})} required/><br/>
 
-                <button className="update-pass-btn"> Update Password</button>
+                <button className="update-pass-btn"> Update</button>
             </form>
         </div>
     )
