@@ -44,8 +44,9 @@ export const Payment = (props) => {
     //checkout out if the grand total is zero
     const zeroGrandTotalCheckout = (e) => {
         e.preventDefault()
+        setZeroCheckout("success");
         setZeroCheckout("awaiting");
-        setTimeout(() => {setZeroCheckout("success")}, 3000)
+        setTimeout(() => {setZeroCheckout("success")}, 5000)
     }
 
     if(zeroCheckout === "success" || status === "success"){

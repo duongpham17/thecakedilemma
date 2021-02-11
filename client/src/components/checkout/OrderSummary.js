@@ -93,8 +93,8 @@ const OrderSummary = props => {
                 <input placeholder="Gift Card Code" onChange={(e) => setCheckGiftCode(e.target.value)} minLength="16" required/>
                 <button>{deducation.includes("gift_card_applied") ? <MdDone className="icon"/>  : deducation.includes("gift_card_exist") ? "apply" : "find"}</button>
                 {   
-                    deducation.includes("gift_card_applied") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 : gift_card_balance_checkout} <br/> Balance after checkout £{ gift_card_balance_checkout - orderData.gift_card_value } </p> :
-                    deducation.includes("gift_card_exist") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 : gift_card_balance_checkout} <br/>  Spending £{Number(orderData.grand_total).toFixed(2)}</p> :
+                    deducation.includes("gift_card_applied") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 : +(gift_card_balance_checkout).toFixed(2)} <br/> Balance after checkout £{Number(gift_card_balance_checkout - orderData.gift_card_value).toFixed(2)} </p> :
+                    deducation.includes("gift_card_exist") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 :  +(gift_card_balance_checkout).toFixed(2)} <br/>  Spending £{Number(orderData.grand_total).toFixed(2)}</p> :
                     deducation.includes("gift_card_no_exist") ? <p className="code-no">Code does not exist or has expired</p> : ""
                 }
             </form>
