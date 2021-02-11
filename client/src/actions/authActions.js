@@ -78,7 +78,6 @@ export const login = (formData, choice) => async dispatch => {
         })
         dispatch(setAlert('Welcome to TheCakeDilemma', 'success'))
     } catch(err) {
-        console.log(err.response)
         dispatch(setAlert(err.response.data.message || err.response.data, 'danger'))
     }
 }

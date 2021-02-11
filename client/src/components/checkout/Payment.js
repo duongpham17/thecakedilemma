@@ -72,7 +72,7 @@ export const Payment = (props) => {
             <StripeCheckout 
             stripeKey={StripeKey} 
             token={handleToken} name="The Cake Dilemma" 
-            amount={orderData.grand_total * 100}  
+            amount={+(orderData.grand_total * 100).toFixed(2)}  
             currency="GBP">
             <li><button className="checkout-btn2" onClick={() => setLoading(true)}>Checkout</button></li> 
             {loading ? <li><p className="loading-stripe-legacy" /></li> : "" }

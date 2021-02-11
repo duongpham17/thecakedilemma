@@ -31,7 +31,7 @@ exports.checkout = catchAsync(async(req, res, next) => {
 
     const charge = await stripe.charges.create(
         {
-            amount: orderData.grand_total * 100,
+            amount: +(orderData.grand_total * 100).toFixed(2),
             currency: "gbp",
             customer: customer.id,
             receipt_email: token.email,
@@ -72,7 +72,7 @@ exports.createOrder = catchAsync(async(req, res, next) => {
         }
     }
     
-    //set stats for amount sold and total
+    //set statistics for amount sold and total
     let productIDs = [];
     order.order.map(el => productIDs.push({id: el.id, total: el.total, quantity: el.quantity}))
     
@@ -84,7 +84,6 @@ exports.createOrder = catchAsync(async(req, res, next) => {
     if(!order){
         return next(new appError("Could not create an order.", 400))
     }
-
 
     try{
         await sendOrderEmail({

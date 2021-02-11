@@ -47,7 +47,6 @@ export const checkout = (token, orderData) => async dispatch => {
             status: res.data.status
         })
     } catch(err) {
-        console.log(err.response)
         dispatch(setAlert("Payment was declined. Please try another card.", "danger"))
     }
 }
