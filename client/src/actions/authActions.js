@@ -53,7 +53,7 @@ export const signupConfirm = (formData) => async dispatch => {
                 "Content-Type" : "application/json"
             }
         };
-        const res = await Api.post(`/users/signup/confirm`, formData, config);
+        const res = await Api.post(`/users/confirm`, formData, config);
         dispatch({
             type: SIGNUP_CONFIRM,
             payload: res.data.user
@@ -72,13 +72,14 @@ export const login = (formData, choice) => async dispatch => {
                 "Content-Type" : "application/json"
             }
         };
-        const res = await Api.post(`/users/login/${choice}`, formData, config);
+        const res = await Api.post(`/users/login`, formData, config);
         dispatch({
             type: LOGIN,
             payload: res.data.user
         })
-        dispatch(setAlert('Logged In', 'success'))
+        dispatch(setAlert('Welcome to TheCakeDilemma', 'success'))
     } catch(err) {
+        console.log(err.response)
         dispatch(setAlert(err.response.data.message || err.response.data, 'danger'))
     }
 }

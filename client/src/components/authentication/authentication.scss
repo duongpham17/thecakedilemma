@@ -28,7 +28,7 @@
         }
 
         .correct{
-            border: 2px solid rgb(62, 236, 114);
+            border: 2px solid rgba(32, 217, 118, 0.457);
         }
 
         button{
@@ -46,6 +46,25 @@
                 border-bottom: 2px solid var(--main-color);
                 }
             }
+        }
+    }
+
+    .checking-user-exist{
+        margin: 1.5rem;
+        min-height: 2rem;
+
+        p{
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            left:0;
+            right:0;
+            margin-left:auto;
+            margin-right:auto;
+            border-radius: 50%;
+            border: 3px solid var(--main-color);
+            border-top-color: white;
+            animation: spinner 1s linear infinite;
         }
     }
 

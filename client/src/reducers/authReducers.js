@@ -17,7 +17,7 @@ const initialState = {
     loggedOn: false,
     loading: true,
     sent: false,
-    confirm: false,
+    confirm: null,
 }
 
 export default function(state = initialState, action){
@@ -27,7 +27,7 @@ export default function(state = initialState, action){
         case SIGNUP:
             return {
                 ...state,
-                confirm: true
+                confirm: payload
             }
             
         case SIGNUP_CONFIRM: 

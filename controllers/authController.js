@@ -41,29 +41,26 @@ exports.loggedIn = catchAsync(async (req, res) => {
 });
 
 exports.signup = catchAsync(async(req, res, next) => {
-    const user_exist = await User.find({user: req.body.user})
-    const email_exist = await User.find({email: req.body.email})
+    let user = await User.findOne({email: req.body.email});
 
-    if(user_exist.length === 1){
-        return next(new appError("Username already exist", 400))
-    }
-
-    if(email_exist.length === 1){
+    if(user){
         return next(new appError("Email already exist", 400))
     }
 
     try{
+        user = true
+        
         await emailConfirmation({
             email: req.body.email,
-            code: req.body.code,
+            code: req.body.code
         });
 
         res.status(200).json({
             status: "success",
-            message: 'Confirmation code sent to email'
+            user
         })
     } catch (err){
-        return next(new appError("There was an error sending the email. Try again.", 500))
+        return next(new appError(err, 400))
     }
 })
 
@@ -79,15 +76,9 @@ exports.signupConfirm = catchAsync(async(req, res, next) => {
 
 
 exports.login = catchAsync(async(req, res, next) => {
+    const {email, password} = req.body;
 
-    const {password} = req.body
-
-    let user;
-    if(req.params.choice === "email"){
-        user = (await User.findOne({email: req.body.user}).select('+password'));
-    } else {
-        user = (await User.findOne({user: req.body.user}).select('+password'));
-    }
+    const user = await User.findOne({email}).select('+password')
 
     if(!user || !(await user.correctPassword(password, user.password))) {
         return next(new appError("Incorrect Login Information", 401))

@@ -10,14 +10,13 @@ const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => 
 
     const [formData, setFormData] = useState({
         email: "",
-        user: "",
         password: "",
         passwordConfirm: "",
         code: (10000 + Math.random() * 99999).toFixed(0),
         code_confirm: "",
     })
 
-    const {email, user, password, passwordConfirm, code, code_confirm} = formData
+    const {email, password, passwordConfirm, code, code_confirm} = formData
 
     const onSubmit = (e, type) => {
         e.preventDefault()
@@ -54,10 +53,9 @@ const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => 
             <form onSubmit={e => onSubmit(e, "verify")}>
                 <h2>Creating Account</h2>
                 <input type="email" placeholder="Email" name="email" value={email}  onChange={e => onChange(e) } required minLength="4"  />
-                <input type="text" placeholder="Username" name="user" value={user}     onChange={e => onChange(e) }  required minLength="4" />
                 <input type="password" className={password === passwordConfirm && password.length === 8 ? "correct" : ""}  placeholder="Password" name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="1000"/>
                 <input type="password" className={password === passwordConfirm && password.length === 8 ? "correct" : ""} placeholder="Confirm Password" name="passwordConfirm" value={passwordConfirm} onChange={e => onChange(e) } required minLength="8" maxLength="1000" />
-                {check ? <Fragment><div className="loading_signup"/><br/><br/></Fragment> :
+                {check ? <div className="checking-user-exist"><p/></div> :
                     <button>Create</button>
                 }
 
@@ -68,7 +66,7 @@ const Signup = ({signup, signupConfirm, setAlert, auth:{loggedOn, confirm}}) => 
             : 
             <form className="confirm-email-content" onSubmit={e => onSubmit(e, "confirm")} >
             <h2>Please check <br/> {formData.email} <br/> for the code.</h2>
-            <input type="text" placeholder="Enter code here" name="code_confirm" value={code_confirm} onChange={(e) => onChange(e) }  />
+            <input type="text" placeholder="Enter code here" name="code_confirm" value={code_confirm} onChange={(e) => onChange(e) } minLength="4" required />
             <button>Confirm</button>
             </form>
             }

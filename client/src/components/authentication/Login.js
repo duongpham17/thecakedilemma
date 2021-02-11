@@ -7,19 +7,15 @@ import {login} from '../../actions/authActions';
 const Login = ({login, auth:{loggedOn}}) => {
 
     const [formData, setFormData] = useState({
-        user: "",
+        email: "",
         password: "",
     })
 
-    const {user, password} = formData
+    const {email, password} = formData
 
     const onSubmit = e => {
         e.preventDefault()
-        if(user.includes("@")){
-            login(formData, "email")
-        } else {
-            login(formData, "username")
-        }
+        login(formData)
     }
 
     if(loggedOn){
@@ -32,7 +28,7 @@ const Login = ({login, auth:{loggedOn}}) => {
         <div className="authentication-container">
             <form onSubmit={e => onSubmit(e)}>
                 <h2>Login</h2>
-                <input type="text" placeholder="Username or Email"  name="user" value={user} onChange={e => onChange(e) }  required minLength="4" />
+                <input type="text" placeholder="Email"  name="email" value={email} onChange={e => onChange(e) }  required minLength="4" />
                 <input type="password" placeholder="Password" name="password" value={password} onChange={e => onChange(e) } required minLength="8"  maxLength="1000"/>
                 <button>Login</button>
                 
