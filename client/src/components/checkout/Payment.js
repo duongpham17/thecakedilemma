@@ -54,7 +54,7 @@ export const Payment = (props) => {
 
     return (
         <div className="payment-container">
-            {readyToPay && orderData.grand_total === 0 
+            {readyToPay && orderData.grand_total <= 0.30 
             ?   
             <Fragment>
                 {zeroCheckout === "awaiting" ? 
