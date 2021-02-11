@@ -38,9 +38,9 @@ const Address = (props) => {
 
     const onSubmit = (e, m) => {
         if(m === "collect"){
-            setOrderData({...orderData, grand_total: orderData.grand_total - orderData.savePost, postage: 0 })
+            setOrderData({...orderData, grand_total: orderData.grand_total - orderData.savePost, postage: 0, method: "Collect" })
         } else {
-            setOrderData({...orderData, grand_total: !orderData.postage ? orderData.grand_total + orderData.savePost : orderData.grand_total, postage: orderData.savePost})
+            setOrderData({...orderData, grand_total: !orderData.postage ? orderData.grand_total + orderData.savePost : orderData.grand_total, postage: orderData.savePost, method: "Delivery"})
         }
         e.preventDefault()
         setAddressDone(true)

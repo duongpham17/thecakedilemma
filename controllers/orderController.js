@@ -85,6 +85,8 @@ exports.createOrder = catchAsync(async(req, res, next) => {
         return next(new appError("Could not create an order.", 400))
     }
 
+    console.log(order)
+
     try{
         await sendOrderEmail({
             email: order.email,
@@ -364,8 +366,6 @@ exports.getGiftCardBalance = catchAsync(async(req, res, next) => {
         gift: gift.balance,
     })
 })
-
-
 
 
 
