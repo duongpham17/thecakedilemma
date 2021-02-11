@@ -7,7 +7,6 @@ import {
     DELETE_ACCOUNT,
 
     FORGOT_PASSWORD,
-    TRY_FORGOT_PASSWORD,
     RESET_PASSWORD
 } from './types';
 import {setAlert} from './alertActions';
@@ -127,13 +126,6 @@ export const forgottenPassword = (email) => async dispatch => {
     } catch (err) {
         dispatch(setAlert(err.response.data.message || err.response.data, 'danger'))
     }
-}
-
-//let user send email again
-export const tryAgain = () => async dispatch => {
-    dispatch({
-        type: TRY_FORGOT_PASSWORD
-    })
 }
 
 //reset url

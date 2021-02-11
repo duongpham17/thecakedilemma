@@ -11,7 +11,6 @@ export const LOGOUT = 'LOGOUT';
 export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
-export const TRY_FORGOT_PASSWORD = 'TRY_FORGOT_PASSWORD';
 export const RESET_PASSWORD =  'RESET_PASSWORD';
 
 /* User */

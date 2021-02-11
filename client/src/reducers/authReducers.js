@@ -8,7 +8,6 @@ import {
     DELETE_ACCOUNT,
 
     FORGOT_PASSWORD,
-    TRY_FORGOT_PASSWORD,
     RESET_PASSWORD
 } from '../actions/types'
 
@@ -45,11 +44,6 @@ export default function(state = initialState, action){
             return{
                 ...state,
                 sent: true,
-            }
-        case TRY_FORGOT_PASSWORD:
-            return{
-                ...state,
-                sent: false,
             }
 
         case LOGOUT: 
