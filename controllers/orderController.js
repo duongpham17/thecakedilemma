@@ -342,7 +342,6 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
                 message: intent.metadata.message, 
                 name: intent.metadata.name
             });
-            break;
         default:
             return res.status(400).send(`Webhook Error: ${event.type}`)
     }
@@ -383,7 +382,7 @@ exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
         order_flavour : stringOrder("flavour"),
         order_size: stringOrder("size"),
         order_price: stringOrder("price"),
-        order_quantity: stringOrder("quanttiy"),
+        order_quantity: stringOrder("quantity"),
         order_total: stringOrder("total"),
     }
 
@@ -438,7 +437,7 @@ exports.webhookCheckoutOrder = async(req, res, next) => {
         case 'checkout.session.completed':
             const intent = event.data.object.metadata;
             
-            //convert the stringed orderItems back into an array 
+            //convert the string orderItems back into an array of objects
             const orderItems = [];
             for(let i = 0; i < intent.order_ids.split(",").length; i++){
                 orderItems.push({
@@ -451,10 +450,8 @@ exports.webhookCheckoutOrder = async(req, res, next) => {
                     total: intent.order_total.split(",")[i],
                 })
             }
-            //then insert this new order items as order, the name given in order model schema
-            intent.order = orderItems
-            console.log(orderItems);
-            console.log(intent);
+            //then insert this new orderItems as order, the name given in order model schema
+            intent.order = orderItems;
 
             //create order
             const order = await Order.create(intent);
@@ -492,7 +489,6 @@ exports.webhookCheckoutOrder = async(req, res, next) => {
             await sendOrderAlertEmail({
                 data: order
             });
-            break;
         default:
             return res.status(400).send(`Webhook Error: ${event.type}`)
     }
