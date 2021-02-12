@@ -76,8 +76,7 @@ exports.createOrder = catchAsync(async(req, res, next) => {
     let productIDs = [];
     order.order.map(el => productIDs.push({id: el.id, total: el.total, quantity: el.quantity}))
     
-    let i;
-    for(i = 0; i < productIDs.length; i++){
+    for(let i = 0; i < productIDs.length; i++){
         await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: productIDs[i].quantity, total: productIDs[i].total} })
     }
 
@@ -375,14 +374,23 @@ exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
     //get the data to fill out the order 
     const {orderData} = req.body;
 
-    const orderedItems = orderData.order.map(el => ({
-        name: el.title,
-        description: `${el.flavour} ${!el.size ? "" : `- ${el.size}`}`,
-        images: [el.url],
-        amount: +(Math.round(el.price * 100)).toFixed(2),
-        currency: "gbp",
-        quantity: el.quantity
-    }))
+    const stringOrder = (data) => orderData.order.map(el => el[data]).join(",");
+
+    //convert the array of orderData.order into a string.
+    const orderItems = {
+        order_ids: stringOrder("id"),
+        order_title: stringOrder("title"), 
+        order_flavour : stringOrder("flavour"),
+        order_size: stringOrder("size"),
+        order_price: stringOrder("price"),
+        order_quantity: stringOrder("quanttiy"),
+        order_total: stringOrder("total"),
+    }
+
+    //delete order from orderData
+    delete orderData["order"];
+
+    const newOrderData = Object.assign(orderData, orderItems)
 
     //create checkout session
     const session = await stripe2.checkout.sessions.create({
@@ -391,7 +399,14 @@ exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
         cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/test-checkout`,
         customer_email: orderData.buyer_email,
         expand: ['line_items'],
-        line_items: orderedItems
+        line_items: [{
+            name: "Orders",
+            images: ['https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572'],
+            amount: +(Math.round(orderData.grand_total * 100)).toFixed(2),
+            currency: "gbp",
+            quantity: 1,
+        }],
+        metadata: newOrderData
     })
 
     res.status(200).json({
@@ -402,5 +417,85 @@ exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
 
 //making sure the payment have been scompleted
 exports.webhookCheckoutOrder = async(req, res, next) => {
+    //development webhook
+    const webhook = process.env.WEBHOOK_CHECKOUT_ORDER;
 
+    //production webhook
+    //const webhook = process.env.WEBHOOK_CHECKOUT_ORDER_LIVE
+
+    const signature = req.headers['stripe-signature'];
+
+    let event;
+
+    try{
+        event = stripe2.webhooks.constructEvent(req.body, signature, webhook);
+    } catch(err){
+        return res.status(400).send(`Webhook Error: ${err.message}`)
+    }
+
+    // Handle the event
+    switch (event.type) {
+        case 'checkout.session.completed':
+            const intent = event.data.object.metadata;
+            
+            //convert the stringed orderItems back into an array 
+            const orderItems = [];
+            for(let i = 0; i < intent.order_ids.split(",").length; i++){
+                orderItems.push({
+                    id: intent.order_ids.split(",")[i],
+                    title: intent.order_title.split(",")[i],
+                    flavour: intent.order_flavour.split(",")[i],
+                    size: intent.order_size.split(",")[i],
+                    price: intent.order_price.split(",")[i],
+                    quantity: intent.order_quantity.split(",")[i],
+                    total: intent.order_total.split(",")[i],
+                })
+            }
+            //then insert this new order items as order, the name given in order model schema
+            intent.order = orderItems
+            console.log(orderItems);
+            console.log(intent);
+
+            //create order
+            const order = await Order.create(orderData);
+
+            //increase loyalty points
+            if(order.user !== "guest"){
+                await User.findOneAndUpdate(order.user, {$inc: {loyalty_point: 1 }}, {new: true})
+            }
+
+            //decrease or delete gift card if it has been used
+            if(order.gift_card){
+                const gift = await Gift.findOne({code: order.gift_card_code})
+                const value = gift.balance - order.gift_card_value;
+                if(value === 0 || gift.expiry < Date.now()){
+                    await Gift.deleteOne({"code": order.gift_card_code})
+                } else {
+                    gift.balance -= order.gift_card_value;
+                    await gift.save()
+                }
+            }
+
+            //set stats for amount sold and total
+            let productIDs = [];
+            order.order.map(el => productIDs.push({id: el.id, total: el.total, quantity: el.quantity}))
+            
+            for(let i = 0; i < productIDs.length; i++){
+                await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: productIDs[i].quantity, total: productIDs[i].total} })
+            }
+
+            await sendOrderEmail({
+                email: order.email,
+                data: order
+            });
+
+            await sendOrderAlertEmail({
+                data: order
+            });
+            break;
+        default:
+            return res.status(400).send(`Webhook Error: ${event.type}`)
+    }
+
+    res.status(200).json({received: true})
 }

@@ -16,7 +16,6 @@ const orderSchema = new mongoose.Schema({
 
     order:[{
         id: String,
-        url: String,
         quantity: Number,
         price: Number,
         title: String,
@@ -48,8 +47,6 @@ const orderSchema = new mongoose.Schema({
         type: String, 
         default: "Processing" 
     },
-
-    date: String,
     
     createdAt: {
         type: Date,

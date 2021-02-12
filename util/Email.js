@@ -213,7 +213,7 @@ exports.sendOrderEmail = async options => {
                 <td>
                     <p>
                     Order ID - ${options.data._id} <br>
-                    Date - ${options.data.date} <br>
+                    Date - ${new Date(options.data.createdAt).toISOString().slice(0,10)} <br>
                     Name - ${options.data.first_name} ${options.data.last_name} <br>
                     Method - ${options.data.method} <br><br>
                     ${options.data.method === "Delivery" ? "Delivery Address" : "Collection Address"} - ${options.data.method === "Delivery" ? `${options.data.address_1}, ${options.data.address_2}, ${options.data.city}, ${options.data.postcode}` :  `${collection_address}`}
@@ -221,7 +221,6 @@ exports.sendOrderEmail = async options => {
                 </td>
             </tr>
         </table>
-    
     
         ${footer}
         </body>
@@ -260,7 +259,7 @@ exports.sendOrderAlertEmail = async options => {
                     <p>Name: ${options.data.first_name} ${options.data.last_name}</p>
                     <p>Order ID: ${options.data._id}</p>
                     <p>Method: ${options.data.method}</p>
-                    <p>Date: ${options.data.date}</p>
+                    <p>Date: ${new Date(options.data.createdAt).toISOString().slice(0,10)}</p>
                 </td>
             </tr>
         </table>

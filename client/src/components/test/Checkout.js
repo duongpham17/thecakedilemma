@@ -30,7 +30,6 @@ const Checkout = ({user:{user}, order:{basket, total, containCollect, gift_card_
         method: containCollect ? "Delivery" : "Collect",
         postage: total >= 50 ? 0 : postageCost,
         order: !basket ? "" : basket,
-        date: new Date().toISOString().slice(0,10),
 
         original_total: total,
         discount: false,

@@ -13,11 +13,9 @@ export const Payment = (props) => {
     const [readyToPay, orderData] = [props.readyToPay, props.orderData];
     const [createZeroGrandTotalOrder, deleteBasket, createOrderCheckoutSession, orderSessionId ] = [props.createZeroGrandTotalOrder, props.deleteBasket, props.createOrderCheckoutSession, props.order.order_checkout_session ];
 
-    const [stripeLoading, setStripeLoading] = useState(false)
     //listen for a order session call
     useEffect(() => {
         if(orderSessionId){
-            setStripeLoading(true)
             async function fetchData(){
                 const stripe = await stripePromise;
 
@@ -31,7 +29,7 @@ export const Payment = (props) => {
             }
             fetchData()
         }
-    }, [orderSessionId, setStripeLoading])
+    }, [orderSessionId])
 
     //start the session for checking out with stripe
     const startSessionCheckout = async (event) => {
