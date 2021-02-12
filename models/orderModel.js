@@ -13,7 +13,17 @@ const orderSchema = new mongoose.Schema({
 
     method: String,
     postage: Number,
-    order:[],
+
+    order:[{
+        id: String,
+        url: String,
+        quantity: Number,
+        price: Number,
+        title: String,
+        flavour: String,
+        size: String,
+        total: Number
+    }],
 
     original_total: Number,
 

@@ -71,9 +71,9 @@ export const Basket = ({order:{basket, total}, auth:{loggedOn}, home:{data}, upd
             {!data ? <div className="loading_2"/> : 
             <div className="checkout-link-content">
                 {loggedOn ? 
-                <p>{total >= data.minimumOrder ? <Link to='/checkout'>Checkout <IoIosArrowForward className="icon"/></Link> : "Minimum order £10"}</p>
+                <p>{total >= data.minimumOrder ? <Link to='/checkout'>Checkout <IoIosArrowForward className="icon"/></Link> : `Minimum order £${data.minimumOrder}`}</p>
                 :                 
-                <p>{total >= data.minimumOrder ? <Link to='/basket/guest'>Checkout <IoIosArrowForward className="icon"/></Link> : "Minimum order £10" }</p>
+                <p>{total >= data.minimumOrder ? <Link to='/basket/guest'>Checkout <IoIosArrowForward className="icon"/></Link> : `Minimum order £${data.minimumOrder}`}</p>
                 }
             </div>
             }

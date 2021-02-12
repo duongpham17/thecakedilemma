@@ -13,9 +13,11 @@ export const Payment = (props) => {
     const [readyToPay, orderData] = [props.readyToPay, props.orderData];
     const [createZeroGrandTotalOrder, deleteBasket, createOrderCheckoutSession, orderSessionId ] = [props.createZeroGrandTotalOrder, props.deleteBasket, props.createOrderCheckoutSession, props.order.order_checkout_session ];
 
+    const [stripeLoading, setStripeLoading] = useState(false)
     //listen for a order session call
     useEffect(() => {
         if(orderSessionId){
+            setStripeLoading(true)
             async function fetchData(){
                 const stripe = await stripePromise;
 
@@ -27,49 +29,33 @@ export const Payment = (props) => {
                     console.log("something went wrong")
                 }
             }
-        fetchData()
+            fetchData()
         }
-    }, [orderSessionId])
-
-    //listen for if the payment has been successful
-    useEffect(() => {
-        // Check to see if this is a redirect back from Checkout
-        const query = new URLSearchParams(window.location.search);
-        console.log(query)
-        if (query.get("order-success")) {
-            createZeroGrandTotalOrder(orderData)
-            localStorage.removeItem("basket-expires");
-            localStorage.removeItem("basket");
-            deleteBasket();
-        }
-        if(query.get("test-checkout")) {
-            setAlert("You couldn't checkout")
-        }
-      }, [createZeroGrandTotalOrder, orderData, deleteBasket]);
+    }, [orderSessionId, setStripeLoading])
 
     //start the session for checking out with stripe
-    const handleClick = async (event) => {
+    const startSessionCheckout = async (event) => {
         await createOrderCheckoutSession(orderData)
     };
 
     //let users checkout if their grand total = 0
-    const [zeroCheckout, setZeroCheckout] = useState("")
+    const [zeroCheckoutLoading, setZeroCheckoutLoading] = useState("")
     //create the order and delete the basket
     useEffect(() => {
-        if(zeroCheckout === "success"){
+        if(zeroCheckoutLoading === "success"){
             createZeroGrandTotalOrder(orderData);
             localStorage.removeItem("basket-expires");
             localStorage.removeItem("basket");
             deleteBasket();
         }
-    },[zeroCheckout, createZeroGrandTotalOrder, deleteBasket, orderData])
+    },[zeroCheckoutLoading, createZeroGrandTotalOrder, deleteBasket, orderData])
     //checkout out if the grand total is zero
     const zeroGrandTotalCheckout = (e) => {
         e.preventDefault()
-        setZeroCheckout("awaiting");
-        setTimeout(() => {setZeroCheckout("success")}, 3000)
+        setZeroCheckoutLoading("awaiting");
+        setTimeout(() => {setZeroCheckoutLoading("success")}, 3000)
     }
-    if(zeroCheckout === "success"){
+    if(zeroCheckoutLoading === "success"){
         return <Redirect to="/order-success" />
     } 
 
@@ -78,7 +64,7 @@ export const Payment = (props) => {
             {readyToPay && orderData.grand_total === 0 
             ?   
             <Fragment>
-                {zeroCheckout === "awaiting" ? 
+                {zeroCheckoutLoading === "awaiting" ? 
                 <div> 
                     <div className="loading_payment"/> 
                     <p>Please do not refresh. </p>
@@ -88,7 +74,7 @@ export const Payment = (props) => {
                 }
             </Fragment>
             : 
-                <button type="button" className="checkout-btn" role="link" onClick={handleClick}>Checkout</button>
+                <button type="button" className="checkout-btn" role="link" onClick={startSessionCheckout}>Checkout</button>
             }       
         </div>
     )

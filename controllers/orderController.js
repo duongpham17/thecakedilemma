@@ -368,10 +368,6 @@ exports.getGiftCardBalance = catchAsync(async(req, res, next) => {
 
 
 
-
-
-
-
 /* Testing / development */
 
 //create order checkout session
@@ -379,19 +375,23 @@ exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
     //get the data to fill out the order 
     const {orderData} = req.body;
 
+    const orderedItems = orderData.order.map(el => ({
+        name: el.title,
+        description: `${el.flavour} ${!el.size ? "" : `- ${el.size}`}`,
+        images: [el.url],
+        amount: +(Math.round(el.price * 100)).toFixed(2),
+        currency: "gbp",
+        quantity: el.quantity
+    }))
+
     //create checkout session
     const session = await stripe2.checkout.sessions.create({
         payment_method_types: ['card'],
         success_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/order-success`,
         cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/test-checkout`,
         customer_email: orderData.buyer_email,
-        line_items: [{
-            name: "Ordering",
-            images: ['https://firebasestorage.googleapis.com/v0/b/cakedilemma.appspot.com/o/main%2Flogo2.png?alt=media&token=b22ffdda-5bc4-4bdf-8d5d-c1cf5102d572'],
-            amount: orderData.grand_total * 100,
-            currency: "gbp",
-            quantity: 1,
-        }]
+        expand: ['line_items'],
+        line_items: orderedItems
     })
 
     res.status(200).json({
