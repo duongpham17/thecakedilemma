@@ -342,11 +342,11 @@ exports.webhookCheckoutGiftCard = async(req, res, next) => {
                 message: intent.metadata.message, 
                 name: intent.metadata.name
             });
+
+            res.status(200).json({received: true})
         default:
             return res.status(400).send(`Webhook Error: ${event.type}`)
     }
-
-    res.status(200).json({received: true})
 }
 
 //check balance of gift card, gift card page
@@ -489,9 +489,9 @@ exports.webhookCheckoutOrder = async(req, res, next) => {
             await sendOrderAlertEmail({
                 data: order
             });
+
+            res.status(200).json({received: true})
         default:
             return res.status(400).send(`Webhook Error: ${event.type}`)
     }
-
-    res.status(200).json({received: true})
 }
