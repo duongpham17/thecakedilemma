@@ -3,9 +3,8 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {deleteBasket, resetStatus} from '../../actions/orderActions';
 
-const Guest = ({order:{status}, resetStatus}) => {
+const Guest = ({order:{status}, resetStatus, deleteBasket}) => {
     //listen for if the payment has been successful
-
     useEffect(() => {
         if(status === "success"){
             resetStatus()
@@ -14,6 +13,7 @@ const Guest = ({order:{status}, resetStatus}) => {
             deleteBasket();
             localStorage.removeItem("basket-expires");
             localStorage.removeItem("basket");
+            localStorage.removeItem("checkout-session")
         }
     }, [status, resetStatus, deleteBasket])
 
