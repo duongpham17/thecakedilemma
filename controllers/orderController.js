@@ -457,7 +457,7 @@ exports.webhookCheckoutOrder = async(req, res, next) => {
             console.log(intent);
 
             //create order
-            const order = await Order.create(orderData);
+            const order = await Order.create(intent);
 
             //increase loyalty points
             if(order.user !== "guest"){
