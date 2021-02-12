@@ -216,7 +216,7 @@ exports.sendOrderEmail = async options => {
                     Date - ${new Date(options.data.createdAt).toISOString().slice(0,10)} <br>
                     Name - ${options.data.first_name} ${options.data.last_name} <br>
                     Method - ${options.data.method} <br><br>
-                    ${options.data.method === "Delivery" ? "Delivery Address" : "Collection Address"} - ${options.data.method === "Delivery" ? `${options.data.address_1}, ${options.data.address_2}, ${options.data.city}, ${options.data.postcode}` :  `${collection_address}`}
+                    ${options.data.method === "Delivery" ? "Delivery Address" : "Collection Address"} - ${options.data.method === "Delivery" ? `${options.data.address_1}, ${!options.data.address_2 ? "" : `${options.data.address_2}, `} ${options.data.city}, ${options.data.postcode}` :  `${collection_address}`}
                     </p> 
                 </td>
             </tr>

@@ -10,7 +10,12 @@ const Guest = ({order:{status}, resetStatus}) => {
         if(status === "success"){
             resetStatus()
         }
-    }, [status, resetStatus])
+        if(localStorage.getItem("checkout-session")){
+            deleteBasket();
+            localStorage.removeItem("basket-expires");
+            localStorage.removeItem("basket");
+        }
+    }, [status, resetStatus, deleteBasket])
 
     return (
         <div className="guest-order-container">

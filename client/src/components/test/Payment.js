@@ -17,6 +17,8 @@ export const Payment = (props) => {
     useEffect(() => {
         if(orderSessionId){
             async function fetchData(){
+                localStorage.setItem("checkout-session", true)
+                    
                 const stripe = await stripePromise;
 
                 const result = await stripe.redirectToCheckout({
