@@ -29,8 +29,6 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, delet
         }
     }, [getOrders, getAdminOrders, user, page, limit])
 
-    console.log(order[0]?.grand_total)
-
     return (
         <div className="order-container">
             {status === "message" ?  <h2>Thank you for your order. Please check your email for order conformation.</h2> : ""}
@@ -54,7 +52,7 @@ const Order = ({order:{status, order, length}, auth:{user}, completeOrder, delet
                 <Fragment key={el._id}>
                     <div className="detail-content">
                         <li><button onClick={() => setOpen(open === index ? "" : index)}>{open === index ? <RiArrowUpSLine/> : <RiArrowDownSLine/>}</button></li>
-                        <li><button onClick={() => {copy(el._id)}}><AiOutlineCopy className="icon"/> {el._id.slice(16, 100)}</button></li>
+                        <li><button onClick={() => {copy(el._id)}}><AiOutlineCopy className="icon"/> ...{el._id.slice(16, 100)}</button></li>
                         <li>{date(el.createdAt)}</li>
                         <li>£{Number(el.grand_total).toFixed(2)}</li>
                         {user.role === "admin" ?
