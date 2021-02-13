@@ -361,11 +361,8 @@ exports.createGiftCard = catchAsync(async(req, res, next) => {
 
 //delete expired gift cards
 exports.deleteExpiredGiftCards = catchAsync(async(req, res, next) => {
-    const gift = await Gift.deleteMany({expiry: {$lte: Date.now() }})
-
-    if(!gift){
-        return next(new appError("Something went wrong", 400))
-    }
+    await Gift.deleteMany({expiry: {$lte: Date.now() }});
+    await Gift.deleteMany({balance: null });
 
     res.status(200).json({status: "success"});
 })

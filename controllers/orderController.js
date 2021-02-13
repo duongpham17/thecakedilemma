@@ -45,7 +45,7 @@ exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         success_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/order-success`,
-        cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/test-checkout`,
+        cancel_url: `${process.env.NODE_ENV === "production" ? "https://www.thecakedilemma.com" : "http://localhost:3000"}/checkout`,
         customer_email: orderData.buyer_email,
         expand: ['line_items'],
         line_items: [{
