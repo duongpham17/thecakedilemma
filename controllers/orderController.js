@@ -115,7 +115,7 @@ exports.webhookCheckoutOrder = async(req, res, next) => {
             if(order.gift_card){
                 const gift = await Gift.findOne({code: order.gift_card_code})
                 const value = gift.balance - order.gift_card_value;
-                if(value === 0 || gift.expiry < Date.now()){
+                if(value <= 0 || gift.expiry < Date.now()){
                     await Gift.deleteOne({"code": order.gift_card_code})
                 } else {
                     gift.balance -= order.gift_card_value;
@@ -128,7 +128,7 @@ exports.webhookCheckoutOrder = async(req, res, next) => {
             order.order.map(el => productIDs.push({id: el.id, total: el.total, quantity: el.quantity}))
             
             for(let i = 0; i < productIDs.length; i++){
-                await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: productIDs[i].quantity, total: productIDs[i].total} })
+                await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: productIDs[i].quantity, total: productIDs[i].total } })
             }
 
             //send the order to buyer
@@ -192,9 +192,8 @@ exports.createZeroGrandTotalOrder = catchAsync(async(req, res, next) => {
     let productIDs = [];
     order.order.map(el => productIDs.push({id: el.id, total: el.total, quantity: el.quantity}))
     
-    let i;
-    for(i = 0; i < productIDs.length; i++){
-        await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: productIDs[i].quantity, total: productIDs[i].total} })
+    for(let i = 0; i < productIDs.length; i++){
+        await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: productIDs[i].quantity, total: productIDs[i].total } })
     }
 
     if(!order){
@@ -307,9 +306,9 @@ exports.deleteOrder = catchAsync(async(req, res, next) => {
     let productIDs = [];
     order.order.map(el => productIDs.push({id: el.id, total: el.total, quantity: el.quantity}))
     
-    let i;
-    for(i = 0; i < productIDs.length; i++){
-        await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: -productIDs[i].quantity, total: -productIDs[i].total, quantity: productIDs[i].quantity} })
+
+    for(let i = 0; i < productIDs.length; i++){
+        await Product.findByIdAndUpdate(productIDs[i].id, {$inc: {sold: -productIDs[i].quantity, total: -productIDs[i].total, quantity: productIDs[i].quantity } })
     }
 
     await Order.findByIdAndDelete(req.params.id)
