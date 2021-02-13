@@ -67,10 +67,10 @@ exports.createOrderCheckoutSession = catchAsync(async(req, res, next) => {
 //making sure the payment have been scompleted
 exports.webhookCheckoutOrder = async(req, res, next) => {
     //development webhook
-    const webhook = process.env.WEBHOOK_CHECKOUT_ORDER;
+    //const webhook = process.env.WEBHOOK_CHECKOUT_ORDER;
 
     //production webhook
-    //const webhook = process.env.WEBHOOK_CHECKOUT_ORDER_LIVE
+    const webhook = process.env.WEBHOOK_CHECKOUT_ORDER_LIVE
 
     const signature = req.headers['stripe-signature'];
 

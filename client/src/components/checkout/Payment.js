@@ -2,12 +2,12 @@ import './Payment.scss';
 import React, {Fragment, useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {createZeroGrandTotalOrder, deleteBasket, createOrderCheckoutSession, checkout, createOrder} from '../../actions/orderActions';
+import {createZeroGrandTotalOrder, deleteBasket, createOrderCheckoutSession} from '../../actions/orderActions';
 
 import {loadStripe} from '@stripe/stripe-js'
-const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY);
+//const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY);
 //for development
-//const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY)
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY)
 
 export const Payment = (props) => {
     const [readyToPay, orderData] = [props.readyToPay, props.orderData];
@@ -62,8 +62,8 @@ export const Payment = (props) => {
 
     return (
         <div className="payment-container">
-            {readyToPay && orderData.grand_total <= 0.30 
-            ?   
+            {
+            readyToPay && orderData.grand_total <= 0.30 ?   
             <Fragment>
                 {zeroCheckout === "awaiting" ? 
                 <div> 
@@ -75,7 +75,11 @@ export const Payment = (props) => {
                 }
             </Fragment>
             : 
-                <button type="button" className="checkout-btn" role="link" onClick={startSessionCheckout}>Checkout</button>
+            readyToPay 
+                ?
+                    <button type="button" className="checkout-btn" role="link" onClick={startSessionCheckout}>Checkout</button>
+                : 
+                ""
             }       
         </div>
     )
@@ -86,6 +90,6 @@ const mapStateToProps = (state) => ({
     order: state.orderReducers
 })
 
-export default connect(mapStateToProps, {deleteBasket, createZeroGrandTotalOrder, createOrderCheckoutSession, checkout, createOrder})(Payment)
+export default connect(mapStateToProps, {deleteBasket, createZeroGrandTotalOrder, createOrderCheckoutSession})(Payment)
 
 
