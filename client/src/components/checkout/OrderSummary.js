@@ -94,7 +94,7 @@ const OrderSummary = props => {
                 <button>{deducation.includes("gift_card_applied") ? <MdDone className="icon"/>  : deducation.includes("gift_card_exist") ? "apply" : "find"}</button>
                 {   
                     deducation.includes("gift_card_applied") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 : +(gift_card_balance_checkout).toFixed(2)} <br/> Balance after checkout £{Number(gift_card_balance_checkout - orderData.gift_card_value).toFixed(2)} </p> :
-                    deducation.includes("gift_card_exist") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 :  +(gift_card_balance_checkout).toFixed(2)} <br/>  Spending £{Number(orderData.grand_total).toFixed(2)}</p> :
+                    deducation.includes("gift_card_exist") ? <p className="code-yes">Gift Card Balance £{gift_card_balance_checkout === -1 ? 0 :  +(gift_card_balance_checkout).toFixed(2)} <br/>  Spending £{gift_card_balance_checkout > orderData.grand_total ? Number(orderData.grand_total).toFixed(2) : Number(gift_card_balance_checkout).toFixed(2)}</p> :
                     deducation.includes("gift_card_no_exist") ? <p className="code-no">Code does not exist or has expired</p> : ""
                 }
             </form>

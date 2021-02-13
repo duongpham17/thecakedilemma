@@ -3,7 +3,6 @@ import React, {Fragment, useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {createZeroGrandTotalOrder, deleteBasket, createOrderCheckoutSession} from '../../actions/orderActions';
-import {setAlert} from '../../actions/alertActions';
 
 import {loadStripe} from '@stripe/stripe-js'
 //const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY)
