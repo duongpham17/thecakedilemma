@@ -5,9 +5,9 @@ import {Redirect} from 'react-router-dom';
 import {createZeroGrandTotalOrder, deleteBasket, createOrderCheckoutSession} from '../../actions/orderActions';
 
 import {loadStripe} from '@stripe/stripe-js'
-//const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY);
+const stripePromise = loadStripe(process.env.NODE_ENV === "production" ? process.env.REACT_APP_STRIPE_PUB_KEY_LIVE : process.env.REACT_APP_STRIPE_PUB_KEY);
 //for development
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY)
+//const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY)
 
 export const Payment = (props) => {
     const [readyToPay, orderData] = [props.readyToPay, props.orderData];
