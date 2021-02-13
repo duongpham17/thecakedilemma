@@ -61,9 +61,6 @@ import OrderSuccess from './components/order/OrderSuccess';
 import Gift from './components/gift/Gift';
 import GiftSent from './components/gift/GiftSent';
 
-import testCheckout from './components/test/Checkout';
-import testBasket from './components/test/Basket';
-
 const App = () => {
 
   useEffect(() => {
@@ -82,33 +79,30 @@ const App = () => {
           <Connection />
 
           <Switch>
-            <Route exact path='/about'    component={About}                  />
-            <Route exact path='/privacy'  component={Privacy}                />
-            <Route exact path='/faqs'     component={Faqs}                   />
-            <Route exact path='/contact'  component={Contact}                />
+            <Route exact path='/about'            component={About}           />
+            <Route exact path='/privacy'          component={Privacy}         />
+            <Route exact path='/faqs'             component={Faqs}            />
+            <Route exact path='/contact'          component={Contact}         />
 
-            <Route exact path='/signup'   component={Signup}                 />
-            <Route exact path='/login'    component={Login}                  />
-            <Route exact path='/forgot password' component={ForgotPassword}  />
-            <Route path='/resetpassword'         component={ResetPassword}   />
+            <Route exact path='/signup'           component={Signup}          />
+            <Route exact path='/login'            component={Login}           />
+            <Route exact path='/forgot password'  component={ForgotPassword}  />
+            <Route path='/resetpassword'          component={ResetPassword}   />
 
-            <Route exact path='/'          component={Home}                   />
-            <Route path='/products'        component={Products}               />
-            <Route path='/product'        component={Product}                 />
+            <Route exact path='/'                 component={Home}            />
+            <Route path='/products'               component={Products}        />
+            <Route path='/product'                component={Product}         />
 
-            <Route exact path='/basket/guest' component={Guest}               />
-            <Route exact path='/order-success' component={OrderSuccess}       />
-            <Route exact path='/checkout'   component={Checkout}              />
-            <Route exact path='/basket'     component={Basket}                />
+            <Route exact path='/basket/guest'     component={Guest}           />
+            <Route exact path='/order-success'    component={OrderSuccess}    />
+            <Route exact path='/checkout'         component={Checkout}        />
+            <Route exact path='/basket'           component={Basket}          />
 
-            <Route exact path='/gift-cards'     component={Gift}              />
+            <Route exact path='/gift-cards'       component={Gift}            />
             <Route exact path='/gift-success'     component={GiftSent}        />
 
-            <Route exact path='/test-checkout' component={testCheckout}       />
-            <Route exact path='/test-basket' component={testBasket}          />
-
-            <PrivateRoute exact path='/order' component={Order}               />
-            <PrivateRoute exact path='/account' component={Account}           />
+            <PrivateRoute exact path='/order'     component={Order}           />
+            <PrivateRoute exact path='/account'   component={Account}         />
 
             <PrivateAdminRoutes exact path='/admin' component={Admin}         />
 

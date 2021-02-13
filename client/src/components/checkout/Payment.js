@@ -62,24 +62,21 @@ export const Payment = (props) => {
 
     return (
         <div className="payment-container">
-            {
-            readyToPay && orderData.grand_total <= 0.30 ?   
+            { readyToPay && orderData.grand_total <= 0.30 ?   
             <Fragment>
-                {zeroCheckout === "awaiting" ? 
-                <div> 
-                    <div className="loading_payment"/> 
-                    <p>Please do not refresh. </p>
-                </div>
-                : 
+                {
+                    zeroCheckout === "awaiting" 
+                    ? 
+                    <div> 
+                        <div className="loading_payment"/> 
+                        <p>Please do not refresh. </p>
+                    </div>
+                    : 
                     <button onClick={(e) => zeroGrandTotalCheckout(e)}>Checkout</button>
                 }
             </Fragment>
             : 
-            readyToPay 
-                ?
-                    <button type="button" className="checkout-btn" role="link" onClick={startSessionCheckout}>Checkout</button>
-                : 
-                ""
+                readyToPay ? <button type="button" className="checkout-btn" role="link" onClick={startSessionCheckout}>Checkout</button> :  ""
             }       
         </div>
     )

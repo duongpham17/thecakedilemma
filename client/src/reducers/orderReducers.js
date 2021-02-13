@@ -4,16 +4,13 @@ import {
     DELETE_BASKET,
 
     CREATE_ORDER_CHECKOUT_SESSION,
+    APPLY_GIFT_CARD_BALANCE,
 
-    CHECKOUT_STATUS,
     RESET_STATUS,
     ORDERS,
 
     COMPLETE_ORDER,
     DELETE_ORDER,
-
-
-    APPLY_GIFT_CARD_BALANCE,
 
     CREATE_GIFT_CARD_SESSION,
     CHECK_GIFT_CARD_BALANCE,
@@ -53,11 +50,6 @@ export default function(state = initialState, action){
                 ...state,
                 basket: null,
                 total: 0
-            }
-        case CHECKOUT_STATUS:
-            return{
-                ...state,
-                status: action.status,
             }
         case RESET_STATUS: {
             return{

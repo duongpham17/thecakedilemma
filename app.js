@@ -38,7 +38,7 @@ app.use(`/users/forgotpassword`, limiter(3, 3, "Please check your junk, or try a
 app.use(mongoSanitize());
 app.use(xss());
 
-//stripe webhook
+//stripe webhooks
 app.post('/webhook-checkout-order', bodyParser.raw({type: 'application/json'}), orderController.webhookCheckoutOrder);
 app.post('/webhook-checkout-gift-card', bodyParser.raw({type: 'application/json'}), orderController.webhookCheckoutGiftCard);
 

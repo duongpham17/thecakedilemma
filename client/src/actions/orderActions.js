@@ -3,11 +3,9 @@ import {
     DELETE_BASKET,
     
     CREATE_ORDER_CHECKOUT_SESSION,
-
-    CHECKOUT_STATUS,
     RESET_STATUS,
-    ORDERS,
 
+    ORDERS,
     COMPLETE_ORDER,
     DELETE_ORDER,
 
@@ -33,25 +31,6 @@ export const deleteBasket = () => async dispatch => {
     })
 }
 
-//checkout and pay
-export const checkout = (token, orderData) => async dispatch => {
-    try{
-        const config = {
-            headers:{
-                "Content-Type" : "application/json",
-            }
-        }
-        const res = await Api.post(`/orders/checkout`, {token, orderData}, config);
-        dispatch({
-            type: CHECKOUT_STATUS,
-            status: res.data.status
-        })
-    } catch(err) {
-        console.log(err.response)
-        dispatch(setAlert("Payment was declined. Please try another card.", "danger"))
-    }
-}
-
 //delete all items from basket
 export const resetStatus = () => async dispatch => {
     dispatch({
@@ -59,21 +38,80 @@ export const resetStatus = () => async dispatch => {
     })
 }
 
-
-//create receipt
-export const createOrder = (data) => async dispatch => {
+//create zero grand total checkout order
+export const createZeroGrandTotalOrder = (data) => async dispatch => {
     try{
         const config = {
             headers:{
                 "Content-Type" : "application/json"
             }
         }
-        await Api.post(`/orders`, data, config);
+        await Api.post(`/orders/zero-checkout`, data, config);
     } catch(err) {
-        console.log(err.response)
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
     }
 }
 
+export const createOrderCheckoutSession = (orderData) => async dispatch => {
+    try{
+        const config = {
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        }
+        const res = await Api.post(`/orders/checkout-session`, {orderData}, config);
+        dispatch({
+            type: CREATE_ORDER_CHECKOUT_SESSION,
+            payload: res.data.session,
+        })
+    } catch(err){
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
+}
+
+//check gift card balance
+export const applyGiftCardBalance = (id) => async dispatch => {
+    try{
+        const res = await Api.get(`/orders/gift-card-checkout/${id}`);
+        dispatch({
+            type: APPLY_GIFT_CARD_BALANCE,
+            payload: res.data.gift,
+        })
+    } catch(err){
+        dispatch(setAlert("Something went wrong please reload", "danger"))
+    }
+}
+
+//create gift card session
+export const createGiftCardSession = (data) => async dispatch => {
+    try{
+        const config = {
+            headers: {
+                "Content-Type" : "application/json"
+            }
+        }
+        const res = await Api.post(`/orders/gift-card-session`, {data}, config);
+        dispatch({
+            type: CREATE_GIFT_CARD_SESSION,
+            payload: res.data.session,
+        })
+    } catch(err){
+        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
+    }
+}
+
+//check gift card balance
+export const checkGiftCardBalance = (id) => async dispatch => {
+    try{
+        const res = await Api.get(`/orders/gift-card-balance/${id}`);
+        dispatch({
+            type: CHECK_GIFT_CARD_BALANCE,
+            payload: res.data.gift,
+        })
+    } catch(err){
+        dispatch(setAlert(err.response.data.message, "danger"))
+    }
+}
 
 //get orders for admin
 export const getAdminOrders = (page, limit) => async dispatch => {
@@ -139,83 +177,5 @@ export const deleteOrder = (id) => async dispatch => {
         dispatch(setAlert("Order deleted", "success"))
     } catch(err){
         dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
-    }
-}
-
-
-//create zero grand total checkout order
-export const createZeroGrandTotalOrder = (data) => async dispatch => {
-    try{
-        const config = {
-            headers:{
-                "Content-Type" : "application/json"
-            }
-        }
-        await Api.post(`/orders/zero-checkout`, data, config);
-    } catch(err) {
-        console.log(err.response)
-        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
-    }
-}
-
-export const createOrderCheckoutSession = (orderData) => async dispatch => {
-    try{
-        const config = {
-            headers: {
-                "Content-Type" : "application/json"
-            }
-        }
-        const res = await Api.post(`/orders/checkout-session`, {orderData}, config);
-        dispatch({
-            type: CREATE_ORDER_CHECKOUT_SESSION,
-            payload: res.data.session,
-        })
-    } catch(err){
-        console.log(err.response)
-        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
-    }
-}
-
-//create gift card session
-export const createGiftCardSession = (data) => async dispatch => {
-    try{
-        const config = {
-            headers: {
-                "Content-Type" : "application/json"
-            }
-        }
-        const res = await Api.post(`/orders/gift-card-session`, {data}, config);
-        dispatch({
-            type: CREATE_GIFT_CARD_SESSION,
-            payload: res.data.session,
-        })
-    } catch(err){
-        dispatch(setAlert("Something went wrong. Please refresh.", "danger"))
-    }
-}
-
-//check gift card balance
-export const checkGiftCardBalance = (id) => async dispatch => {
-    try{
-        const res = await Api.get(`/orders/gift-card-balance/${id}`);
-        dispatch({
-            type: CHECK_GIFT_CARD_BALANCE,
-            payload: res.data.gift,
-        })
-    } catch(err){
-        dispatch(setAlert(err.response.data.message, "danger"))
-    }
-}
-
-//check gift card balance
-export const applyGiftCardBalance = (id) => async dispatch => {
-    try{
-        const res = await Api.get(`/orders/gift-card-checkout/${id}`);
-        dispatch({
-            type: APPLY_GIFT_CARD_BALANCE,
-            payload: res.data.gift,
-        })
-    } catch(err){
-        dispatch(setAlert("Something went wrong please reload", "danger"))
     }
 }
